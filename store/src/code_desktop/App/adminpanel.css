@@ -1,0 +1,90 @@
+#body{
+position:relative;
+    /* background: gainsboro; */
+    margin:0%;
+    padding-top: 5%;
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+
+}
+
+.add_item{
+padding:10px;
+font-size: 200%;
+    border: 1px solid lightgray;
+    font-weight: bolder;
+    color: rgb(177, 172, 172);
+    margin:10px;
+    cursor: pointer;
+    display: inline;
+
+}
+
+.add_item:hover{
+    background: rgb(177, 172, 172);
+    color: white;
+}
+
+
+.item{
+
+    max-width:80%;
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    box-shadow: 0 0 1px 1px #D3D3D3;
+    margin:auto;
+    margin-top:10px;
+
+}
+
+
+.item_image{
+    position:relative;
+    width:2cm;
+    height:2cm;
+    margin:5px;
+
+}
+
+#live_image{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.item_data{
+
+}
+
+
+.item_name{
+
+}
+
+.item_description{
+
+
+}
+
+.item_control{
+margin:5px;
+
+
+}
+
+.control_button{
+padding:3px;
+color:white;
+font-weight: bold;
+background: dodgerblue;
+margin:2px;
+cursor: pointer;
+}
+
+.control_button:hover{
+    background: lightblue;
+}
