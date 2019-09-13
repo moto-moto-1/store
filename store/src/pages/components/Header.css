@@ -1,0 +1,26 @@
+
+#header{
+    width:100%;
+    height:75%;
+    /* border-bottom: 1px solid #D3D3D3; */
+    position:relative;
+}
+
+#imagetitle{
+
+    position:absolute;
+    top:60%;
+    right:5%;
+    color:white;
+    font: bold;
+    font-size:80px;
+
+}
+
+#headerimage{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
