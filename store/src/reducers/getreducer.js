@@ -55,11 +55,11 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
     switch (type) {
 
-        case get_tasks:
-        return { ...state, tasks: payload }
+        case get_products:
+        return { ...state, pages: payload }
 
-        case get_teams:
-        return { ...state, teams: payload }
+        case get_pages:
+        return { ...state, pages: payload }
 
         case get_supplies:
         return { ...state, supplies: payload }

@@ -1,32 +1,32 @@
 
 
 
-export const submit_new_task = (payload) => ({
-    type: submit_new_task,
+export const submit_new_product = (payload) => ({
+    type: submit_new_product,
     payload
 })
 
-export const submit_new_team = (payload) => ({
-    type: submit_new_team,
+export const submit_new_page = (payload) => ({
+    type: submit_new_page,
     payload
 })
 
-export const submit_new_supply = (payload) => ({
-    type: submit_new_supply,
+export const submit_new_request = (payload) => ({
+    type: submit_new_request,
     payload
 })
 
 
-export const get_tasks = (payload) => ({
-    type: get_tasks,
+export const get_products = (payload) => ({
+    type: get_products,
     payload
 })
-export const get_teams = (payload) => ({
-    type: get_teams,
+export const get_pages = (payload) => ({
+    type: get_pages,
     payload
 })
-export const get_supplies = (payload) => ({
-    type: get_supplies,
+export const get_requests = (payload) => ({
+    type: get_requests,
     payload
 })
 export const get_contacts = (payload) => ({

@@ -1,3 +1,39 @@
+.add_data{
+    background:white;
+    box-shadow: 0px 0px 1px 1px wheat;
+    width:98%;
+    height:70%;
+    position: absolute;
+    left:1%;
+    bottom:1%;
+    z-index: 1;
+}
+
+.add_data-title{
+    font-weight: bolder;
+    font-size: 200%;
+    margin:10px;
+}
+
+input{
+    margin-left:10px;
+    font-size: 120%;
+    min-width: 40%;
+}
+
+.add_button{
+    background: dodgerblue;
+    padding:5px;
+    cursor: pointer;
+    display:inline;
+    margin:10px;
+
+}
+.add_button:hover{
+background:lightblue;
+}
+
+
 #body{
 position:relative;
     /* background: gainsboro; */
