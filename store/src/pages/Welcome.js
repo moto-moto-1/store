@@ -28,10 +28,10 @@ componentWillMount(){
 }
 
 const mapStateToProps = state => ({
-    contacts: state.get.contacts,
-    tasks: state.get.tasks,
-    supplies: state.get.supplies,
-    teams: state.get.teams,
+    products: state.get.products,
+    pages: state.get.pages,
+    requests: state.get.requests,
+    
 });
 
 

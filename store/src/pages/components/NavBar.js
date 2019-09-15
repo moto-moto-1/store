@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+
 
 // import {fetchcontacts,fetchtasks,fetchsupplies,fetchteams,fetchalldata} from '../actions/getactions';
 import "./NavBar.css"
@@ -29,7 +31,37 @@ handleButtonClick = (e) =>{
    
 }
 
+translateToEnglish = (name) =>{
+
+    switch (name) {
+        case 'منتجات':
+          return "products";  
+            break;
+        case 'خدمات':
+          return "services";  
+            break;
+        case 'أتصال':
+          return "contact";  
+            break;
+        case 'من نحن':
+          return "about us";  
+            break;
+        
+    
+        default:
+            break;
+    }
+
+}
+
+
+
     render() {
+
+
+     
+
+
         return (
 
 <div className="navigationbar">
@@ -43,7 +75,10 @@ handleButtonClick = (e) =>{
 </div>
 
 {this.props.navbarpages.map(page=>
-    <div className="navitems" style={{display:this.state.isToggleOn}}><a href="branches"> {page}  </a></div>
+    <div className="navitems" style={{display:this.state.isToggleOn}}>
+        {/* <a href={"/"+this.translateToEnglish(page)}> {page}  </a> */}
+        <Link to={"/"+this.translateToEnglish(page)}> {page} </Link>
+        </div>
     )}
 
   
