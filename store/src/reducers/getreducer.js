@@ -1,4 +1,4 @@
-import {get_tasks,get_teams,get_supplies,get_contacts,get_all_data} from '../actions/types';
+import {get_products,get_pages,get_requests,get_contacts,get_all_data} from '../actions/types';
 
 const initialState = {
     "Header": {
@@ -61,8 +61,8 @@ export default (state = initialState, { type, payload }) => {
         case get_pages:
         return { ...state, pages: payload }
 
-        case get_supplies:
-        return { ...state, supplies: payload }
+        case get_requests:
+        return { ...state, requests: payload }
 
         case get_contacts:
         console.log("inside contacts reducers");
@@ -70,8 +70,8 @@ export default (state = initialState, { type, payload }) => {
         return { ...state, contacts: payload }
 
         case get_all_data:
-        return { ...state, supplies: payload.supplies,tasks: payload.tasks,
-                           contacts: payload.contacts,teams: payload.teams }
+        return { ...state, pages: payload.pages,products: payload.pages.products,
+                           contacts: payload.contacts,requests: payload.requests }
 
     default:
         return state;

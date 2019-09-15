@@ -1,4 +1,4 @@
-import {submit_new_task,submit_new_team,submit_new_supply} from '../actions/types';
+import {submit_new_product,submit_new_page,submit_new_request} from '../actions/types';
 
 const initialState = {
     "Header": {
