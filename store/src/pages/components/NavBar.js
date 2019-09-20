@@ -10,7 +10,11 @@ class NavBar extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {isToggleOn: true};
+        this.state = {isToggleOn: true, dropdownclick:"\u02C5",
+         dropdowndisplay:"none;"
+        };
+
+    
             
       }
      
@@ -22,8 +26,16 @@ componentWillMount(){
     
 }
 
+dropdownhandler = (e) => {
+    e.newprop="none";
+    console.log(e);
+}
+
 handleButtonClick = (e) =>{
     e.preventDefault();
+
+    if(this.state.dropdownclick=="\u02C5"){this.setState({dropdownclick:'\u02C4'})}
+    else if(this.state.dropdownclick=="\u02C4"){this.setState({dropdownclick:'\u02C5'})}
     
     if(this.state.isToggleOn=='none'){this.setState({isToggleOn:'block'})}
     if(this.state.isToggleOn=='block'){this.setState({isToggleOn:'none'})}
@@ -46,7 +58,7 @@ translateToEnglish = (name) =>{
         case 'من نحن':
           return "about us";  
             break;
-        
+     
     
         default:
             break;
@@ -54,13 +66,7 @@ translateToEnglish = (name) =>{
 
 }
 
-
-
     render() {
-
-
-     
-
 
         return (
 
@@ -70,14 +76,26 @@ translateToEnglish = (name) =>{
    <a href="#"> {this.props.header.name}  </a>       
 
     
-    <div className="navbutton"  onClick={this.handleButtonClick}>=</div>
+    <div className="navbutton"  onClick={this.handleButtonClick}>{this.state.dropdownclick}</div>
 
 </div>
 
 {this.props.navbarpages.map(page=>
-    <div className="navitems" style={{display:this.state.isToggleOn}}>
+    <div className="navitems" onClick={this.dropdownhandler}  style={{display:this.state.isToggleOn}}>
         {/* <a href={"/"+this.translateToEnglish(page)}> {page}  </a> */}
-        <Link to={"/"+this.translateToEnglish(page)}> {page} </Link>
+        <Link  to={"/"+this.translateToEnglish(page.main)}> {page.main} </Link>
+        
+
+        <div style={{"display" : this.state.dropdowndisplay}} class="dropdown_content">
+           { page.sub.map( (sub,indexx) =>
+               <Link  to={"/"+ this.translateToEnglish(sub)}> {sub} </Link>
+               
+             )}
+        
+            </div>
+
+
+
         </div>
     )}
 

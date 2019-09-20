@@ -1,8 +1,11 @@
 .navigationbar{
-    display:block;
+    /* display:block; */
         width:100%;
-        padding:5px;
+        /* padding:5px; */
         box-shadow: 0 0 1px 1px #f2f2f2;
+        min-height:1px;
+        /* height:auto; */
+overflow:auto;
     
         
         
@@ -14,9 +17,10 @@
         padding:5px;
         margin:5px;
         text-align: center;
-        font-weight:bold;
+        font-weight:bolder;
         text-align: left;
-    
+        font-size:120%;
+
         /* background: rosybrown; */
         float:right;
         cursor: pointer;
@@ -27,9 +31,31 @@
         padding:5px;
         margin:5px;
         text-align: center;
+        font-size:120%;
+        font-weight: bold;
+        color:black;
         /* background: rosybrown; */
         float:right;
         cursor: pointer;
+        
+    }
+
+    a{
+        text-decoration: none;
+        color:000;
+    }
+
+    .navitems:hover{
+       background: lightgray;
+    }
+
+    .navitems:hover .dropdown_content{
+        display:block;
+     }
+
+    .dropdown_content{
+        display: none;
+
     }
     
     .navbutton{
@@ -60,15 +86,16 @@
     
         .navbutton{
             display:block;
-            padding:5px;
+            /* padding:10px; */
         background: white;
         float:right;
-        box-shadow: 0 0 1px 1px gray;
+        /* box-shadow: 0 0 1px 1px gray; */
         }
     
         .navmainitem{
             display:block;
             float: none;
+            /* padding:10px; */
         }
     
     
