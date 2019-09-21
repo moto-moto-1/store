@@ -10,8 +10,18 @@ class NavBar extends Component {
 
     constructor(props) {
         super(props);
+        // this.dropdownhandler = this.dropdownhandler.bind(this);
+
+
         this.state = {isToggleOn: true, dropdownclick:"\u02C5",
-         dropdowndisplay:"none;"
+         dropdowndata:
+         [{page_arrow:"\u02C5",page_display:"false"},
+         {page_arrow:"\u02C5",page_display:"false"},
+         {page_arrow:"\u02C5",page_display:"false"},
+         {page_arrow:"\u02C5",page_display:"false"},
+         {page_arrow:"\u02C5",page_display:"false"},
+         {page_arrow:"\u02C5",page_display:"false"},
+         {page_arrow:"\u02C5",page_display:"false"}]
         };
 
     
@@ -21,14 +31,41 @@ class NavBar extends Component {
 
 componentWillMount(){
 
+
+
     //this.props.fetchcontacts();
     // this.props.fetchalldata('none','none');
     
 }
 
-dropdownhandler = (e) => {
-    e.newprop="none";
-    console.log(e);
+havesubpage = (ind) => {
+    console.log(this.props.navbarpages[ind].sub.length);
+    if(this.props.navbarpages[ind].sub.length<1){return "";}
+    else return this.state.dropdowndata[ind].page_arrow;
+}
+
+dropdownhandler = (ind) => {
+    // e.preventDefault();
+    let go=this.state.dropdowndata;
+ 
+
+    if(this.state.dropdowndata[ind].page_display=='false'){
+        go[ind].page_display='block';
+        go[ind].page_arrow='\u02C4';
+        this.setState({dropdowndata:go});
+    
+    }
+
+    else if(this.state.dropdowndata[ind].page_display=='none'){
+        go[ind].page_display='block';
+        go[ind].page_arrow='\u02C4';
+        this.setState({dropdowndata:go})}
+    
+    
+   else if(this.state.dropdowndata[ind].page_display=='block'){
+        go[ind].page_display='none';
+        go[ind].page_arrow='\u02C5';
+        this.setState({dropdowndata:go})}
 }
 
 handleButtonClick = (e) =>{
@@ -80,15 +117,25 @@ translateToEnglish = (name) =>{
 
 </div>
 
-{this.props.navbarpages.map(page=>
-    <div className="navitems" onClick={this.dropdownhandler}  style={{display:this.state.isToggleOn}}>
-        {/* <a href={"/"+this.translateToEnglish(page)}> {page}  </a> */}
-        <Link  to={"/"+this.translateToEnglish(page.main)}> {page.main} </Link>
-        
+{this.props.navbarpages.map( (page,indexx)=>
 
-        <div style={{"display" : this.state.dropdowndisplay}} class="dropdown_content">
-           { page.sub.map( (sub,indexx) =>
+    
+    
+    <div className="navitems" onClick={()=>this.dropdownhandler(indexx)}  style={{display:this.state.isToggleOn}}>
+        {/* <a href={"/"+this.translateToEnglish(page)}> {page}  </a> */}
+
+       
+        <div class="main_page" >
+        <Link to={"/"+this.translateToEnglish(page.main)}>  { this.havesubpage(indexx)}{page.main}</Link>
+        </div>
+
+        <div style={{display:this.state.dropdowndata[indexx].page_display}} class="dropdown_content">
+
+            
+           { page.sub.map( (sub) =>
+           <div class="sub_page">
                <Link  to={"/"+ this.translateToEnglish(sub)}> {sub} </Link>
+            </div>   
                
              )}
         
