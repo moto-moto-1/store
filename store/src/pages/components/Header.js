@@ -6,6 +6,22 @@ import "./Header.css"
 
 class Header extends Component {
 
+
+    constructor(props) {
+        super(props);
+        // this.dropdownhandler = this.dropdownhandler.bind(this);
+
+        if(this.props.header.style.direction=="right")this.title_styles={right:"5%"}
+        else this.title_styles={left:"5%"};
+
+        this.title_styles={...this.title_styles,
+            color:this.props.header.style.color,
+            fontSize:this.props.header.style.font_size }
+      
+    
+            
+      }
+
 componentWillMount(){
 
     //this.props.fetchcontacts();
@@ -13,12 +29,16 @@ componentWillMount(){
     
 }
 
+ 
     render() {
+
+      
+
         return (
 
-<div id="header"> 
+<div id="header" style={{height:this.props.header.style.height}}> 
         <img src={this.props.header.image} alt="fashion" id="headerimage"/>
-    <h1 id="imagetitle">{this.props.header.name}</h1>
+    <h1 id="imagetitle" style={this.title_styles}>{this.props.header.name}</h1>
     
     </div>
         

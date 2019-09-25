@@ -30,8 +30,9 @@ componentWillMount(){
         <div class="ProductName">{product.ProductName}</div>
         <div class="ProductDetails">{product.description}</div>
         <div class="ProductPrice">Price: {product.price}</div>
+        
       </div> 
-
+      <div class="MoreInfo"><a href="#">More...</a></div>
     </div>
  )}
 
