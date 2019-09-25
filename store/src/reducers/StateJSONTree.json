@@ -164,6 +164,18 @@
                         {
                             "ServiceId": 434351,
                             "ServiceName": "Fat loss",
+                            "availableTime": [
+                                "13:00",
+                                "14:00",
+                                "15:00",
+                                "16:00"
+                            ],
+                            "availabledays": [
+                                "Sundays",
+                                "Mondays",
+                                "Tuesdays",
+                                "Wednsdays"
+                            ],
                             "price": 344,
                             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
                             "description": "very good quality proceedure"
@@ -171,6 +183,18 @@
                         {
                             "ServiceId": 434351,
                             "ServiceName": "Fat loss",
+                            "availableTime": [
+                                "13:00",
+                                "14:00",
+                                "15:00",
+                                "16:00"
+                            ],
+                            "availabledays": [
+                                "Sundays",
+                                "Mondays",
+                                "Tuesdays",
+                                "Wednsdays"
+                            ],
                             "price": 344,
                             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
                             "description": "very good quality proceedure"
@@ -178,6 +202,18 @@
                         {
                             "ServiceId": 434351,
                             "ServiceName": "Fat loss",
+                            "availableTime": [
+                                "13:00",
+                                "14:00",
+                                "15:00",
+                                "16:00"
+                            ],
+                            "availabledays": [
+                                "Sundays",
+                                "Mondays",
+                                "Tuesdays",
+                                "Wednsdays"
+                            ],
                             "price": 344,
                             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
                             "description": "very good quality proceedure"
@@ -193,6 +229,18 @@
                         {
                             "ServiceId": 434351,
                             "ServiceName": "أعوجاج القفص الصدرى",
+                            "availableTime": [
+                                "13:00",
+                                "14:00",
+                                "15:00",
+                                "16:00"
+                            ],
+                            "availabledays": [
+                                "Sundays",
+                                "Mondays",
+                                "Tuesdays",
+                                "Wednsdays"
+                            ],
                             "price": 344,
                             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
                             "description": "very good quality Therapy"
@@ -200,6 +248,18 @@
                         {
                             "ServiceId": 434351,
                             "ServiceName": "أعوجاج القفص الصدرى",
+                            "availableTime": [
+                                "13:00",
+                                "14:00",
+                                "15:00",
+                                "16:00"
+                            ],
+                            "availabledays": [
+                                "Sundays",
+                                "Mondays",
+                                "Tuesdays",
+                                "Wednsdays"
+                            ],
                             "price": 344,
                             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
                             "description": "very good quality Therapy"
@@ -207,6 +267,37 @@
                         {
                             "ServiceId": 434351,
                             "ServiceName": "أعوجاج القفص الصدرى",
+                            "availableTime": [
+                                "13:00",
+                                "14:00",
+                                "15:00",
+                                "16:00"
+                            ],
+                            "availabledays": [
+                                "Sundays",
+                                "Mondays",
+                                "Tuesdays",
+                                "Wednsdays"
+                            ],
+                            "price": 344,
+                            "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                            "description": "very good quality Therapy"
+                        },
+                        {
+                            "ServiceId": 434351,
+                            "ServiceName": "أعوجاج القفص الصدرى",
+                            "availableTime": [
+                                "13:00",
+                                "14:00",
+                                "15:00",
+                                "16:00"
+                            ],
+                            "availabledays": [
+                                "Sundays",
+                                "Mondays",
+                                "Tuesdays",
+                                "Wednsdays"
+                            ],
                             "price": 344,
                             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
                             "description": "very good quality Therapy"
@@ -239,7 +330,53 @@
             "Type": "Reservation",
             "exists": true,
             "LanguageDirection": "right",
-            "ServiceRequired": "",
+            "ServiceRequired": [
+                {
+                    "ServiceId": 434351,
+                    "ServiceName": "أعوجاج القفص الصدرى",
+                    "Chosen": true,
+                    "availableTime": [
+                        "13:00",
+                        "14:00",
+                        "15:00",
+                        "16:00"
+                    ],
+                    "ChosenTime": "14:00",
+                    "price": 344,
+                    "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                    "description": "very good quality Therapy"
+                },
+                {
+                    "ServiceId": 444151,
+                    "ServiceName": "أعوجاج القفص الصدرى",
+                    "Chosen": false,
+                    "availableTime": [
+                        "13:00",
+                        "14:00",
+                        "15:00",
+                        "16:00"
+                    ],
+                    "ChosenTime": "",
+                    "price": 344,
+                    "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                    "description": "very good quality Therapy"
+                },
+                {
+                    "ServiceId": 434151,
+                    "ServiceName": "أعوجاج القفص الصدرى",
+                    "Chosen": false,
+                    "availableTime": [
+                        "13:00",
+                        "14:00",
+                        "15:00",
+                        "16:00"
+                    ],
+                    "ChosenTime": "",
+                    "price": 344,
+                    "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                    "description": "very good quality Therapy"
+                }
+            ],
             "HeaderTitle": "أحجز خدمة",
             "Details": "",
             "style": {
@@ -256,6 +393,12 @@
             "StartTime": "12:00",
             "EndTime": "17:00",
             "ServiceTime": "00:10",
+            "availabledays": [
+                "Sundays",
+                "Mondays",
+                "Tuesdays",
+                "Wednsdays"
+            ],
             "Details": "",
             "style": {
                 "color": "black",
@@ -297,6 +440,26 @@
                     "description": "very good quality pants"
                 }
             ],
+            "Services": [
+                {
+                    "ProductId": 434351,
+                    "ProductName": "Short pants",
+                    "Quantity": 3,
+                    "TotalPrice": 1032,
+                    "price": 344,
+                    "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                    "description": "very good quality pants"
+                },
+                {
+                    "ProductId": 434341,
+                    "ProductName": "Short pants",
+                    "Quantity": 3,
+                    "TotalPrice": 1032,
+                    "price": 344,
+                    "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                    "description": "very good quality pants"
+                }
+            ],
             "style": {
                 "color": "black",
                 "background": "white"
@@ -305,7 +468,12 @@
     },
     "UserData": {
         "userType": "admin",
+        "signedin": true,
         "UserName": "أبو على",
+        "email": "abuali@gmail.com",
+        "Telephone": "239284845",
+        "Address": "38 saw st, Pensivania,USA",
+        "Map": "30.004111, 31.426389",
         "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
     }
 }
