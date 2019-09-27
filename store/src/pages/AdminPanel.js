@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Header from "./components/Header"
 import NavBar from "./components/NavBar"
 import Products from "./components/Products"
+import InputLine from "./components/InputLine"
 
 
 class AdminPanel extends Component {
@@ -19,7 +20,17 @@ componentWillMount(){
         return (
 
 <div>
-           Panel
+           
+
+           <NavBar/>
+
+          
+
+           <h1>Panel</h1>
+           <InputLine header ="أسم الموقع" placeholder="فاشون تكس" type="textarea" data="here"/>
+           <InputLine header ="أسم الموقع" placeholder="فاشون تكس" type="textarea" data="here"/>
+
+
             </div>
 );}
 

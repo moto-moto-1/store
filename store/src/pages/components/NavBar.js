@@ -93,8 +93,11 @@ translateToEnglish = (name) =>{
           return "contact";  
             break;
         case 'من نحن':
-          return "about us";  
-            break;
+            return "about us";  
+        
+        case 'لوحة التحكم':
+          return "AdminPanel";  
+                break;
      
     
         default:

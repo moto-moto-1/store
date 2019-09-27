@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import * as constants from '../constants';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./InputLine.scss";
+import "./InputLine.css";
 
 export default class InputLine extends Component {
     

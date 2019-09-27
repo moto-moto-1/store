@@ -11,8 +11,8 @@ class Header extends Component {
         super(props);
         // this.dropdownhandler = this.dropdownhandler.bind(this);
 
-        if(this.props.header.style.direction=="right")this.title_styles={right:"5%"}
-        else this.title_styles={left:"5%"};
+        if(this.props.header.style.direction=="right")this.title_styles={right:"2%"}
+        else this.title_styles={left:"2%"};
 
         this.title_styles={...this.title_styles,
             color:this.props.header.style.color,

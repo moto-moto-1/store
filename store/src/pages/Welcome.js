@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Header from "./components/Header"
 import NavBar from "./components/NavBar"
 import Products from "./components/Products"
+import Footer from "./components/Footer"
 
 
 class Welcome extends Component {
@@ -21,7 +22,8 @@ componentWillMount(){
 <div>
             <Header/>
             <NavBar/>
-            <Products/>
+            {/* <Products/> */}
+            <Footer/>
             </div>
 );}
 

@@ -2,8 +2,11 @@
     /* display:block; */
         width:100%;
         /* padding:5px; */
-        box-shadow: 0 0 1px 1px #f2f2f2;
+        box-shadow: 0 0 0.5px 0.5px #f2f2f2;
         min-height:1px;
+        display:flex;
+        justify-content: flex-start;
+        flex-direction: row-reverse;
         /* height:auto; */
 /* overflow:auto; */
     
@@ -22,7 +25,7 @@
         font-size:120%;
 
         /* background: rosybrown; */
-        float:right;
+        /* float:right; */
         cursor: pointer;
     }
     
@@ -35,7 +38,7 @@
         font-weight: bold;
         color:black;
         /* background: rosybrown; */
-        float:right;
+        /* float:right; */
         position:relative;
         cursor: pointer;
         transition: background 0.5s;
@@ -107,14 +110,14 @@
       
         .navitems{
             /* display:inline; */
-            float: right;
+            /* float: right; */
         }
     }
     
     @media all and (max-width: 20cm) {
-        /* .navigationbar{
-    
-        } */
+        .navigationbar{
+    display:block;
+        }
     
         .navitems{
             display:none;
