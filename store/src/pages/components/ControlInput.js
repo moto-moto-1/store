@@ -67,6 +67,12 @@ this.setState({contact: {...this.state.contact,[id]:event}})
 }
 
 
+AddBranch = (e) =>{
+    e.preventDefault();
+    this.state.contact.branchs.push({BranchName:"" , BranchLocation:""})
+    this.setState({contact: {...this.state.contact}}) 
+}
+
 listInputs(controlPage){
 switch (controlPage) {
     case "products":
@@ -80,6 +86,8 @@ switch (controlPage) {
         case "contact":
             return <div>
                 <br></br>
+                <button onClick={this.AddBranch}> Add New Branch </button>
+
              <InputLine header="Facebook Account" placeholder="" data={this.state.contact.FacebookAccount} changevalue={(e)=>this.changeit("FacebookAccount",e)} type="input"/>
              <InputLine header="Twitter Account" placeholder="" data={this.state.contact.TwitterAccount} changevalue={(e)=>this.changeit("TwitterAccount",e)}  type="input"/>
              <InputLine header="YouTube Account" placeholder="" data={this.state.contact.YoutubeAccount} changevalue={(e)=>this.changeit("YoutubeAccount",e)}   type="input"/>
@@ -96,7 +104,6 @@ switch (controlPage) {
             )
             
             }
-
 
 
             <button onClick={()=>this.props.changePageConfiguration("contact",this.state.contact)}> Save </button>
