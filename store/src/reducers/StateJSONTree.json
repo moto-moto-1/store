@@ -74,7 +74,7 @@
             "LanguageDirection": "right",
             "HeaderTitle": "Contact",
             "Details": "",
-            "FacebookAccount": "facebook.com/alibambo.23",
+            "FacebookAccount": "https://facebook.com/alibambo.23",
             "InstagramAccount": "https://www.instagram.com/ay4828gul/",
             "TwitterAccount": "https://twitter.com/justinbieberr",
             "email": "ali@gmail.com",
@@ -391,7 +391,7 @@
             }
         },
         "about": {
-            "PageName": "aboutus",
+            "PageName": "من نحن",
             "Type": "aboutus",
             "url": "about",
             "exists": true,

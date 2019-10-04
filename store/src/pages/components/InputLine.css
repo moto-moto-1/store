@@ -2,10 +2,10 @@
 
 
 .buttonstyles{
-    background: green;
+    background: rgb(117, 117, 197);
     cursor:pointer;
 }
 
 .buttonstyles:hover{
-    background: lightgreen;
+    background: rgb(65, 65, 207);
 }

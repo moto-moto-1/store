@@ -4,25 +4,30 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./InputLine.css";
 
+
 export default class InputLine extends Component {
     
     constructor(props){
         super(props)
-        this.state = {date: new Date() , startDate: new Date()};
+        this.state = {date: new Date() , startDate: new Date(),data:""};
         this.dateChanged = this.dateChanged.bind(this);
+       // this.setState({data: this.props.data})
       }
       
       dateChanged(d){
         this.setState({date: d});
       }
     
-    
+      changeit =(e) => {
+        this.props.changevalue(e.target.value);
+      }
     render() {
 
       const header = this.props.header;
         const placeholder = this.props.placeholder;
         const type = this.props.type;
         const data = this.props.data;
+        
 
       const linestyle = {
         display: 'flex',
@@ -48,6 +53,7 @@ export default class InputLine extends Component {
         fontSize:constants.inputlinestyle.fontsize,
         minWidth:constants.inputlinestyle.minwidth,
         color:'blue',
+        
    
       }
       const datastyle = {
@@ -69,11 +75,11 @@ export default class InputLine extends Component {
           case 'inputnumber':
            return <input placeholder={dataoffield} type='number' style={datastyle}/>
           case 'input':
-           return <input placeholder={dataoffield} type='text'  style={datastyle}/>
+           return <input placeholder={dataoffield} type='text' onChange={this.changeit} value={dataActual}   style={datastyle}/>
           case 'password':
-           return <input placeholder={dataoffield} type='password'  style={datastyle}/>
+           return <input placeholder={dataoffield} type='password' onChange={this.changeit} value={dataActual}   style={datastyle}/>
           case 'textarea':
-          return <textarea placeholder={dataoffield} value={dataActual} type='text' style={datastyle}/>
+          return <textarea placeholder={dataoffield} type='text' style={datastyle}/>
           case 'inputdate':
           return <div  style={datastyle}><DatePicker selected={this.state.date}
           onChange={this.dateChanged} dateFormat="dd/MM/yyyy"/></div>
@@ -83,7 +89,7 @@ export default class InputLine extends Component {
             (link,key) => <div class='buttonstyles' style={buttonstyle}>{link}</div>
             )}</div>
         case 'text':
-        return <div style={datastyle}>{dataoffield}</div>
+        return <div style={datastyle}>{dataActual}</div>
           default:
             return null;
         }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {submit_new_product,submit_new_page,submit_new_request,submit_new_activsubepage,submit_new_activepage} from '../actions/types';
+import {submit_new_product,submit_new_page,submit_new_request,submit_new_activsubepage,submit_new_activepage,submit_new_page_config} from '../actions/types';
 
 
 
@@ -27,6 +27,21 @@ export const changecontrolpage = (type,data) => dispatch => {
     
     
     };
+
+    export const changePageConfiguration = (pageToChange,dataToChange) => dispatch => {
+    console.log(dataToChange)
+        
+                { dispatch(
+                                 {
+                                     type: submit_new_page_config,
+                                     payload: {page:pageToChange,data:dataToChange}
+                                 }
+                               
+         );}
+         };
+
+
+    
 
 
 

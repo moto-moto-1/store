@@ -29,6 +29,8 @@ export const submit_new_activepage = "submit_new_activepage"
 // })
 export const submit_new_activsubepage ="submit_new_activsubepage"
 
+export const submit_new_page_config = "submit_new_page_config"
+
 export const get_products = (payload) => ({
     type: get_products,
     payload

@@ -7,6 +7,7 @@ import Products from "./components/Products"
 import InputLine from "./components/InputLine"
 import PropTypes from 'prop-types';
 import PageListItem from "./components/PageListItem"
+import ControlInput from "./components/ControlInput"
 
 import {changecontrolpage} from "../actions/submitaction"
 
@@ -21,99 +22,59 @@ class AdminPanel extends Component {
         //this.state = {activeMainPage:"products"}
 }
 
+
+loopsubpages = (type) => {
+
+    if(type=="products")
+    return this.props.pages.products.SubPages.map(page => 
+        <PageListItem page={page} control={this.props.control} />
+         )
+    else if (type=="services")
+    return this.props.pages.services.SubPages.map(page => 
+        <PageListItem page={page} control={this.props.control} />
+         )
+
+    else return;
+}
+
  listSubPages=(mainpage) =>{
   
-    if(mainpage=="products" ){
+
+    if(mainpage=="products" || mainpage=="services"){
        return <div><h1 style={{textAlign:"right"}}>الصفحات الفرعية</h1>
         <div class="mainPagesContainer">
-{this.props.pages.products.SubPages.map(page => 
-<PageListItem page={page} control={this.props.control} />
- )}
+{this.loopsubpages(mainpage)}
       </div></div>
     }
 
-    else if( mainpage=="services"){
-        return <div><h1 style={{textAlign:"right"}}>الصفحات الفرعية</h1>
-          <div class="mainPagesContainer">
- {this.props.pages.services.SubPages.map(page => 
- <PageListItem page={page} control={this.props.control} />
-  )}
-       </div></div>
- 
-     }
-    
     else return;
 
 }
   
-    pageClicked(pageurl) {
-       // this.listSubPages(pageurl);
-if (pageurl.includes("/")){this.props.changecontrolpage("submit_new_activsubepage",pageurl);}
-else this.props.changecontrolpage("submit_new_activepage",pageurl);
-        
-    }
 
-    setActivedisplay = (x,y) => {
-        //  console.log("the active page "+x.url + " , "+ y + " , " + x.exists)
-         
-        if (x.url==y && x.exists)  {return {color:"white",background:"gray"}; }
-       else if(!x.exists){return {display:"none"};}
-       
-    }
-
-    checkifexist = (obj) =>{ if (obj.exists) {
-        return <div
-        style={this.setActivedisplay(obj,this.props.control.activePageToControl)}
-        class="mainPage" onClick={()=>this.pageClicked(obj.url)}>{obj.PageName} 
-        </div>
-        }}
-
-
-// componentWillReceiveProps(nextProps){
-
-//     console.log("inside component receive props");
-//     console.log(nextProps);
-//     // if(nextProps.mainPagecontrol){
-//     //     this.props.mainPagecontrol=nextProps.mainPagecontrol;
-//     // }
-// }
-
+  
 
     render() {
         return (
-            
-
 <div>
-           
-
            <NavBar/>
-
-          
-
+           <center><h1>{this.props.control.HeaderTitle}</h1></center>
            <h1 style={{textAlign:"right"}}>الصفحات الرئيسية</h1>
 
  <div class="mainPagesContainer">
            
            <PageListItem page={this.props.pages.products} control={this.props.control} />
            <PageListItem page={this.props.pages.services} control={this.props.control} />
-
            <PageListItem page={this.props.pages.contact} control={this.props.control} />
            <PageListItem page={this.props.pages.about} control={this.props.control} />
            <PageListItem page={this.props.pages.reserve} control={this.props.control} />
            <PageListItem page={this.props.pages.cart} control={this.props.control} />
 
            </div> 
-
-           
-          
-          
-              
-         
-          
-           
           {this.listSubPages(this.props.control.activePageToControl)}
 
-          
+
+          <ControlInput />
 
 
             </div>
@@ -121,26 +82,13 @@ else this.props.changecontrolpage("submit_new_activepage",pageurl);
 
 }
 
-// AdminPanel.PropTypes = {
-//     control: PropTypes.object,
-//     pages:   PropTypes.object,
-//     changecontrolpage: PropTypes.func.isRequired
-// };
-
-
 
 const mapStateToProps = state => ({
 
 
-    // products: state.get.products,
     control: state.submit.pages.control,
-//  mainPagecontrol: state.get.pages.control.activePageToControl,
 
      pages: state.submit.pages,
-
-    // requests: state.get.requests,
-    // getDerivedStateFromProps(state){}
-    //  ali (){return}
 
 });
 

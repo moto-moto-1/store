@@ -58,8 +58,8 @@ componentWillMount(){
 
 const mapStateToProps = state => ({
     
-    contact: state.get.pages.contact,
-    branchs: state.get.pages.contact.branchs,
+    contact: state.submit.pages.contact,
+    branchs: state.submit.pages.contact.branchs,
     
 });
 
