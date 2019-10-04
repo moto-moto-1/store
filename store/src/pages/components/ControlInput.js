@@ -86,7 +86,6 @@ switch (controlPage) {
         case "contact":
             return <div>
                 <br></br>
-                <button onClick={this.AddBranch}> Add New Branch </button>
 
              <InputLine header="Facebook Account" placeholder="" data={this.state.contact.FacebookAccount} changevalue={(e)=>this.changeit("FacebookAccount",e)} type="input"/>
              <InputLine header="Twitter Account" placeholder="" data={this.state.contact.TwitterAccount} changevalue={(e)=>this.changeit("TwitterAccount",e)}  type="input"/>
@@ -105,7 +104,8 @@ switch (controlPage) {
             
             }
 
-
+<button onClick={this.AddBranch}> Add New Branch </button>
+<br></br>
             <button onClick={()=>this.props.changePageConfiguration("contact",this.state.contact)}> Save </button>
             </div>
             break;
