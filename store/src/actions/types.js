@@ -16,6 +16,18 @@ export const submit_new_request = (payload) => ({
     payload
 })
 
+// export const submit_new_activepage = (submit_new_activepage,payload) => ({
+//     type: submit_new_activepage,
+//     payload
+// })
+export const submit_new_activepage = "submit_new_activepage"
+
+
+// export const submit_new_activsubepage = (payload) => ({
+//     type: submit_new_activsubepage,
+//     payload
+// })
+export const submit_new_activsubepage ="submit_new_activsubepage"
 
 export const get_products = (payload) => ({
     type: get_products,

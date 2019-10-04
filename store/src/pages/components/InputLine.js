@@ -63,7 +63,7 @@ export default class InputLine extends Component {
    
       }
 
-      let inputfield= (typeoffield,dataoffield) => {
+      let inputfield= (typeoffield,dataoffield,dataActual) => {
 
         switch(typeoffield) {
           case 'inputnumber':
@@ -73,7 +73,7 @@ export default class InputLine extends Component {
           case 'password':
            return <input placeholder={dataoffield} type='password'  style={datastyle}/>
           case 'textarea':
-          return <textarea placeholder={dataoffield} type='text' style={datastyle}/>
+          return <textarea placeholder={dataoffield} value={dataActual} type='text' style={datastyle}/>
           case 'inputdate':
           return <div  style={datastyle}><DatePicker selected={this.state.date}
           onChange={this.dateChanged} dateFormat="dd/MM/yyyy"/></div>
@@ -94,7 +94,7 @@ export default class InputLine extends Component {
 
 return <div style={linestyle}>
                  <div style={headerstyle}>{header}</div>
-                  {inputfield(type,placeholder)}
+                  {inputfield(type,placeholder,data)}
                  
  </div>
                   
