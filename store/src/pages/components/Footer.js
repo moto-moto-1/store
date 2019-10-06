@@ -85,8 +85,8 @@ class Footer extends Component {
 }
 
 const mapStateToProps = state => ({
-    contact: state.get.pages.contact,
-    pages: state.get.pages
+    contact: state.submit.pages.contact,
+    pages: state.submit.pages
 
     
 });

@@ -29,7 +29,6 @@ export const changecontrolpage = (type,data) => dispatch => {
     };
 
     export const changePageConfiguration = (pageToChange,dataToChange) => dispatch => {
-    console.log(dataToChange)
         
                 { dispatch(
                                  {

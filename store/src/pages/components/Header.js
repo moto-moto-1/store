@@ -40,6 +40,7 @@ componentWillMount(){
         <img src={this.props.header.image} alt="fashion" id="headerimage"/>
     <h1 id="imagetitle" style={this.title_styles}>{this.props.header.name}</h1>
     
+    
     </div>
         
 );
@@ -49,7 +50,7 @@ componentWillMount(){
 }
 
 const mapStateToProps = state => ({
-    header: state.get.Header,
+    header: state.submit.Header,
     
 });
 

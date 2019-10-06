@@ -5,6 +5,9 @@ import store from './store';
 import Welcome   from "./pages/Welcome"
 import AdminPanel   from "./pages/AdminPanel"
 import Contact   from "./pages/Contact"
+import AboutUS from "./pages/AboutUs"
+import Products from "./pages/ProductPage"
+import Services from "./pages/ServicePage"
 
 
 
@@ -26,8 +29,14 @@ import Contact   from "./pages/Contact"
       <Route path="/Welcome" component={Welcome} />
       <Route path="/AdminPanel" component={AdminPanel} />
       <Route path="/contact" component={Contact} />
-      <Route path="/product" component={Welcome} />
-      <Route path="/" component={Welcome} />
+       <Route exact path="/products" component={Products} />
+       <Route path="/products/:subpageurl" render={(props) => <Products {...props} subpage={true}/>} />
+        <Route exact path="/services" component={Services} />
+        <Route path="/services/:subpageurl" render={(props) => <Services {...props} subpage={true}/>} />
+      <Route path="/aboutus" component={AboutUS} />
+
+
+      {/* <Route path="/" component={Welcome} /> */}
       </Switch>
     </div>
   </Router>

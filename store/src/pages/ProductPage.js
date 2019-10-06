@@ -7,10 +7,17 @@ import Products from "./components/Products"
 import Footer from "./components/Footer"
 
 
-class Welcome extends Component {
+class ProductPage extends Component {
+
+    
+    
+
 
 componentWillMount(){
 
+// console.log(this.props.match.params.subpageurl)
+
+// console.log("these are parameters")
     //this.props.fetchcontacts();
     // this.props.fetchalldata('none','none');
     
@@ -22,7 +29,7 @@ componentWillMount(){
 <div>
             <Header/>
             <NavBar/>
-            <Products/>
+            <Products subpage={this.props.subpage} subpageurl={this.props.match.params.subpageurl}/>
             <Footer/>
             </div>
 );}
@@ -39,4 +46,4 @@ const mapStateToProps = state => ({
 
 
 
- export default connect(mapStateToProps,{})(Welcome);
+ export default connect(mapStateToProps,{})(ProductPage);

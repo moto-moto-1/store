@@ -10,7 +10,7 @@ class NavBar extends Component {
 
     constructor(props) {
         super(props);
-        // this.dropdownhandler = this.dropdownhandler.bind(this);
+        
 
 
         this.state = {isToggleOn: true, dropdownclick:"\u02C5",
@@ -38,9 +38,9 @@ componentWillMount(){
     
 }
 
-havesubpage = (ind) => {
-    console.log(this.props.navbarpages[ind].sub.length);
-    if(this.props.navbarpages[ind].sub.length<1){return "";}
+havesubpage = (ind,length) => {
+    // console.log(ind);
+    if(length.length<1){return "";}
     else return this.state.dropdowndata[ind].page_arrow;
 }
 
@@ -80,31 +80,7 @@ handleButtonClick = (e) =>{
    
 }
 
-translateToEnglish = (name) =>{
 
-    switch (name) {
-        case 'منتجات':
-          return "products";  
-            break;
-        case 'خدمات':
-          return "services";  
-            break;
-        case 'أتصال':
-          return "contact";  
-            break;
-        case 'من نحن':
-            return "about us";  
-        
-        case 'لوحة التحكم':
-          return "AdminPanel";  
-                break;
-     
-    
-        default:
-            break;
-    }
-
-}
 
     render() {
 
@@ -120,24 +96,20 @@ translateToEnglish = (name) =>{
 
 </div>
 
-{this.props.navbarpages.map( (page,indexx)=>
+{Object.keys(this.props.pages).map( (key,index)=>
 
-    
-    
-    <div className="navitems" onClick={()=>this.dropdownhandler(indexx)}  style={{display:this.state.isToggleOn}}>
-        {/* <a href={"/"+this.translateToEnglish(page)}> {page}  </a> */}
-
+<div className="navitems" onClick={()=>this.dropdownhandler(index)}  style={{display:this.state.isToggleOn}}>
        
         <div class="main_page" >
-        <Link to={"/"+this.translateToEnglish(page.main)}>  { this.havesubpage(indexx)}{page.main}</Link>
+        <Link to={"/"+this.props.pages[key].url}>  { this.havesubpage(index,this.props.pages[key].SubPages)}{this.props.pages[key].PageName}</Link>
         </div>
 
-        <div style={{display:this.state.dropdowndata[indexx].page_display}} class="dropdown_content">
+        <div style={{display:this.state.dropdowndata[index].page_display}} class="dropdown_content">
 
             
-           { page.sub.map( (sub) =>
+           { this.props.pages[key].SubPages.map( (sub) =>
            <div class="sub_page">
-               <Link  to={"/"+ this.translateToEnglish(sub)}> {sub} </Link>
+               <Link  to={"/"+sub.url}> {sub.PageName} </Link>
             </div>   
                
              )}
@@ -147,6 +119,12 @@ translateToEnglish = (name) =>{
 
 
         </div>
+
+
+     //console.log(this.props.pages[pages].url)
+    
+    
+
     )}
 
   
@@ -163,6 +141,8 @@ const mapStateToProps = state => ({
     navbarpages: state.get.NavigationBar.pages,
     navbarstyle: state.get.NavigationBar.style,
     header: state.get.Header,
+
+    pages:state.submit.pages
     
 });
 

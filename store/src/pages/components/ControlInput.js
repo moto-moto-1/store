@@ -34,12 +34,17 @@ class ControlInput extends Component {
                     },
                       
             about:{
+                       Details : this.props.about.Details,
 
             },
             cart:{
 
             },     
-                    
+            header:{
+                name:this.props.header.name,
+                image:this.props.header.image,
+
+            },      
                     
                     
                     
@@ -55,15 +60,34 @@ class ControlInput extends Component {
   
 }
 changeit(id,event){
+  
+    switch (id.page) {
+        case "contact":
+            if(id.branchs){
+                const newBranchsArray=this.state.contact.branchs;
+                (id.value=="BranchName") ?newBranchsArray[id.key].BranchName=event : newBranchsArray[id.key].BranchLocation=event
+                    this.setState({contact: {...this.state.contact,branchs:{...this.state.contact.branchs,newBranchsArray}}}) 
+                }
+                else this.setState({contact: {...this.state.contact,[id.value]:event}})
+                
+            break;
+            case "about":
+                console.log("inside about change state");
+                    this.setState({about: {...this.state.about,Details:event}})
+            break;
 
-if(id.branchs){
-const newBranchsArray=this.state.contact.branchs;
-(id.value=="BranchName") ?newBranchsArray[id.key].BranchName=event : newBranchsArray[id.key].BranchLocation=event
-
-    this.setState({contact: {...this.state.contact,branchs:{...this.state.contact.branchs,newBranchsArray}}}) 
-}
+            case "header":
+                console.log("inside about change state");
+                    this.setState({header: {...this.state.header,name:event}})
+            break;
     
-this.setState({contact: {...this.state.contact,[id]:event}})
+        default:
+            break;
+    }
+
+
+
+
 }
 
 
@@ -75,7 +99,7 @@ AddBranch = (e) =>{
 
 listInputs(controlPage){
 switch (controlPage) {
-    case "products":
+        case "products":
         return <InputLine header="Page Name" placeholder="products" type="input"/>
         break; 
         
@@ -87,28 +111,60 @@ switch (controlPage) {
             return <div>
                 <br></br>
 
-             <InputLine header="Facebook Account" placeholder="" data={this.state.contact.FacebookAccount} changevalue={(e)=>this.changeit("FacebookAccount",e)} type="input"/>
-             <InputLine header="Twitter Account" placeholder="" data={this.state.contact.TwitterAccount} changevalue={(e)=>this.changeit("TwitterAccount",e)}  type="input"/>
-             <InputLine header="YouTube Account" placeholder="" data={this.state.contact.YoutubeAccount} changevalue={(e)=>this.changeit("YoutubeAccount",e)}   type="input"/>
-             <InputLine header="Instagram Account" placeholder="" data={this.state.contact.InstagramAccount} changevalue={(e)=>this.changeit("InstagramAccount",e)}   type="input"/>
-             <InputLine header="E-Mail address" placeholder="" data={this.state.contact.email} changevalue={(e)=>this.changeit("email",e)}   type="input"/>
-             <InputLine header="Telephone Number" placeholder="" data={this.state.contact.Telephone} changevalue={(e)=>this.changeit("Telephone",e)}   type="input"/>
+             <InputLine header="Facebook Account" placeholder=""
+             data={this.state.contact.FacebookAccount} 
+             changevalue={(e)=>this.changeit({page:"contact",value:"FacebookAccount"},e)} type="input"/>
+
+             <InputLine header="Twitter Account" placeholder="" 
+             data={this.state.contact.TwitterAccount} 
+             changevalue={(e)=>this.changeit({page:"contact",value:"TwitterAccount"},e)}  type="input"/>
+
+             <InputLine header="YouTube Account" placeholder="" 
+             data={this.state.contact.YoutubeAccount} 
+             changevalue={(e)=>this.changeit({page:"contact",value:"YoutubeAccount"},e)}   type="input"/>
+
+             <InputLine header="Instagram Account" placeholder="" 
+             data={this.state.contact.InstagramAccount} 
+             changevalue={(e)=>this.changeit({page:"contact",value:"InstagramAccount"},e)}   type="input"/>
+
+             <InputLine header="E-Mail address" placeholder="" 
+             data={this.state.contact.email} 
+             changevalue={(e)=>this.changeit({page:"contact",value:"email"},e)}   type="input"/>
+
+             <InputLine header="Telephone Number" placeholder="" 
+             data={this.state.contact.Telephone} 
+             changevalue={(e)=>this.changeit({page:"contact",value:"Telephone"},e)}   type="input"/>
             
             {this.state.contact.branchs.map((branch,key)=>
             <div>
             <br></br>
-             <InputLine header="Branch name" placeholder="" data={branch.BranchName} changevalue={(e)=>this.changeit({branchs:true,value:"BranchName",key:key},e)}   type="input"/>
-             <InputLine header="Branch Location" placeholder="" data={branch.BranchLocation} changevalue={(e)=>this.changeit({branchs:true,value:"BranchLocation",key:key},e)}   type="input"/>
-           </div>
-            )
-            
-            }
+             <InputLine header="Branch name" placeholder="" data={branch.BranchName} 
+             changevalue={(e)=>this.changeit({branchs:true,page:"contact",value:"BranchName",key:key},e)}   type="input"/>
 
-<button onClick={this.AddBranch}> Add New Branch </button>
-<br></br>
+             <InputLine header="Branch Location" placeholder="" data={branch.BranchLocation} 
+             changevalue={(e)=>this.changeit({branchs:true,page:"contact",value:"BranchLocation",key:key},e)}   type="input"/>
+
+           </div>
+            )}
+            <button onClick={this.AddBranch}> Add New Branch </button><br></br>
             <button onClick={()=>this.props.changePageConfiguration("contact",this.state.contact)}> Save </button>
             </div>
             break;
+
+            case "aboutus":
+        return <div>
+        <br></br>
+        <InputLine header="Name" placeholder="write your company name here" 
+        data={this.state.header.name} 
+        changevalue={(e)=>this.changeit({page:"header",value:"name"},e)} type="input"/>
+        <button onClick={()=>this.props.changePageConfiguration("header",this.state.header)}> Save </button>
+
+
+        <InputLine header="About statment" placeholder="Write your about statment here" data={this.state.about.Details} changevalue={(e)=>this.changeit({page:"about",value:"Details"},e)} type="textarea"/>
+        <button onClick={()=>this.props.changePageConfiguration("about",this.state.about)}> Save </button>
+
+        </div>
+        break; 
 
     default:
         break;

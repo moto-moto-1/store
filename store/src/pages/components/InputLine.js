@@ -79,7 +79,7 @@ export default class InputLine extends Component {
           case 'password':
            return <input placeholder={dataoffield} type='password' onChange={this.changeit} value={dataActual}   style={datastyle}/>
           case 'textarea':
-          return <textarea placeholder={dataoffield} type='text' style={datastyle}/>
+          return <textarea placeholder={dataoffield} type='text' onChange={this.changeit} value={dataActual} rows="3" style={datastyle}/>
           case 'inputdate':
           return <div  style={datastyle}><DatePicker selected={this.state.date}
           onChange={this.dateChanged} dateFormat="dd/MM/yyyy"/></div>

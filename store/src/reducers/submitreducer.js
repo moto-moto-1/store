@@ -33,8 +33,8 @@ export default (state = initialState, { type, payload }) => {
 
 
           case submit_new_page_config:
-              console.log(payload.page)
-              console.log(payload.data)
+              // console.log(payload.page)
+              // console.log(payload.data)
 
           switch (payload.page) {
             case "contact":
@@ -49,6 +49,12 @@ export default (state = initialState, { type, payload }) => {
                       about:{...state.pages.about,
                         ...payload.data}}}
                 break;
+            
+                case "header":
+                  return {...state,
+                    Header:{...state.Header,...payload.data}}
+                break;
+            
           
             default:
               break;
