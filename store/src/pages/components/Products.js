@@ -14,14 +14,8 @@ class Products extends Component {
       sub:this.props.product.SubPages,
 
     }
-
     
   }
-
-  
-
-
-
 
 componentWillMount(){
   
@@ -47,8 +41,6 @@ numberofunitsChange(e,index,page,subpageindex){
 }
 
 AddToCart(index,page,subpageindex){
-  console.log(page)
-
 
   if(page=="sub"){
     const cartArray=this.state.sub;
@@ -65,19 +57,9 @@ AddToCart(index,page,subpageindex){
     cartArray[index].cart.SubTotalDisplay="block";
     cartArray[index].cart.SubTotal=cartArray[index].price*cartArray[index].cart.QuantityToAdd
 
-    console.log(this.state.sub)
-
     this.setState({main:[...cartArray]})
     
   }
-
-  // const cartArray=this.state.cart;
-  // cartArray[index].NumberOfUnitsDisplay="block";
-  // cartArray[index].SubTotalDisplay="block";
-
-  // this.setState({cart:[...cartArray]})
-
-  // console.log(cartArray[index].SubtotalPrice)
 
 }
 
@@ -86,6 +68,12 @@ AddToCart(index,page,subpageindex){
         var subpageIndex=this.props.subpageurl.substr(this.props.subpageurl.length -1)-1;
         var commonprops=this.props.product.SubPages[subpageIndex].Products;
         var pageName=this.props.product.SubPages[subpageIndex].PageName;
+        var Stateproperty="sub"}
+
+        else if (!this.props.subpage){
+          var commonprops=this.props.product.Products;
+          var pageName=this.props.product.PageName;
+          var Stateproperty="main"}
 
         return (
           <div> <h2 style={{textAlign:"right"}}>{pageName}</h2>    
@@ -105,8 +93,8 @@ AddToCart(index,page,subpageindex){
        <div class="ProductPrice">Price: {product.price}</div>
        
        <div class="QuantityAvailable">Quantity available: {product.cart.QuantityAvailable}</div>
-       <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,"sub",subpageIndex)} class="numberofunits" type="number" value={this.state.sub[subpageIndex].Products[index].cart.QuantityToAdd}></input>
-       <button onClick={()=>this.AddToCart(index,"sub",subpageIndex)} class="AddToCart">Add to cart</button>
+       <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number" value={product.cart.QuantityToAdd}></input>
+       <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">Add to cart</button>
        <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">Subtotal:{product.cart.QuantityToAdd}*{product.price}={product.cart.SubTotal}</div>
  
      </div> 
@@ -119,50 +107,6 @@ AddToCart(index,page,subpageindex){
  
          
  );
-
-        
-            }
-
-      else if (!this.props.subpage){
-        var commonprops=this.props.product.Products;
-        var pageName=this.props.product.PageName;
-
-        return (
-          <div> <h2 style={{textAlign:"right"}}>{pageName}</h2>    
- <div class="productswrapper">
- 
- {commonprops.map((product,index)=>
-   
-   <div key={index} class="product">
- 
-     <div class="ProductImageArea">
-       <img src={product.image} alt="fashion" id="productimage"/>
-     </div>
- 
-     <div id="descriptiondata">
-       <div class="ProductName">{product.ProductName}</div>
-       <div class="ProductDetails">{product.description}</div>
-       <div class="ProductPrice">Price: {product.price}</div>
-       
-       <div class="QuantityAvailable">Quantity available: {product.cart.QuantityAvailable}</div>
-       <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,"main")} class="numberofunits" type="number" value={product.cart.QuantityToAdd}></input>
-       <button onClick={()=>this.AddToCart(index,"main")} class="AddToCart">Add to cart</button>
-       <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">Subtotal:{product.cart.QuantityToAdd}*{product.price}={product.cart.SubTotal}</div>
- 
-     </div> 
-     <div class="MoreInfo"><a href="#">More...</a></div>
-   </div>
- )}
- 
- </div>
- </div>
- 
-         
- );
-
-      }
-        
-
 
 }
 
@@ -173,8 +117,5 @@ const mapStateToProps = state => ({
     
     
 });
-
-
-
 
  export default connect(mapStateToProps,{})(Products);
