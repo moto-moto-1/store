@@ -54,6 +54,13 @@ export default (state = initialState, { type, payload }) => {
                   return {...state,
                     Header:{...state.Header,...payload.data}}
                 break;
+
+                case "cart":
+                  return {...state,
+                    pages:{...state.pages,
+                      cart:{...state.pages.cart,
+                        ...payload.data}}}
+                break;
             
           
             default:
