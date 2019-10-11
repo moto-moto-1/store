@@ -59,6 +59,15 @@ class ControlInput extends Component {
 
   
 }
+
+paymentMethod(e,index){
+    let cartpayment=this.props.cart;
+    console.log(e.target.checked)
+    cartpayment.PaymentMethodOptions[index].exists=e.target.checked
+    this.props.changePageConfiguration("cart",cartpayment)
+}
+
+
 changeit(id,event){
   
     switch (id.page) {
@@ -165,6 +174,25 @@ switch (controlPage) {
 
         </div>
         break; 
+        case "cart":
+        return <div>
+
+            <h2>طرق الدفع</h2>
+            {this.props.cart.PaymentMethodOptions.map( (option,index) =>
+
+        <div>
+<input type="checkbox" defaultChecked={option.exists} onChange={(e)=>this.paymentMethod(e,index)}></input>{option.Name}<br></br>
+</div>
+
+
+)}
+
+          </div>
+        break;
+
+        case "reserve":
+        return <InputLine header="Page Name" placeholder="reserve" type="input"/>
+        break;
 
     default:
         break;

@@ -623,17 +623,39 @@
             "Type": "Cart",
             "exists": true,
             "url": "cart",
+            "OrderId": 191110,
+            "TotalItems": 0,
             "SubPages": [],
             "LanguageDirection": "right",
             "HeaderTitle": "سلة الشراء",
-            "PriceTotal": 3556,
+            "PaymentMethodSelected": "cashOnDelivary",
+            "PriceTotal": 0,
             "PaymentMethodOptions": [
-                "Cash On Delivary",
-                "Cridit Card",
-                "Installments",
-                "Paypal",
-                "prepaid",
-                "Mobile transfer"
+                {
+                    "Type": "cashOnDelivary",
+                    "Name": "الدفع عند الأستلام",
+                    "exists": true
+                },
+                {
+                    "Type": "criditCard",
+                    "Name": "بطاقة أئتمان",
+                    "exists": true
+                },
+                {
+                    "Type": "installments",
+                    "Name": "تقسيط",
+                    "exists": false
+                },
+                {
+                    "Type": "paypal",
+                    "Name": "paypall الدفع من",
+                    "exists": true
+                },
+                {
+                    "Type": "mobiletransfer",
+                    "Name": "تحويل هاتفى",
+                    "exists": true
+                }
             ],
             "Products": [
                 {

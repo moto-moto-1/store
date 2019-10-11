@@ -61,6 +61,12 @@ export default (state = initialState, { type, payload }) => {
                       cart:{...state.pages.cart,
                         ...payload.data}}}
                 break;
+                case "products":
+                  return {...state,
+                    pages:{...state.pages,
+                      products:{...state.pages.products,
+                        ...payload.data}}}
+                break;
             
           
             default:

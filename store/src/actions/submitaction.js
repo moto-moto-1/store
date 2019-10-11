@@ -29,7 +29,11 @@ export const changecontrolpage = (type,data) => dispatch => {
     };
 
     export const changePageConfiguration = (pageToChange,dataToChange) => dispatch => {
-        
+        console.log("Action fired")
+
+        console.log(pageToChange)
+        console.log(dataToChange)
+
                 { dispatch(
                                  {
                                      type: submit_new_page_config,

@@ -8,6 +8,8 @@ import Contact   from "./pages/Contact"
 import AboutUS from "./pages/AboutUs"
 import Products from "./pages/ProductPage"
 import Services from "./pages/ServicePage"
+import Cart from "./pages/Cart"
+import Reserve from "./pages/Reserve"
 
 
 
@@ -28,6 +30,8 @@ import Services from "./pages/ServicePage"
       {/* <Route path="/" component={Welcome} /> */}
       <Route path="/Welcome" component={Welcome} />
       <Route path="/AdminPanel" component={AdminPanel} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/reserve" component={Reserve} />
       <Route path="/contact" component={Contact} />
        <Route exact path="/products" component={Products} />
        <Route path="/products/:subpageurl" render={(props) => <Products {...props} subpage={true}/>} />

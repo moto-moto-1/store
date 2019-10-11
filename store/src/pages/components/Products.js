@@ -16,42 +16,14 @@ class Products extends Component {
     this.state={
       main:this.props.product.Products,
       sub:this.props.product.SubPages,
-      cart:{main:[],sub:this.props.product.SubPages, total:[] },
+      cart:this.props.cart,
 
     }
 
-   this.setstatecartvalues();
     
   }
 
-  setstatecartvalues(){
-//const nev=this.state.sub
-    this.setState({cart:{...this.state.cart,sub:"hi"}})
-    console.log(this.state)
-    const cartarray=this.state.cart.sub
-    //console.log(this.state.length)
-    for (let index = 0; index < this.state.sub.length; index++) {
-  console.log(this.state)
 
-  cartarray.map( (value,index) =>{
-    //cartarray[index].Products=[]
-      }
-     )
-  //nev[index].Products=[]
-  console.log(this.state)
-  //const element = array[index];
-  
-}
-
-    
-    
-    cartarray.map( (value,index) =>{
-  cartarray[index].Products=[]
-    }
-   )
-   // this.setState({cart:{...this.state.cart,sub:cartarray}})
-      
-  }
 
 componentWillMount(){
 
@@ -77,36 +49,37 @@ numberofunitsChange(e,index,page,subpageindex){
      this.setState({cart:{...this.state.cart,main:cartArray}})
      
   }
-  this.UpdateCartPage(index,page,subpageindex);
+  this.UpdateCartPage();
 
 }
 
-UpdateCartPage(index,page,subpageindex){
+UpdateCartPage(){
 
+  let totalprice=0;
+  let totalquantity=0;
+  this.props.product.Products.map( product =>{
+    if(product.cart.SubTotal!=0) {
+      totalquantity+=Number(product.cart.QuantityToAdd);
+    totalprice+=Number(product.cart.SubTotal);}
+  }
+  )
 
-if (this.state.main[index].cart.QuantityToAdd>0 && page=="main")
-{
-  const existingArray=this.state.cart.main;
+  this.props.product.SubPages.map( product =>
 
- if(existingArray[index]!= "undefined" ||existingArray[index]!= "empty") 
- existingArray[index]=this.state.main[index];
- else existingArray.push(this.state.main[index]);
- this.setState({cart:{...this.state.cart,main:existingArray}})
-}
+    product.Products.map( product =>{
+      if(product.cart.SubTotal!=0) {
+      totalquantity+=Number(product.cart.QuantityToAdd)
+      totalprice+=Number(product.cart.SubTotal)}
+    }
+    
+    )
+  )
+  let cartstate=this.state.cart
+  cartstate.PriceTotal=totalprice
+  cartstate.TotalItems=totalquantity
+  //this.setState({cart:cartstate})
 
-else if (this.state.sub[subpageindex].Products[index].cart.QuantityToAdd>0 && page=="sub"){
-  //console.log(this.state.sub[subpageindex].Products[index].cart.QuantityToAdd);
-
-
-const existingArray=this.state.sub;
-if(existingArray[subpageindex].Products[index]!= "undefined" || existingArray[subpageindex].Products[index]!= "empty") 
-existingArray[subpageindex].Products[index]=this.state.sub[subpageindex].Products[index];
-else existingArray[subpageindex].Products.push(this.state.sub[subpageindex].Products[index]);
-this.setState({cart:{...this.state.cart,sub:existingArray}})
-
-}
-console.log(this.state.cart);
-
+  this.props.changePageConfiguration("cart",cartstate)
 
 }
 
@@ -129,7 +102,7 @@ AddToCart(index,page,subpageindex){
   this.setState({main:[...cartArray]})
   
   }
-  this.UpdateCartPage(index,page,subpageindex);
+  this.UpdateCartPage();
 
 }
 
@@ -185,6 +158,7 @@ AddToCart(index,page,subpageindex){
 
 const mapStateToProps = state => ({
     product: state.submit.pages.products,
+    cart: state.submit.pages.cart
     
 });
 
