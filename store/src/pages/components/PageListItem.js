@@ -24,9 +24,9 @@ import "./PageListItem.css"
 pageClicked(pageurl) {
     // this.listSubPages(pageurl);
 if (pageurl.includes("/")){this.props.changecontrolpage("submit_new_activsubepage",pageurl);}
-else this.props.changecontrolpage("submit_new_activepage",pageurl);
-    
-}
+else {this.props.changecontrolpage("submit_new_activepage",pageurl);
+      this.props.changecontrolpage("submit_new_activsubepage","");}
+ }
 
 setActivedisplay = (x,y) => {
       console.log("the active page "+x.url + " , "+ y + " , " + x.exists)

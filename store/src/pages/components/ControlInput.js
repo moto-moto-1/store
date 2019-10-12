@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 import InputLine from "./InputLine"
 import {changePageConfiguration} from "../../actions/submitaction"
+import Item from "../components/Item"
 
 import facebook from "../Social media Icons/facebook2.png";
 import Twitter from "../Social media Icons/twitter2.png";
@@ -37,14 +38,17 @@ class ControlInput extends Component {
                        Details : this.props.about.Details,
 
             },
-            cart:{
-
-            },     
+            
             header:{
                 name:this.props.header.name,
                 image:this.props.header.image,
 
-            },      
+            },
+
+            products:this.props.products,
+            services:this.props.services,
+            cart:this.props.cart,     
+            reserve:this.props.reserve
                     
                     
                     
@@ -61,15 +65,16 @@ class ControlInput extends Component {
 }
 
 paymentMethod(e,index){
-    let cartpayment=this.props.cart;
+    let cartpayment=this.state.cart;
     console.log(e.target.checked)
     cartpayment.PaymentMethodOptions[index].exists=e.target.checked
-    this.props.changePageConfiguration("cart",cartpayment)
+
+this.setState({cart:cartpayment})
 }
 
 
 changeit(id,event){
-  
+  console.log("entered inside")
     switch (id.page) {
         case "contact":
             if(id.branchs){
@@ -81,15 +86,36 @@ changeit(id,event){
                 
             break;
             case "about":
-                console.log("inside about change state");
                     this.setState({about: {...this.state.about,Details:event}})
             break;
+            case "reserve":
+                this.setState({reserve: {...this.state.reserve,[id.value]:event}})
+             break;
+             case "cart":
+                this.setState({cart: {...this.state.cart,[id.value]:event}})
+             break;
 
             case "header":
-                console.log("inside about change state");
                     this.setState({header: {...this.state.header,name:event}})
             break;
-    
+            case "products":
+                if(id.pageindex=="off" )
+                    this.setState({products: {...this.state.products,[id.value]:event}})
+                else {
+                let products=this.state.products;
+                products.SubPages[id.pageindex].PageName=event
+                this.setState({products: products})
+                }
+            break;
+            case "services":
+                if(id.pageindex=="off" )
+                    this.setState({services: {...this.state.services,[id.value]:event}})
+                else {
+                let services=this.state.services;
+                services.SubPages[id.pageindex].PageName=event
+                this.setState({services: services})
+                }
+            break;
         default:
             break;
     }
@@ -109,12 +135,58 @@ AddBranch = (e) =>{
 listInputs(controlPage){
 switch (controlPage) {
         case "products":
-        return <InputLine header="Page Name" placeholder="products" type="input"/>
+            if(this.props.control.activeSubpageToControl=="")
+        {return <div><InputLine header="Page Name" placeholder=""
+         data={this.state.products.PageName} 
+         changevalue={(e)=>this.changeit({page:"products",pageindex:"off",value:"PageName"},e)} 
+         type="input"/>
+         <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}> Save </button>
+         <Item/>
+         </div>
+         }
+          else{
+          const subpagenumber=this.props.control.activeSubpageToControl.substr(this.props.control.activeSubpageToControl.length -1)-1
+         
+          return <div><InputLine header="SubPage Name" placeholder=""
+          data={this.state.products.SubPages[subpagenumber].PageName} 
+          changevalue={(e)=>this.changeit({page:"products",pageindex:subpagenumber,value:"PageName"},e)} 
+          type="input"/>
+          <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}> Save </button>
+          <Item/>
+
+          </div>
+          }
+         
+
         break; 
         
         case "services":
-        return <InputLine header="Page Name" placeholder="services" type="input"/>
-        break;
+                if(this.props.control.activeSubpageToControl=="")
+                {return <div><InputLine header="Page Name" placeholder=""
+                 data={this.state.services.PageName} 
+                 changevalue={(e)=>this.changeit({page:"services",pageindex:"off",value:"PageName"},e)} 
+                 type="input"/>
+                 <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}> Save </button>
+                 <Item/>
+
+                 </div>
+                 }
+                  else{
+                  const subpagenumber=this.props.control.activeSubpageToControl.substr(this.props.control.activeSubpageToControl.length -1)-1
+                 
+                  return <div><InputLine header="SubPage Name" placeholder=""
+                  data={this.state.services.SubPages[subpagenumber].PageName} 
+                  changevalue={(e)=>this.changeit({page:"services",pageindex:subpagenumber,value:"PageName"},e)} 
+                  type="input"/>
+                  <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}> Save </button>
+                  <Item/>
+
+                  </div>
+                  }
+                 
+        
+                break; 
+                
 
         case "contact":
             return <div>
@@ -176,13 +248,17 @@ switch (controlPage) {
         break; 
         case "cart":
         return <div>
+            <InputLine header="Page Name" placeholder=""
+                data={this.state.cart.PageName} 
+                changevalue={(e)=>this.changeit({page:"cart",value:"PageName"},e)} 
+                type="input"/>
+                <button onClick={()=>this.props.changePageConfiguration("cart",this.state.cart)}> Save </button>
+                
 
             <h2>طرق الدفع</h2>
-            {this.props.cart.PaymentMethodOptions.map( (option,index) =>
-
-        <div>
-<input type="checkbox" defaultChecked={option.exists} onChange={(e)=>this.paymentMethod(e,index)}></input>{option.Name}<br></br>
-</div>
+            {this.state.cart.PaymentMethodOptions.map( (option,index) =><div>
+               <input type="checkbox" defaultChecked={option.exists} onChange={(e)=>this.paymentMethod(e,index)}></input>{option.Name}<br></br>
+                   </div>
 
 
 )}
@@ -191,7 +267,13 @@ switch (controlPage) {
         break;
 
         case "reserve":
-        return <InputLine header="Page Name" placeholder="reserve" type="input"/>
+                return <div><InputLine header="Page Name" placeholder=""
+                data={this.state.reserve.PageName} 
+                changevalue={(e)=>this.changeit({page:"reserve",value:"PageName"},e)} 
+                type="input"/>
+                <button onClick={()=>this.props.changePageConfiguration("reserve",this.state.reserve)}> Save </button>
+                
+                </div>
         break;
 
     default:

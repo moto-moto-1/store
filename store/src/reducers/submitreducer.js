@@ -49,6 +49,12 @@ export default (state = initialState, { type, payload }) => {
                       about:{...state.pages.about,
                         ...payload.data}}}
                 break;
+            case "reserve":
+                  return {...state,
+                    pages:{...state.pages,
+                      reserve:{...state.pages.reserve,
+                        ...payload.data}}}
+                break;
             
                 case "header":
                   return {...state,
@@ -67,6 +73,12 @@ export default (state = initialState, { type, payload }) => {
                       products:{...state.pages.products,
                         ...payload.data}}}
                 break;
+                case "services":
+                    return {...state,
+                      pages:{...state.pages,
+                        services:{...state.pages.services,
+                          ...payload.data}}}
+                  break;
             
           
             default:
