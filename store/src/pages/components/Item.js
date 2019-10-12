@@ -12,11 +12,11 @@ import "./Item.css"
 
     constructor(props) {
         super(props);
-
+this.edititem=this.edititem.bind(this);
         
         this.state = {
             popupshow:false,
-            
+            Itemindex:null,
             products:this.props.products,
             services:this.props.services,
         }
@@ -26,6 +26,10 @@ exitsignal=(e)=>{
 this.setState({popupshow:e})
 }
 
+edititem(index){
+    this.setState({popupshow:true,Itemindex:index});
+    
+}
 
 
 componentWillMount(){
@@ -83,8 +87,8 @@ let name;
             <div>
             <div>{item[name]}</div>
             <div>{item.description}</div>
-            <button onClick={()=>this.setState({popupshow:true})}>Edit</button>
-            {(this.state.popupshow)?<PopupPage subpageindex={subpageindex} itemindex={index} type={type} show="control" exitsignal={this.exitsignal}/>:""}
+            <button onClick={()=>this.edititem(index)}>Edit</button>
+            {(this.state.popupshow)?<PopupPage subpageindex={subpageindex} itemindex={this.state.Itemindex} type={type} show="control" exitsignal={this.exitsignal}/>:""}
             </div>
 
         )

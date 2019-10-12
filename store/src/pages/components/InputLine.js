@@ -19,6 +19,7 @@ export default class InputLine extends Component {
       }
     
       changeit =(e) => {
+        
         this.props.changevalue(e.target.value);
       }
     render() {
