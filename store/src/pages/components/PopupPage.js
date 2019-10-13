@@ -37,6 +37,12 @@ changeit=(id,event)=>{
     else if(id.subpageindex!="off" && id.page=="products"){
         localcopy.SubPages[id.subpageindex].Products[id.index][id.value]=event
     }
+    else if(id.subpageindex=="off" && id.page=="services"){
+        localcopy.Services[id.index][id.value]=event
+    }
+    else if(id.subpageindex!="off" && id.page=="services"){
+        localcopy.SubPages[id.subpageindex].Services[id.index][id.value]=event
+    }
     this.setState({[id.page]:localcopy})
 
 
@@ -87,11 +93,36 @@ fillcontents=()=>{
    
        else if(this.props.type=="services" && this.props.show=="control" ){
            if(this.props.subpageindex==null){
+
             item=this.state.services.Services[this.props.itemindex]
-               return <div>{item.ServiceName}</div>
+            return <div>
+            <InputLine header="Service Name" placeholder=""
+          data={item.ServiceName} 
+          changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"ServiceName"},e)} 
+          type="input"/>
+          <InputLine header="description" placeholder=""
+          data={item.description} 
+          changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"description"},e)} 
+          type="input"/>
+          <button onClick={changecontrolpage("services",this.state.services)}>Save</button>
+         </div> 
+
            }else{
+
             item=this.state.services.SubPages[this.props.subpageindex].Services[this.props.itemindex]
-               return <div>{item.ServiceName}</div>
+               return <div>
+        <InputLine header="Service Name" placeholder=""
+      data={item.ServiceName} 
+      changevalue={(e)=>this.changeit({page:"services",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"ServiceName"},e)} 
+      type="input"/>
+      <InputLine header="description" placeholder=""
+      data={item.description} 
+      changevalue={(e)=>this.changeit({page:"services",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"description"},e)} 
+      type="input"/>
+      <button onClick={changecontrolpage("services",this.state.services)}>Save</button>
+
+        
+        </div>
            
            }
    

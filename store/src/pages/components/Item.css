@@ -1,0 +1,17 @@
+.itemsWrapper{
+display:flex;
+
+flex-wrap: wrap;
+
+flex-direction: row;
+justify-content: center; 
+align-items: center;
+}
+
+.itembox{
+box-shadow: 0 0 1px 1px lightgray;
+max-width:10cm;
+margin:10px;
+padding:5px;
+/* display:inline */
+}
