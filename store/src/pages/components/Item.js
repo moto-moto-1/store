@@ -14,6 +14,7 @@ import "./Item.css"
         super(props);
 this.edititem=this.edititem.bind(this);
 this.deleteitem=this.deleteitem.bind(this);
+this.additem=this.additem.bind(this);
         
         this.state = {
             popupshow:false,
@@ -62,14 +63,43 @@ deleteitem(page,pageindex,index){
 
 additem(page,pageindex){
 
+    let emptyProduct={
+        "ProductId": 434351,
+        "ProductName": "منتج جديد",
+        "price": 0,
+        "cart": {
+          "QuantityAvailable": 0,
+          "SubTotal": 0,
+          "QuantityToAddDisplay": "none",
+          "SubTotalDisplay": "none",
+          "QuantityToAdd": 1
+        },
+        "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+        "description": "لم يتم تحديد الوصف"
+      }
+    let emptyService={
+        "ServiceId": 434351,
+        "ServiceName": "خدمة جديدة",
+        "price": 0,
+        "cart": {
+          "QuantityAvailable": 0,
+          "SubTotal": 0,
+          "QuantityToAddDisplay": "none",
+          "SubTotalDisplay": "none",
+          "QuantityToAdd": 1
+        },
+        "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+        "description": "لم يتم تحديد الوصف"
+      }
+
     if(page=="products"){
         let localcopy=this.state.products  
         if(pageindex==null){
-localcopy.Products.push(localcopy.Products[0])
+localcopy.Products.push(emptyProduct)
         }
 
         else{
-            localcopy.SubPages[pageindex].Products.push(localcopy.SubPages[pageindex].Products[0])
+            localcopy.SubPages[pageindex].Products.push(emptyProduct)
 
         }
         this.setState({products:localcopy})
@@ -77,11 +107,11 @@ localcopy.Products.push(localcopy.Products[0])
     else if(page=="services"){
         let localcopy=this.state.services  
         if(pageindex==null){
-            localcopy.Services.push(localcopy.Services[0])
+            localcopy.Services.push(emptyService)
         }
 
         else{
-            localcopy.SubPages[pageindex].Services.push(localcopy.SubPages[pageindex].Services[0])
+            localcopy.SubPages[pageindex].Services.push(emptyService)
         }
         this.setState({services:localcopy})
     }

@@ -88,6 +88,20 @@
             "url": "products",
             "Title": "منتجات",
             "LanguageDirection": "right",
+            "emptyProduct": {
+                "ProductId": 434351,
+                "ProductName": "منتج جديد",
+                "price": 0,
+                "cart": {
+                    "QuantityAvailable": 0,
+                    "SubTotal": 0,
+                    "QuantityToAddDisplay": "none",
+                    "SubTotalDisplay": "none",
+                    "QuantityToAdd": 1
+                },
+                "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                "description": "لم يتم تحديد الوصف"
+            },
             "HaveSubpages": true,
             "Products": [
                 {
@@ -262,6 +276,20 @@
             "Type": "services",
             "exists": true,
             "url": "services",
+            "emptyService": {
+                "ServiceId": 434351,
+                "ProductName": "خدمة جديد",
+                "price": 0,
+                "cart": {
+                    "QuantityAvailable": 0,
+                    "SubTotal": 0,
+                    "QuantityToAddDisplay": "none",
+                    "SubTotalDisplay": "none",
+                    "QuantityToAdd": 1
+                },
+                "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+                "description": "لم يتم تحديد الوصف"
+            },
             "LanguageDirection": "right",
             "HeaderTitle": "الخدمات",
             "Services": [
