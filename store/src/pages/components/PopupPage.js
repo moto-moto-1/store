@@ -65,6 +65,11 @@ fillcontents=()=>{
          data={item.description} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:"off",index:this.props.itemindex,value:"description"},e)} 
          type="input"/>
+         <InputLine header="Main Image Link" placeholder=""
+         data={item.image} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
+         type="input"/>
+         
          <button onClick={changecontrolpage("products",this.state.products)}>Save</button>
   
            
@@ -80,6 +85,10 @@ fillcontents=()=>{
       data={item.description} 
       changevalue={(e)=>this.changeit({page:"products",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"description"},e)} 
       type="input"/>
+      <InputLine header="Main Image Link" placeholder=""
+         data={item.image} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
+         type="input"/>
       <button onClick={changecontrolpage("products",this.state.products)}>Save</button>
 
         
@@ -104,7 +113,17 @@ fillcontents=()=>{
           data={item.description} 
           changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"description"},e)} 
           type="input"/>
-          <button onClick={changecontrolpage("services",this.state.services)}>Save</button>
+          <InputLine header="Main Image Link" placeholder=""
+         data={item.image} 
+         changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
+         type="input"/>
+
+<InputLine header="Serving time" placeholder=""
+         data={item.Appointments.Fri.ServingTime} 
+         changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"Appointments.Fri.ServingTime"},e)} 
+         type="inputnumber"/>
+
+            <button onClick={changecontrolpage("services",this.state.services)}>Save</button>
          </div> 
 
            }else{
@@ -119,6 +138,10 @@ fillcontents=()=>{
       data={item.description} 
       changevalue={(e)=>this.changeit({page:"services",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"description"},e)} 
       type="input"/>
+      <InputLine header="Main Image Link" placeholder=""
+         data={item.image} 
+         changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
+         type="input"/>
       <button onClick={changecontrolpage("services",this.state.services)}>Save</button>
 
         

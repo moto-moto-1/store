@@ -74,7 +74,7 @@ export default class InputLine extends Component {
 
         switch(typeoffield) {
           case 'inputnumber':
-           return <input placeholder={dataoffield} type='number' style={datastyle}/>
+           return <input placeholder={dataoffield} type='number' min='0' style={datastyle}/>
           case 'input':
            return <input placeholder={dataoffield} type='text' onChange={this.changeit} value={dataActual}   style={datastyle}/>
           case 'password':

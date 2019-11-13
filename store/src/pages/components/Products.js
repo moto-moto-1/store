@@ -137,12 +137,12 @@ AddToCart(index,page,subpageindex){
        <div class="ProductPrice">Price: {product.price}</div>
        
        <div class="QuantityAvailable">Quantity available: {product.cart.QuantityAvailable}</div>
-       <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number" value={product.cart.QuantityToAdd}></input>
+       <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number"  min="0" value={product.cart.QuantityToAdd}></input>
        <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">Add to cart</button>
        <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">Subtotal:{product.cart.QuantityToAdd}*{product.price}={product.cart.SubTotal}</div>
- 
+       <div class="MoreInfos"><a href="#">More...</a></div>
      </div> 
-     <div class="MoreInfo"><a href="#">More...</a></div>
+     
    </div>
  )}
  
