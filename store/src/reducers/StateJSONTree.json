@@ -294,7 +294,8 @@
               "FromHour2": "4",
               "FromMin2": "4",
               "ToHour2": "4",
-              "ToMin2": "4"
+              "ToMin2": "4",
+              "WholeDay": false
             },
             "Sat": {
               "ServingTime": "2",
@@ -306,7 +307,8 @@
               "FromHour2": "4",
               "FromMin2": "4",
               "ToHour2": "4",
-              "ToMin2": "4"
+              "ToMin2": "4",
+              "WholeDay": false
             },
             "Sun": {
               "ServingTime": "2",
@@ -318,7 +320,8 @@
               "FromHour2": "4",
               "FromMin2": "4",
               "ToHour2": "4",
-              "ToMin2": "4"
+              "ToMin2": "4",
+              "WholeDay": false
             },
             "Mon": {
               "ServingTime": "2",
@@ -330,7 +333,8 @@
               "FromHour2": "4",
               "FromMin2": "4",
               "ToHour2": "4",
-              "ToMin2": "4"
+              "ToMin2": "4",
+              "WholeDay": false
             },
             "Tue": {
               "ServingTime": "2",
@@ -342,7 +346,8 @@
               "FromHour2": "4",
               "FromMin2": "4",
               "ToHour2": "4",
-              "ToMin2": "4"
+              "ToMin2": "4",
+              "WholeDay": false
             },
             "Wed": {
               "ServingTime": "2",
@@ -354,7 +359,8 @@
               "FromHour2": "4",
               "FromMin2": "4",
               "ToHour2": "4",
-              "ToMin2": "4"
+              "ToMin2": "4",
+              "WholeDay": false
             },
             "Thu": {
               "ServingTime": "2",
@@ -366,7 +372,8 @@
               "FromHour2": "4",
               "FromMin2": "4",
               "ToHour2": "4",
-              "ToMin2": "4"
+              "ToMin2": "4",
+              "WholeDay": false
             }
           },
           "TakenAppointments": [
@@ -412,7 +419,8 @@
                 "FromHour2": "4",
                 "FromMin2": "4",
                 "ToHour2": "4",
-                "ToMin2": "4"
+                "ToMin2": "4",
+                "WholeDay": false
               },
               "Sat": {
                 "ServingTime": "2",
@@ -424,7 +432,8 @@
                 "FromHour2": "4",
                 "FromMin2": "4",
                 "ToHour2": "4",
-                "ToMin2": "4"
+                "ToMin2": "4",
+                "WholeDay": false
               },
               "Sun": {
                 "ServingTime": "2",
@@ -436,7 +445,8 @@
                 "FromHour2": "4",
                 "FromMin2": "4",
                 "ToHour2": "4",
-                "ToMin2": "4"
+                "ToMin2": "4",
+                "WholeDay": false
               },
               "Mon": {
                 "ServingTime": "2",
@@ -448,7 +458,8 @@
                 "FromHour2": "4",
                 "FromMin2": "4",
                 "ToHour2": "4",
-                "ToMin2": "4"
+                "ToMin2": "4",
+                "WholeDay": false
               },
               "Tue": {
                 "ServingTime": "2",
@@ -460,7 +471,8 @@
                 "FromHour2": "4",
                 "FromMin2": "4",
                 "ToHour2": "4",
-                "ToMin2": "4"
+                "ToMin2": "4",
+                "WholeDay": false
               },
               "Wed": {
                 "ServingTime": "2",
@@ -472,7 +484,8 @@
                 "FromHour2": "4",
                 "FromMin2": "4",
                 "ToHour2": "4",
-                "ToMin2": "4"
+                "ToMin2": "4",
+                "WholeDay": false
               },
               "Thu": {
                 "ServingTime": "2",
@@ -484,7 +497,8 @@
                 "FromHour2": "4",
                 "FromMin2": "4",
                 "ToHour2": "4",
-                "ToMin2": "4"
+                "ToMin2": "4",
+                "WholeDay": false
               }
             },
             "TakenAppointments": [
