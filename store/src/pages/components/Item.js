@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PopupPage from "./PopupPage"
 
-import {changecontrolpage} from "../../actions/submitaction"
+import {newproductsubpage,newproduct,newservicesubpage,newservice} from "../constants"
+
+import {changePageConfiguration} from "../../actions/submitaction"
 
 
 // import {fetchcontacts,fetchtasks,fetchsupplies,fetchteams,fetchalldata} from '../actions/getactions';
@@ -15,6 +17,7 @@ import "./Item.css"
 this.edititem=this.edititem.bind(this);
 this.deleteitem=this.deleteitem.bind(this);
 this.additem=this.additem.bind(this);
+this.addsubpage=this.addsubpage.bind(this);
         
         this.state = {
             popupshow:false,
@@ -61,36 +64,41 @@ deleteitem(page,pageindex,index){
 
 }
 
+addsubpage(page,pageindex){
+
+
+    if(page=="products"){
+        let localcopy=this.state.products  
+        let lastPageUrl=localcopy.SubPages[localcopy.SubPages.length-1].url
+        let lastPageUrlNumber=lastPageUrl.charAt(lastPageUrl.length-1);
+        lastPageUrlNumber=1+Number(lastPageUrlNumber)
+        const newURL="products/productsCat"+lastPageUrlNumber        
+        const productSubPage={"PageName":"حريمي","url":newURL,"exists":true,"LanguageDirection":"right","Title":"منتجات حريمي","Products":[{"ProductId":434351,"ProductName":"Short pants","price":344,"cart":{"QuantityAvailable":15,"SubTotal":0,"QuantityToAddDisplay":"none","SubTotalDisplay":"none","QuantityToAdd":1},"image":"https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg","description":"very good quality pants"}]}
+        localcopy.SubPages.push(productSubPage)
+        this.setState({products:localcopy})
+        this.props.changePageConfiguration("products",this.state.products)
+    }
+    else if(page=="services"){
+        let localcopy=this.state.services  
+        let lastPageUrl=localcopy.SubPages[localcopy.SubPages.length-1].url
+        var lastPageUrlNumber=lastPageUrl.charAt(lastPageUrl.length-1);
+        lastPageUrlNumber=1+Number(lastPageUrlNumber)
+        const newURL="services/ServicesCat"+lastPageUrlNumber
+        const serviceSubPage={"PageName":"psyotherapy","exists":true,"url":newURL,"LanguageDirection":"right","Title":"علاج طبيعى","Services":[{"ServiceId":434351,"TakenAppointments":[{"Date":"","Time":"","number":""},{"Date":"","Time":"","number":""},{"Date":"","Time":"","number":""}],"Appointments":[{"Day":"Friday","exists":true,"ServingTime":2,"ServingLines":4,"FromHour1":2,"FromMin1":4,"ToHour1":4,"ToMin1":4,"FromHour2":4,"FromMin2":4,"ToHour2":4,"ToMin2":4,"WholeDay":false},{"Day":"Saterday","exists":false,"ServingTime":"2","ServingLines":"4","FromHour1":"2","FromMin1":"4","ToHour1":"4","ToMin1":"4","FromHour2":"4","FromMin2":"4","ToHour2":"4","ToMin2":"4","WholeDay":false},{"Day":"Sunday","exists":false,"ServingTime":"2","ServingLines":"4","FromHour1":"2","FromMin1":"4","ToHour1":"4","ToMin1":"4","FromHour2":"4","FromMin2":"4","ToHour2":"4","ToMin2":"4","WholeDay":false},{"Day":"Monday","exists":false,"ServingTime":"2","ServingLines":"4","FromHour1":"2","FromMin1":"4","ToHour1":"4","ToMin1":"4","FromHour2":"4","FromMin2":"4","ToHour2":"4","ToMin2":"4","WholeDay":false},{"Day":"Tuesday","exists":false,"ServingTime":"2","ServingLines":"4","FromHour1":"2","FromMin1":"4","ToHour1":"4","ToMin1":"4","FromHour2":"4","FromMin2":"4","ToHour2":"4","ToMin2":"4","WholeDay":false},{"Day":"Wednesday","exists":false,"ServingTime":"2","ServingLines":"4","FromHour1":"2","FromMin1":"4","ToHour1":"4","ToMin1":"4","FromHour2":"4","FromMin2":"4","ToHour2":"4","ToMin2":"4","WholeDay":false},{"Day":"Thursday","exists":false,"ServingTime":"2","ServingLines":"4","FromHour1":"2","FromMin1":"4","ToHour1":"4","ToMin1":"4","FromHour2":"4","FromMin2":"4","ToHour2":"4","ToMin2":"4","WholeDay":false}],"UnavailableDates":["12/12/2019","14/12/2019","22/12/2019"],"ServiceName":"Fat loss","price":344,"image":"https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg","description":"very good quality proceedure"}]}
+        localcopy.SubPages.push(serviceSubPage)
+        this.setState({services:localcopy})
+        this.props.changePageConfiguration("services",this.state.services)        
+
+    }
+
+
+
+}
+
 additem(page,pageindex){
 
-    let emptyProduct={
-        "ProductId": 434351,
-        "ProductName": "منتج جديد",
-        "price": 0,
-        "cart": {
-          "QuantityAvailable": 0,
-          "SubTotal": 0,
-          "QuantityToAddDisplay": "none",
-          "SubTotalDisplay": "none",
-          "QuantityToAdd": 1
-        },
-        "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-        "description": "لم يتم تحديد الوصف"
-      }
-    let emptyService={
-        "ServiceId": 434351,
-        "ServiceName": "خدمة جديدة",
-        "price": 0,
-        "cart": {
-          "QuantityAvailable": 0,
-          "SubTotal": 0,
-          "QuantityToAddDisplay": "none",
-          "SubTotalDisplay": "none",
-          "QuantityToAdd": 1
-        },
-        "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-        "description": "لم يتم تحديد الوصف"
-      }
+    const emptyProduct={...newproduct}
+    const emptyService={...newservice}
 
     if(page=="products"){
         let localcopy=this.state.products  
@@ -189,6 +197,7 @@ let name;
         )}
          </div>
         <button onClick={()=>this.additem(type,subpageindex)}>Add Item</button>
+        <button onClick={()=>this.addsubpage(type,subpageindex)}>Add Sub Page</button>
             </div>
            
         
@@ -210,4 +219,4 @@ const mapStateToProps = state => ({
 
 
 
- export default connect(mapStateToProps,{changecontrolpage})(Item);
+ export default connect(mapStateToProps,{changePageConfiguration})(Item);

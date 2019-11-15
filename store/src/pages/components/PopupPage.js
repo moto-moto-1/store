@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import InputLine from "./InputLine"
 
-import {changecontrolpage} from "../../actions/submitaction"
+import {changePageConfiguration} from "../../actions/submitaction"
 
 
 // import {fetchcontacts,fetchtasks,fetchsupplies,fetchteams,fetchalldata} from '../actions/getactions';
@@ -27,6 +27,24 @@ import "./PopupPage.css"
         }
 }
 
+checkboxchanged=(e,index) =>{
+    console.log(e.target.checked)
+    console.log(index)
+   
+
+    let localstate=this.state.services;
+    if(this.props.subpageindex==null){
+        
+        localstate.Services[this.props.itemindex].Appointments[index].exists=e.target.checked
+         }
+else{
+    localstate.SubPages[this.props.subpageindex].Services[this.props.itemindex].Appointments[index].exists=e.target.checked
+}
+
+this.setState({services:localstate})
+
+}
+
 changeit=(id,event)=>{
     console.log(id.index)
 
@@ -38,7 +56,12 @@ changeit=(id,event)=>{
         localcopy.SubPages[id.subpageindex].Products[id.index][id.value]=event
     }
     else if(id.subpageindex=="off" && id.page=="services"){
-        localcopy.Services[id.index][id.value]=event
+        if(id.Appointments){
+            localcopy.Services[id.index].Appointments[id.AppointmentIndex][id.value]=event
+        }else if(id.UnavailableDates){
+
+        }
+        else localcopy.Services[id.index][id.value]=event
     }
     else if(id.subpageindex!="off" && id.page=="services"){
         localcopy.SubPages[id.subpageindex].Services[id.index][id.value]=event
@@ -49,111 +72,122 @@ changeit=(id,event)=>{
 }
 
 fillcontents=()=>{
-     console.log("inside fill content")
-     console.log(" this is popUp "+this.props.type+" "+this.props.show+" "+this.props.subpageindex + " " +this.props.itemindex)
-   let item;
-
+     let item;
     if(this.props.type=="products" && this.props.show=="control" ){
         if(this.props.subpageindex==null){
             item=this.state.products.Products[this.props.itemindex]
+            var subpageindexvalue="off"
+        }
+    else{
+        item=this.state.products.SubPages[this.props.subpageindex].Products[this.props.itemindex]
+        var subpageindexvalue=this.props.subpageindex
+    }
            return <div>
            <InputLine header="Product Name" placeholder=""
          data={item.ProductName} 
-         changevalue={(e)=>this.changeit({page:"products",subpageindex:"off",index:this.props.itemindex,value:"ProductName"},e)} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"ProductName"},e)} 
          type="input"/>
          <InputLine header="description" placeholder=""
          data={item.description} 
-         changevalue={(e)=>this.changeit({page:"products",subpageindex:"off",index:this.props.itemindex,value:"description"},e)} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"description"},e)} 
          type="input"/>
          <InputLine header="Main Image Link" placeholder=""
          data={item.image} 
-         changevalue={(e)=>this.changeit({page:"products",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
          type="input"/>
          
-         <button onClick={changecontrolpage("products",this.state.products)}>Save</button>
-  
-           
-           </div>
-       }else{
-        item=this.state.products.SubPages[this.props.subpageindex].Products[this.props.itemindex]
-        return <div>
-        <InputLine header="Product Name" placeholder=""
-      data={item.ProductName} 
-      changevalue={(e)=>this.changeit({page:"products",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"ProductName"},e)} 
-      type="input"/>
-      <InputLine header="description" placeholder=""
-      data={item.description} 
-      changevalue={(e)=>this.changeit({page:"products",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"description"},e)} 
-      type="input"/>
-      <InputLine header="Main Image Link" placeholder=""
-         data={item.image} 
-         changevalue={(e)=>this.changeit({page:"products",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
-         type="input"/>
-      <button onClick={changecontrolpage("products",this.state.products)}>Save</button>
-
-        
-        </div>
-       }
-   
-   
+         <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}>Save</button>
           
-   
-       }
+           </div>
+      
+
+}
    
        else if(this.props.type=="services" && this.props.show=="control" ){
-           if(this.props.subpageindex==null){
+        if(this.props.subpageindex==null){
 
-            item=this.state.services.Services[this.props.itemindex]
-            return <div>
-            <InputLine header="Service Name" placeholder=""
-          data={item.ServiceName} 
-          changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"ServiceName"},e)} 
-          type="input"/>
-          <InputLine header="description" placeholder=""
-          data={item.description} 
-          changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"description"},e)} 
-          type="input"/>
-          <InputLine header="Main Image Link" placeholder=""
-         data={item.image} 
-         changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
-         type="input"/>
+         item=this.state.services.Services[this.props.itemindex]
+         var subpageindexvalue="off"
+        }
+     else{
 
-<InputLine header="Serving time" placeholder=""
-         data={item.Appointments.Fri.ServingTime} 
-         changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"Appointments.Fri.ServingTime"},e)} 
-         type="inputnumber"/>
-
-            <button onClick={changecontrolpage("services",this.state.services)}>Save</button>
-         </div> 
-
-           }else{
-
-            item=this.state.services.SubPages[this.props.subpageindex].Services[this.props.itemindex]
-               return <div>
-        <InputLine header="Service Name" placeholder=""
-      data={item.ServiceName} 
-      changevalue={(e)=>this.changeit({page:"services",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"ServiceName"},e)} 
+         item=this.state.services.SubPages[this.props.subpageindex].Services[this.props.itemindex]
+         var subpageindexvalue=this.props.subpageindex
+     }
+         return <div>
+         <InputLine header="Service Name" placeholder=""  data={item.ServiceName} 
+       changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"ServiceName"},e)} 
+       type="input"/>
+       <InputLine header="description" placeholder=""
+       data={item.description} 
+       changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"description"},e)} 
+       type="input"/>
+       <InputLine header="Main Image Link" placeholder=""
+      data={item.image} 
+      changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
       type="input"/>
-      <InputLine header="description" placeholder=""
-      data={item.description} 
-      changevalue={(e)=>this.changeit({page:"services",subpageindex:this.props.subpageindex,index:this.props.itemindex,value:"description"},e)} 
-      type="input"/>
-      <InputLine header="Main Image Link" placeholder=""
-         data={item.image} 
-         changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",index:this.props.itemindex,value:"image"},e)} 
-         type="input"/>
-      <button onClick={changecontrolpage("services",this.state.services)}>Save</button>
 
+
+      {
+item.Appointments.map( 
+    (appointment,AppointmentIndex)=>
+    <div>
+   <input type="checkbox" onChange={(e)=>this.checkboxchanged(e,AppointmentIndex)} checked={appointment.exists}/>{appointment.Day}
+   <div style={{display: appointment.exists ? "block":"none"  }}>
+
+<InputLine header="Serving time (min)" placeholder="" data={appointment.ServingTime} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ServingTime"},e)} 
+      type="inputnumber"/>
+
+<InputLine header="Serving Lines" placeholder="" data={appointment.ServingLines} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ServingLines"},e)} 
+      type="inputnumber"/>
+
+      <center>shift 1</center>
+      <InputLine header="From hour" placeholder="" data={appointment.FromHour1} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromHour1"},e)} 
+      type="inputnumber"/>
+      <InputLine header="From min" placeholder="" data={appointment.FromMin1} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromMin1"},e)} 
+      type="inputnumber"/>
+      <InputLine header="To hour" placeholder="" data={appointment.ToHour1} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToHour1"},e)} 
+      type="inputnumber"/>
+      <InputLine header="To min" placeholder="" data={appointment.ToMin1} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToMin1"},e)} 
+      type="inputnumber"/>
+
+      <center>shift 2</center>
+      <InputLine header="From hour" placeholder="" data={appointment.FromHour2} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromHour2"},e)} 
+      type="inputnumber"/>
+      <InputLine header="From min" placeholder="" data={appointment.FromMin2} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromMin2"},e)} 
+      type="inputnumber"/>
+      <InputLine header="To hour" placeholder="" data={appointment.ToHour2} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToHour2"},e)} 
+      type="inputnumber"/>
+      <InputLine header="To min" placeholder="" data={appointment.ToMin2} 
+     changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToMin2"},e)} 
+      type="inputnumber"/>
+
+      </div>
+      </div>
+)
+       }
+         <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}>Save</button>
+      </div> 
+
+       
+            
         
-        </div>
-           
-           }
+        }
    
    
        }
    
     
-}
+
 
 
 
@@ -213,4 +247,4 @@ const mapStateToProps = state => ({
 
 
 
- export default connect(mapStateToProps,{changecontrolpage})(PopupPage);
+ export default connect(mapStateToProps,{changePageConfiguration})(PopupPage);

@@ -13,7 +13,7 @@ import "./PageListItem.css"
         super(props);
 
         
-        //this.state = {activeMainPage:"products"}
+        this.state = {page:this.props.page}
 }
 
 
