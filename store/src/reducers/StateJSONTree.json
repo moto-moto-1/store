@@ -483,7 +483,7 @@
             "WholeDay": false
           },
           {
-            "Day": "Saterday",
+            "Day": "Saturday",
             "exists": false,
             "ServingTime": "2",
             "ServingLines": "4",
@@ -614,7 +614,7 @@
               "WholeDay": false
             },
             {
-              "Day": "Saterday",
+              "Day": "Saturday",
               "exists": false,
               "ServingTime": "2",
               "ServingLines": "4",

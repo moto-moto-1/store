@@ -24,16 +24,21 @@ var servicetoAppointment=this.props.service.SubPages[SubPageIndex].Services[Item
 else {
 var servicetoAppointment=this.props.service.Services[ItemIndex];
 }
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
+// var today = new Date();
+// var dd = String(today.getDate()).padStart(2, '0');
+// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+// var yyyy = today.getFullYear();
 
 
 var moment = require('moment');
 let m=moment();
-alert(m.add(5,'days'))
-today = dd + '/' + mm + '/' + yyyy;
+alert(moment('2014/2/13'))
+
+//alert(m.add(5,'days'))
+// today = dd + '/' + mm + '/' + yyyy;
+//alert(m.format('dddd'))
+
+this.getAvailbleTimeInDate(m,servicetoAppointment)
 
 for(let i=0;i<=6;i++){          //check if no appointments set in tree
 if(servicetoAppointment.Appointments[i].exists){break}
@@ -49,6 +54,18 @@ for(let i=0;i<=200;i++){
     this.setState({redirect:true})
     
   }
+getAvailbleTimeInDate(date,service){
+  
+  for(let i=0;i<=6;i++){
+   
+  if(date.format('dddd')==service.Appointments[i].Day){
+
+    if(date.format("dd/mm/yyyy")){}
+  }
+
+  }
+}
+
 
 componentWillMount(){
   
@@ -86,7 +103,7 @@ componentWillMount(){
       <div class="ProductDetails">{product.description}</div>
       <div class="ProductPrice">Price: {product.price}</div>
       <br/>
-      <div class="MoreInfo"><button onClick={this.toReservePage(this.props.subpage,subpageIndex,index)}>Reserve appointment...</button></div>
+      <div class="MoreInfo"><button onClick={()=>this.toReservePage(this.props.subpage,subpageIndex,index)}>Reserve appointment...</button></div>
     </div> 
     
   </div>
