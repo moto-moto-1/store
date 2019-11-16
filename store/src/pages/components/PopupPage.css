@@ -8,6 +8,9 @@ background: rgba(87, 85, 85, 0.5)
 }
 
 .PopupPageWrapper{
+    padding-left:5px;
+    padding-right:5px;
+
 position: fixed;
 top:2%;
 left:2%;

@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 // import {fetchcontacts,fetchtasks,fetchsupplies,fetchteams,fetchalldata} from '../actions/getactions';
 import "./Header.css"
+import Loader from "../Social media Icons/loader.gif";
+
 
 class Header extends Component {
 
@@ -10,6 +12,8 @@ class Header extends Component {
     constructor(props) {
         super(props);
         // this.dropdownhandler = this.dropdownhandler.bind(this);
+
+        this.state={Imageloaded:false}
 
         if(this.props.header.style.direction=="right")this.title_styles={right:"2%"}
         else this.title_styles={left:"2%"};
@@ -23,15 +27,20 @@ class Header extends Component {
       }
 
 componentWillMount(){
-
-    //this.props.fetchcontacts();
-    // this.props.fetchalldata('none','none');
-    
+    // this.setState({Imageloaded:false})
+   }
+componentDidMount(){
+    // this.setState({Imageloaded:true})
 }
 
  
     render() {
 
+//         if(!this.state.Imageloaded){return(
+// <div id="header" style={{height:this.props.header.style.height}}> 
+//         <img src={Loader} alt="fashion" id="headerimage"/>
+//         </div>)
+//         }else
       
 
         return (

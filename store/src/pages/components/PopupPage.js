@@ -27,18 +27,19 @@ import "./PopupPage.css"
         }
 }
 
-checkboxchanged=(e,index) =>{
+checkboxchanged=(e,index,forWholeDay) =>{
     console.log(e.target.checked)
     console.log(index)
    
 
     let localstate=this.state.services;
     if(this.props.subpageindex==null){
-        
-        localstate.Services[this.props.itemindex].Appointments[index].exists=e.target.checked
+        if(forWholeDay) localstate.Services[this.props.itemindex].Appointments[index].WholeDay=e.target.checked
+        else localstate.Services[this.props.itemindex].Appointments[index].exists=e.target.checked
          }
 else{
-    localstate.SubPages[this.props.subpageindex].Services[this.props.itemindex].Appointments[index].exists=e.target.checked
+    if(forWholeDay) localstate.Services[this.props.itemindex].Appointments[index].WholeDay=e.target.checked
+    else localstate.SubPages[this.props.subpageindex].Services[this.props.itemindex].Appointments[index].exists=e.target.checked
 }
 
 this.setState({services:localstate})
@@ -50,10 +51,12 @@ changeit=(id,event)=>{
 
     let localcopy=this.state[id.page]
     if(id.subpageindex=="off" && id.page=="products"){
-        localcopy.Products[id.index][id.value]=event
+        if(id.changeQuantity){localcopy.Products[id.index].cart[id.value]=event}
+        else localcopy.Products[id.index][id.value]=event
     }
     else if(id.subpageindex!="off" && id.page=="products"){
-        localcopy.SubPages[id.subpageindex].Products[id.index][id.value]=event
+        if(id.changeQuantity){}
+        else localcopy.SubPages[id.subpageindex].Products[id.index][id.value]=event
     }
     else if(id.subpageindex=="off" && id.page=="services"){
         if(id.Appointments){
@@ -95,6 +98,17 @@ fillcontents=()=>{
          data={item.image} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
          type="input"/>
+         <InputLine header="Price" placeholder=""
+         data={item.price} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"price"},e)} 
+         type="input"/>
+
+         <InputLine header="Available Quantity" placeholder="" 
+         data={item.cart.QuantityAvailable} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"QuantityAvailable",changeQuantity:true},e)} 
+         type="input"/>
+         
+         
          
          <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}>Save</button>
           
@@ -132,8 +146,11 @@ fillcontents=()=>{
 item.Appointments.map( 
     (appointment,AppointmentIndex)=>
     <div>
+        <hr/>
    <input type="checkbox" onChange={(e)=>this.checkboxchanged(e,AppointmentIndex)} checked={appointment.exists}/>{appointment.Day}
-   <div style={{display: appointment.exists ? "block":"none"  }}>
+   <input type="checkbox" onChange={(e)=>this.checkboxchanged(e,AppointmentIndex,true)} checked={appointment.WholeDay}/>Whole day
+
+   <div style={{display: (appointment.exists && !appointment.WholeDay) ? "block":"none"  }}>
 
 <InputLine header="Serving time (min)" placeholder="" data={appointment.ServingTime} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ServingTime"},e)} 

@@ -43,6 +43,7 @@ componentWillMount(){
 
 
     render() {
+      var moment=require('moment')
       
      return (
             
@@ -51,7 +52,7 @@ componentWillMount(){
             <NavBar />
               
               <h2 style={{textAlign:"right"}}>{this.state.reserve.PageName}</h2>   
-              <input type="date" min="2019-10-10" max="2019-12-31"></input>
+              <input type="date" min={moment().format('YYYY-MM-DD')} value={moment().format('YYYY-MM-DD')}></input>
  
  <Footer/>
  </div>
