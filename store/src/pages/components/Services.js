@@ -31,14 +31,18 @@ var servicetoAppointment=this.props.service.Services[ItemIndex];
 
 
 var moment = require('moment');
-let m=moment();
-alert(moment('2014/2/13'))
+let currentDate=moment();
+let comparisonDate=moment('22:01','hh:mm')
+alert(currentDate)
+alert(currentDate.isAfter(comparisonDate))
 
 //alert(m.add(5,'days'))
 // today = dd + '/' + mm + '/' + yyyy;
 //alert(m.format('dddd'))
 
-this.getAvailbleTimeInDate(m,servicetoAppointment)
+let result=this.getAvailbleTimeInDate(currentDate.add(5,"days"),servicetoAppointment)
+
+console.log(result)
 
 for(let i=0;i<=6;i++){          //check if no appointments set in tree
 if(servicetoAppointment.Appointments[i].exists){break}
@@ -54,14 +58,63 @@ for(let i=0;i<=200;i++){
     this.setState({redirect:true})
     
   }
+getNextTime(chosenHour,chosenMin,increments){
+ console.log(chosenHour+" "+chosenMin)
+ console.log("we are here")
+  let chosenTime=chosenHour+":"+ ((chosenMin<=9) ? ("0"+chosenMin) :chosenMin);
+  let nextMin=(Number(chosenMin)+Number(increments))%60
+  let nextHour=(Number(chosenHour)+Math.floor((Number(chosenMin)+Number(increments))/60))%24
+  let nextTime=nextHour+":"+((nextMin<=9) ? ("0"+nextMin) :nextMin);
+return {hour:nextHour,min:((nextMin<=9) ? ("0"+nextMin) :nextMin),time:nextTime}
+alert(" Chosen Time is " + chosenTime + " Next Time is " + nextTime)
+}
+
 getAvailbleTimeInDate(date,service){
-  
+ 
+  var moment = require('moment');
+  if(date.isBefore(moment())){alert("Date is before today");return {status:false,reason:"date before today"}}
+
   for(let i=0;i<=6;i++){
    
-  if(date.format('dddd')==service.Appointments[i].Day){
+  if(date.format('dddd')==service.Appointments[i].Day&&service.Appointments[i].exists){
 
-    if(date.format("dd/mm/yyyy")){}
+  
+    let startHour=service.Appointments[i].FromHour1;
+    let startMin=service.Appointments[i].FromMin1;
+    startMin=((startMin<=9) ? ("0"+startMin) :startMin)
+    let nextTime={time:startHour+":"+startMin,hour:startHour,min:startMin}
+    
+  while(nextTime.hour<24){
+
+    for(let l=0;l<service.TakenAppointments.length;l++){
+console.log(service.TakenAppointments[l])
+console.log(service.TakenAppointments.length)
+console.log("finished loop")
+// alert(moment())
+// alert(moment(nextTime.hour+":"+nextTime.min,"HH:mm"))
+
+      if((service.TakenAppointments[l].Time==nextTime.time && 
+        service.TakenAppointments[l].Date==date.format('dd/mm/yyyy') &&
+        service.TakenAppointments[l].number==service.Appointments[i].ServingLines) || 
+        moment().isSameOrAfter(moment(nextTime.hour+":"+nextTime.min,"HH:mm")) ) 
+        {continue; }
+        
+       else {
+        service.ClientAppointment.Date=date.format('DD/MM/YYYY')
+        service.ClientAppointment.Time=nextTime.time
+        if(service.TakenAppointments[l].number<service.Appointments[i].ServingLines&&service.TakenAppointments[l].number!="")
+         {service.TakenAppointments[l].number++}
+        else service.TakenAppointments.push({Date:date.format('DD/MM/YYYY'),Time:nextTime.time,number:1})
+         return {status:true,newService:service}
+       }
+ 
+    }
+    nextTime=this.getNextTime(nextTime.hour, nextTime.min, service.Appointments[i].ServingTime)
   }
+    alert("We were unable to find any appointment in that day")
+    return {status:false,reason:"searched all avialable dates but not fortunate"}
+  }
+  else alert(date.format('dddd')+" is not available")
 
   }
 }
