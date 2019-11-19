@@ -13,6 +13,7 @@ class Services extends Component {
   constructor(props) {
     super(props);
     this.toReservePage=this.toReservePage.bind(this);
+    this.getAvailbleTimeInDate=this.getAvailbleTimeInDate.bind(this);
 
     this.state={redirect:false,
     services:this.props.service
@@ -21,6 +22,7 @@ class Services extends Component {
   }
 
   toReservePage(isSubPage,SubPageIndex,ItemIndex) {
+        
 if(isSubPage){
 var servicetoAppointment=this.props.service.SubPages[SubPageIndex].Services[ItemIndex];
 }
@@ -28,52 +30,60 @@ else {
 var servicetoAppointment=this.props.service.Services[ItemIndex];
 }
 
+for(let i=0;i<=6;i++){          //check if no appointments exists in tree
+  if(servicetoAppointment.Appointments[i].exists){break}
+  else{ if(i==6){alert("No appointments are available");return;} else continue;}
+  }
+
 var moment = require('moment');
 let currentDate=moment();
-let comparisonDate=moment('22:01','hh:mm')
-alert(currentDate)
-alert(currentDate.isAfter(comparisonDate))
-
-
 let result;
-result=this.getAvailbleTimeInDate(currentDate.add(4,"days"),servicetoAppointment)
+let incrementedDate=currentDate;
 
+for(let m=0;m<=15;m++){ //searching for 15 days ahead
+ 
+  
+  //console.log(incrementedDate.format("DD/MM/YYYY"))
+if(servicetoAppointment.UnavailableDates.includes(incrementedDate.format("D/M/YYYY"))){
+  incrementedDate=currentDate.add(1,'days');}
+
+  result=this.getAvailbleTimeInDate(incrementedDate,servicetoAppointment)
+  
+if(result.status){
   var stateService=this.state.services;
   if(isSubPage){stateService.SubPages[SubPageIndex].Services[ItemIndex]=result.newService}
   else {stateService.Services[ItemIndex]=result.newService}
   this.setState({services:stateService})
   this.props.changePageConfiguration("services",this.state.services)
-
-
-console.log(result)
-
-for(let i=0;i<=6;i++){          //check if no appointments exists in tree
-if(servicetoAppointment.Appointments[i].exists){break}
-else{ if(i==6){alert("No appointments avilable");return;} else continue;}
+  this.setState({redirect:true})
+  return
 }
-
-
-    this.setState({redirect:true})
-    
+else {
+  incrementedDate=currentDate.add(1,'days');
+  console.log(result.reason);
+  continue;
+}
+}
+alert("No appointments are available in the next 15 days")
+return;    
   }
 getNextTime(chosenHour,chosenMin,increments){
-//  console.log(chosenHour+" "+chosenMin)
-//  console.log("we are here")
-  let chosenTime=chosenHour+":"+ ((chosenMin<=9) ? ("0"+chosenMin) :chosenMin);
+
   let nextMin=(Number(chosenMin)+Number(increments))%60
   let nextHour=(Number(chosenHour)+Math.floor((Number(chosenMin)+Number(increments))/60))%24
   let nextTime=nextHour+":"+((nextMin<=9) ? ("0"+nextMin) :nextMin);
 return {hour:nextHour,min:((nextMin<=9) ? ("0"+nextMin) :nextMin),time:nextTime}
-//alert(" Chosen Time is " + chosenTime + " Next Time is " + nextTime)
 }
 
 getAvailbleTimeInDate(date,service){
  
   var moment = require('moment');
-  if(date.isBefore(moment())){alert("Date is before today");return {status:false,reason:"date before today"}}
-
+  if(date.isBefore(moment())){alert("Selected date is in the past we will choose nearest appointment for you");
+                              date=moment();}
   for(let i=0;i<=6;i++){
-   
+    console.log(date.format('dddd'))
+    console.log(service.Appointments[i].Day)
+   console.log(service.Appointments[i].exists)
   if(date.format('dddd')==service.Appointments[i].Day&&service.Appointments[i].exists){
 
   
@@ -84,47 +94,69 @@ getAvailbleTimeInDate(date,service){
     let HourThisIteration=nextTime.hour
 
   while(nextTime.hour<24 && nextTime.hour>=HourThisIteration){
+    console.log(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").format("D/M/YYYY H:m"))
+
     HourThisIteration=nextTime.hour;
     for(let l=0;l<service.TakenAppointments.length;l++){
-
+//console.log(nextTime)
       if(
          (service.TakenAppointments[l].Time==nextTime.time && 
-          service.TakenAppointments[l].Date==date.format('dd/mm/yyyy') &&
+          service.TakenAppointments[l].Date==date.format('D/M/YYYY') &&
           service.TakenAppointments[l].number>=service.Appointments[i].ServingLines) 
         || 
-        moment().isSameOrAfter(moment(nextTime.hour+":"+nextTime.min,"HH:mm")) 
+        moment().isSameOrAfter(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m")) 
         ||
-        !(moment(nextTime.hour+":"+nextTime.min,"HH:mm").isBetween(
-          moment(service.Appointments[i].FromHour1+":"+service.Appointments[i].FromMin1,"HH:mm"),
-          moment(service.Appointments[i].ToHour1+":"+service.Appointments[i].ToMin1,"HH:mm") )
+        !(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
+          moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour1+":"+service.Appointments[i].FromMin1,"M/D/YYYY H:m"),
+          moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour1+":"+service.Appointments[i].ToMin1,"M/D/YYYY H:m") )
            ||
-          moment(nextTime.hour+":"+nextTime.min,"HH:mm").isBetween(
-          moment(service.Appointments[i].FromHour2+":"+service.Appointments[i].FromMin2,"HH:mm"),
-          moment(service.Appointments[i].ToHour2+":"+service.Appointments[i].ToMin2,"HH:mm") ))
+          moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
+          moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour2+":"+service.Appointments[i].FromMin2,"M/D/YYYY H:m"),
+          moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour2+":"+service.Appointments[i].ToMin2,"M/D/YYYY H:m") ))
         ) 
-        {continue; }
+        { 
+          console.log(nextTime)
+          console.log(service.TakenAppointments[l].Time==nextTime.time)
+          console.log(service.TakenAppointments[l].Date==date.format('D/M/YYYY'))
+          console.log(service.TakenAppointments[l].number>=service.Appointments[i].ServingLines)
+          console.log(moment().isSameOrAfter(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m")))
+          console.log(!(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
+            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour1+":"+service.Appointments[i].FromMin1,"M/D/YYYY H:m"),
+            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour1+":"+service.Appointments[i].ToMin1,"M/D/YYYY H:m") )
+             ||
+            moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
+            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour2+":"+service.Appointments[i].FromMin2,"M/D/YYYY H:m"),
+            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour2+":"+service.Appointments[i].ToMin2,"M/D/YYYY H:m") )))
+          
+          
+          
+          
+          
+          
+          continue; }
         
        else {
-        service.ClientAppointment.Date=date.format('DD/MM/YYYY')
+        service.ClientAppointment.Date=date.format('D/M/YYYY')
         service.ClientAppointment.Time=nextTime.time
+        service.ClientAppointment.exists=true
         if(service.TakenAppointments[l].number<service.Appointments[i].ServingLines&&service.TakenAppointments[l].number!="")
          {service.TakenAppointments[l].number++}
-        else service.TakenAppointments.push({Date:date.format('DD/MM/YYYY'),Time:nextTime.time,number:1})
+        else service.TakenAppointments.push({Date:date.format('D/M/YYYY'),Time:nextTime.time,number:1})
          return {status:true,newService:service}
        }
  
     }
-
-    
     nextTime=this.getNextTime(nextTime.hour, nextTime.min, service.Appointments[i].ServingTime)
   }
-    alert("We were unable to find any appointment in that day")
-    return {status:false,reason:"searched all avialable dates but not fortunate"}
+    
+    return {status:false,currentDate:date,reason:"We were unable to find any appointment in that day"}
   }
-  else {}
+  else {continue}
+  
 
   }
-  alert(date.format('dddd')+" is not available")
+  return {status:false,currentDate:date,reason:"No appointments are available in "+date.format('dddd')}
+
 }
 
 
@@ -184,6 +216,7 @@ const mapStateToProps = state => ({
     
     
 });
+
 
 
 
