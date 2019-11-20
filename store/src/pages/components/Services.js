@@ -99,8 +99,7 @@ getAvailbleTimeInDate(date,service){
     HourThisIteration=nextTime.hour;
     for(let l=0;l<service.TakenAppointments.length;l++){
 //console.log(nextTime)
-      if(
-         (service.TakenAppointments[l].Time==nextTime.time && 
+      if((service.TakenAppointments[l].Time==nextTime.time && 
           service.TakenAppointments[l].Date==date.format('D/M/YYYY') &&
           service.TakenAppointments[l].number>=service.Appointments[i].ServingLines) 
         || 
@@ -113,32 +112,41 @@ getAvailbleTimeInDate(date,service){
           moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
           moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour2+":"+service.Appointments[i].FromMin2,"M/D/YYYY H:m"),
           moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour2+":"+service.Appointments[i].ToMin2,"M/D/YYYY H:m") ))
-        ) 
+        ||
+          !(l==service.TakenAppointments.length-1) 
+              
+
+          ) 
         { 
-          console.log(nextTime)
-          console.log(service.TakenAppointments[l].Time==nextTime.time)
-          console.log(service.TakenAppointments[l].Date==date.format('D/M/YYYY'))
-          console.log(service.TakenAppointments[l].number>=service.Appointments[i].ServingLines)
-          console.log(moment().isSameOrAfter(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m")))
-          console.log(!(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
-            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour1+":"+service.Appointments[i].FromMin1,"M/D/YYYY H:m"),
-            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour1+":"+service.Appointments[i].ToMin1,"M/D/YYYY H:m") )
-             ||
-            moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
-            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour2+":"+service.Appointments[i].FromMin2,"M/D/YYYY H:m"),
-            moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour2+":"+service.Appointments[i].ToMin2,"M/D/YYYY H:m") )))
+          // console.log(nextTime)
+          // console.log(service.TakenAppointments[l].Time==nextTime.time)
+          // console.log(service.TakenAppointments[l].Date==date.format('D/M/YYYY'))
+          // console.log(service.TakenAppointments[l].number>=service.Appointments[i].ServingLines)
+          // console.log(moment().isSameOrAfter(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m")))
+          // console.log(!(moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
+          //   moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour1+":"+service.Appointments[i].FromMin1,"M/D/YYYY H:m"),
+          //   moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour1+":"+service.Appointments[i].ToMin1,"M/D/YYYY H:m") )
+          //    ||
+          //   moment(date.format("M/D/YYYY")+" "+nextTime.hour+":"+nextTime.min,"M/D/YYYY H:m").isBetween(
+          //   moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour2+":"+service.Appointments[i].FromMin2,"M/D/YYYY H:m"),
+          //   moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour2+":"+service.Appointments[i].ToMin2,"M/D/YYYY H:m") )))
           
-          
-          
-          
-          
-          
+        
           continue; }
         
        else {
         service.ClientAppointment.Date=date.format('D/M/YYYY')
         service.ClientAppointment.Time=nextTime.time
         service.ClientAppointment.exists=true
+        console.log(l)
+        console.log("taken number "+service.TakenAppointments[l].number)
+        console.log("lines available "+service.Appointments[i].ServingLines)
+        console.log(service.TakenAppointments[l].number<service.Appointments[i].ServingLines)
+        console.log(service.TakenAppointments[l].Time=='')
+        console.log(service.TakenAppointments[l].Date=="")
+        console.log(service.TakenAppointments[l].number=="")
+        console.log(service.TakenAppointments[l].number)
+
         if(service.TakenAppointments[l].number<service.Appointments[i].ServingLines&&service.TakenAppointments[l].number!="")
          {service.TakenAppointments[l].number++}
         else service.TakenAppointments.push({Date:date.format('D/M/YYYY'),Time:nextTime.time,number:1})
