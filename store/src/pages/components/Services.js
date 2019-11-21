@@ -60,7 +60,7 @@ if(result.status){
 }
 else {
   incrementedDate=currentDate.add(1,'days');
-  console.log(result.reason);
+  // console.log(result.reason);
   continue;
 }
 }
@@ -84,7 +84,7 @@ getAvailbleTimeInDate(date,service){
     console.log(date.format('dddd'))
     console.log(service.Appointments[i].Day)
    console.log(service.Appointments[i].exists)
-  if(date.format('dddd')==service.Appointments[i].Day&&service.Appointments[i].exists){
+  if(date.format('dddd')==service.Appointments[i].Day&&service.Appointments[i].exists||service.UnavailableDates.includes(date.format('D/M/YYYY'))){
 
   
     let startHour=service.Appointments[i].FromHour1;
@@ -113,10 +113,7 @@ getAvailbleTimeInDate(date,service){
           moment(date.format("M/D/YYYY")+" "+service.Appointments[i].FromHour2+":"+service.Appointments[i].FromMin2,"M/D/YYYY H:m"),
           moment(date.format("M/D/YYYY")+" "+service.Appointments[i].ToHour2+":"+service.Appointments[i].ToMin2,"M/D/YYYY H:m") ))
         ||
-          !(l==service.TakenAppointments.length-1) 
-              
-
-          ) 
+          !(l==service.TakenAppointments.length-1) ) 
         { 
           // console.log(nextTime)
           // console.log(service.TakenAppointments[l].Time==nextTime.time)

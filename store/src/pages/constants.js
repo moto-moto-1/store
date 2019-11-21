@@ -36,141 +36,145 @@ export const inputlinestyle = {
 }
 
 export const newservice = {
-    "ServiceId": 434351,
-    "TakenAppointments": [
-      {
-        "Date": "",
-        "Time": "",
-        "number": ""
-      },
-      {
-        "Date": "",
-        "Time": "",
-        "number": ""
-      },
-      {
-        "Date": "",
-        "Time": "",
-        "number": ""
-      }
-    ],
-    "Appointments": [
-      {
-        "Day": "Friday",
-        "exists": true,
-        "ServingTime": 2,
-        "ServingLines": 4,
-        "FromHour1": 2,
-        "FromMin1": 4,
-        "ToHour1": 4,
-        "ToMin1": 4,
-        "FromHour2": 4,
-        "FromMin2": 4,
-        "ToHour2": 4,
-        "ToMin2": 4,
-        "WholeDay": false
-      },
-      {
-        "Day": "Saterday",
-        "exists": false,
-        "ServingTime": "2",
-        "ServingLines": "4",
-        "FromHour1": "2",
-        "FromMin1": "4",
-        "ToHour1": "4",
-        "ToMin1": "4",
-        "FromHour2": "4",
-        "FromMin2": "4",
-        "ToHour2": "4",
-        "ToMin2": "4",
-        "WholeDay": false
-      },
-      {
-        "Day": "Sunday",
-        "exists": false,
-        "ServingTime": "2",
-        "ServingLines": "4",
-        "FromHour1": "2",
-        "FromMin1": "4",
-        "ToHour1": "4",
-        "ToMin1": "4",
-        "FromHour2": "4",
-        "FromMin2": "4",
-        "ToHour2": "4",
-        "ToMin2": "4",
-        "WholeDay": false
-      },
-      {
-        "Day": "Monday",
-        "exists": false,
-        "ServingTime": "2",
-        "ServingLines": "4",
-        "FromHour1": "2",
-        "FromMin1": "4",
-        "ToHour1": "4",
-        "ToMin1": "4",
-        "FromHour2": "4",
-        "FromMin2": "4",
-        "ToHour2": "4",
-        "ToMin2": "4",
-        "WholeDay": false
-      },
-      {
-        "Day": "Tuesday",
-        "exists": false,
-        "ServingTime": "2",
-        "ServingLines": "4",
-        "FromHour1": "2",
-        "FromMin1": "4",
-        "ToHour1": "4",
-        "ToMin1": "4",
-        "FromHour2": "4",
-        "FromMin2": "4",
-        "ToHour2": "4",
-        "ToMin2": "4",
-        "WholeDay": false
-      },
-      {
-        "Day": "Wednesday",
-        "exists": false,
-        "ServingTime": "2",
-        "ServingLines": "4",
-        "FromHour1": "2",
-        "FromMin1": "4",
-        "ToHour1": "4",
-        "ToMin1": "4",
-        "FromHour2": "4",
-        "FromMin2": "4",
-        "ToHour2": "4",
-        "ToMin2": "4",
-        "WholeDay": false
-      },
-      {
-        "Day": "Thursday",
-        "exists": false,
-        "ServingTime": "2",
-        "ServingLines": "4",
-        "FromHour1": "2",
-        "FromMin1": "4",
-        "ToHour1": "4",
-        "ToMin1": "4",
-        "FromHour2": "4",
-        "FromMin2": "4",
-        "ToHour2": "4",
-        "ToMin2": "4",
-        "WholeDay": false
-      }
-    ],
-    "UnavailableDates": [
-      "12/12/2019",
-      "14/12/2019",
-      "22/12/2019"
-    ],
-    "ServiceName": "Fat loss",
-    "price": 344,
-    "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-    "description": "very good quality proceedure"
-  }
+  "ServiceId": 434351,
+  "ClientAppointment": {
+    "Date": "",
+    "Time": ""
+  },
+  "TakenAppointments": [
+    {
+      "Date": "",
+      "Time": "",
+      "number": ""
+    },
+    {
+      "Date": "",
+      "Time": "",
+      "number": ""
+    },
+    {
+      "Date": "",
+      "Time": "",
+      "number": ""
+    }
+  ],
+  "Appointments": [
+    {
+      "Day": "Friday",
+      "exists": true,
+      "ServingTime": 2,
+      "ServingLines": 4,
+      "FromHour1": 8,
+      "FromMin1": 30,
+      "ToHour1": 12,
+      "ToMin1": 5,
+      "FromHour2": 1,
+      "FromMin2": 5,
+      "ToHour2": 5,
+      "ToMin2": 1,
+      "WholeDay": false
+    },
+    {
+      "Day": "Saturday",
+      "exists": false,
+      "ServingTime": "2",
+      "ServingLines": "4",
+      "FromHour1": 8,
+      "FromMin1": 30,
+      "ToHour1": 12,
+      "ToMin1": 5,
+      "FromHour2": 1,
+      "FromMin2": 5,
+      "ToHour2": 5,
+      "ToMin2": 1,
+      "WholeDay": false
+    },
+    {
+      "Day": "Sunday",
+      "exists": false,
+      "ServingTime": "2",
+      "ServingLines": "4",
+      "FromHour1": 8,
+      "FromMin1": 30,
+      "ToHour1": 12,
+      "ToMin1": 5,
+      "FromHour2": 1,
+      "FromMin2": 5,
+      "ToHour2": 5,
+      "ToMin2": 1,
+      "WholeDay": false
+    },
+    {
+      "Day": "Monday",
+      "exists": false,
+      "ServingTime": "2",
+      "ServingLines": "4",
+      "FromHour1": 8,
+      "FromMin1": 30,
+      "ToHour1": 12,
+      "ToMin1": 5,
+      "FromHour2": 1,
+      "FromMin2": 5,
+      "ToHour2": 5,
+      "ToMin2": 1,
+      "WholeDay": false
+    },
+    {
+      "Day": "Tuesday",
+      "exists": false,
+      "ServingTime": "2",
+      "ServingLines": "4",
+      "FromHour1": 8,
+      "FromMin1": 30,
+      "ToHour1": 12,
+      "ToMin1": 5,
+      "FromHour2": 1,
+      "FromMin2": 5,
+      "ToHour2": 5,
+      "ToMin2": 1,
+      "WholeDay": false
+    },
+    {
+      "Day": "Wednesday",
+      "exists": false,
+      "ServingTime": "2",
+      "ServingLines": "4",
+      "FromHour1": 8,
+      "FromMin1": 30,
+      "ToHour1": 12,
+      "ToMin1": 5,
+      "FromHour2": 1,
+      "FromMin2": 5,
+      "ToHour2": 5,
+      "ToMin2": 1,
+      "WholeDay": false
+    },
+    {
+      "Day": "Thursday",
+      "exists": false,
+      "ServingTime": "2",
+      "ServingLines": "4",
+      "FromHour1": 8,
+      "FromMin1": 30,
+      "ToHour1": 12,
+      "ToMin1": 5,
+      "FromHour2": 1,
+      "FromMin2": 5,
+      "ToHour2": 5,
+      "ToMin2": 1,
+      "WholeDay": false
+    }
+  ],
+  "UnavailableDates": [
+    "12/12/2019",
+    "14/12/2019",
+    "22/11/2019"
+  ],
+  "ServiceName": "Fat loss",
+  "price": 344,
+  "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+  "description": "very good quality proceedure"
+}
 
 export const newservicesubpage = {
     "PageName": "psyotherapy",
