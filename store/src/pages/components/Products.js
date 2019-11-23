@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {changePageConfiguration} from "../../actions/submitaction"
 import Loader from "../Social media Icons/loader.gif";
 
+import PopupPage from "./PopupPage"
+
 // import {fetchcontacts,fetchtasks,fetchsupplies,fetchteams,fetchalldata} from '../actions/getactions';
 import "./Products.css"
 
@@ -10,20 +12,31 @@ class Products extends Component {
 
   constructor(props) {
     super(props);
-
+    this.openDetails=this.openDetails.bind(this);
     
 
     this.state={
+      popupshow:false,
+      Itemindex:null,
+      SubPageIndex:null,
       main:this.props.product.Products,
       sub:this.props.product.SubPages,
       cart:this.props.cart,
 
     }
 
+   
+
     
   }
 
+  exitsignal=(e)=>{
+    this.setState({popupshow:e})
+    }
 
+  openDetails(Stateproperty,index){
+    this.setState({popupshow:true,Itemindex:index});
+  }
 
 componentWillMount(){
 
@@ -112,12 +125,14 @@ AddToCart(index,page,subpageindex){
         var subpageIndex=this.props.subpageurl.substr(this.props.subpageurl.length -1)-1;
         var commonprops=this.props.product.SubPages[subpageIndex].Products;
         var pageName=this.props.product.SubPages[subpageIndex].PageName;
-        var Stateproperty="sub"}
+        var Stateproperty="sub"
+        var subpageflag=true}
 
         else if (!this.props.subpage){
           var commonprops=this.props.product.Products;
           var pageName=this.props.product.PageName;
-          var Stateproperty="main"}
+          var Stateproperty="main"
+          var subpageflag=false}
 
         return (
           <div> <h2 style={{textAlign:"right"}}>{pageName}</h2>    
@@ -140,13 +155,16 @@ AddToCart(index,page,subpageindex){
        <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number"  min="0" value={product.cart.QuantityToAdd}></input>
        <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">Add to cart</button>
        <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">Subtotal:{product.cart.QuantityToAdd}*{product.price}={product.cart.SubTotal}</div>
-       <div class="MoreInfos"><a href="#">More...</a></div>
+ <div class="MoreInfos" onClick={()=>this.openDetails(Stateproperty,index)}><a href="#">More...</a></div>
+       
      </div> 
      
    </div>
  )}
  
  </div>
+ {(this.state.popupshow)?<PopupPage subpageflag={subpageflag} subpageindex={subpageIndex} itemindex={this.state.Itemindex} type="products" show="detail" exitsignal={this.exitsignal}/>:""}
+
  </div>
  
          

@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom';
 //import {moment} from 'moment'
 import 'moment-timezone'
 import {changePageConfiguration} from "../../actions/submitaction"
+import PopupPage from "./PopupPage"
+
 
 
 import "./Services.css"
@@ -14,11 +16,25 @@ class Services extends Component {
     super(props);
     this.toReservePage=this.toReservePage.bind(this);
     this.getAvailbleTimeInDate=this.getAvailbleTimeInDate.bind(this);
+    this.openDetails=this.openDetails.bind(this);
 
-    this.state={redirect:false,
-    services:this.props.service
+
+    this.state={
+    redirect:false,
+    services:this.props.service,
+    popupshow:false,
+    Itemindex:null,
+    SubPageIndex:null,
     }
     
+  }
+
+  exitsignal=(e)=>{
+    this.setState({popupshow:e})
+    }
+
+  openDetails(index){
+    this.setState({popupshow:true,Itemindex:index});
   }
 
   toReservePage(isSubPage,SubPageIndex,ItemIndex) {
@@ -201,11 +217,14 @@ componentWillMount(){
       <div class="ProductDetails">{product.description}</div>
       <div class="ProductPrice">Price: {product.price}</div>
       <br/>
-      <div class="MoreInfo"><button onClick={()=>this.toReservePage(this.props.subpage,subpageIndex,index)}>Reserve appointment...</button></div>
+      <button onClick={()=>this.toReservePage(this.props.subpage,subpageIndex,index)}>Reserve appointment</button>
+
+      <div class="MoreInfos" onClick={()=>this.openDetails(index)}><a href="#">More...</a></div>
     </div> 
     
   </div>
 )}
+ {(this.state.popupshow)?<PopupPage subpageflag={this.props.subpage} subpageindex={subpageIndex} itemindex={this.state.Itemindex} type="services" show="detail" exitsignal={this.exitsignal}/>:""}
 
 </div>
 

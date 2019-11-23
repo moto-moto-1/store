@@ -26,6 +26,7 @@ class Reserve extends Component {
       cart: this.props.cart,
       reserve: this.props.reserve,
       ButtonDisplay:"none",
+      
     }
 
     
@@ -37,10 +38,15 @@ let moment=require('moment')
 let newState=this.state.services;
 
 if(service.subpage){
+  const newone=Object.assign({},newState.SubPages[service.subPageIndex].Services[service.index].ClientAppointment)
+  newState.SubPages[service.subPageIndex].Services[service.index].OldClientAppointment=newone
 newState.SubPages[service.subPageIndex].Services[service.index].ClientAppointment.Time=
 moment(e.target.value.split("h")[0]+":"+e.target.value.split(":")[1].split("m")[0],"H:mm").format("H:mm");
 }
 else {
+  const newone=Object.assign({},newState.Services[service.index].ClientAppointment)
+  newState.Services[service.index].OldClientAppointment=newone
+  
 newState.Services[service.index].ClientAppointment.Time=
 moment(e.target.value.split("h")[0]+":"+e.target.value.split(":")[1].split("m")[0],"H:mm").format("H:mm");
 }
@@ -53,11 +59,14 @@ this.setState({services:newState})
     this.setState({ButtonDisplay:"block"})
     let moment=require('moment')
 let newState=this.state.services;
-
 if(service.subpage){
+  const newone=Object.assign({},newState.SubPages[service.subPageIndex].Services[service.index].ClientAppointment)
+  newState.SubPages[service.subPageIndex].Services[service.index].OldClientAppointment=newone
 newState.SubPages[service.subPageIndex].Services[service.index].ClientAppointment.Date=moment(e.target.value,"MM/DD/YYYY").format("D/M/YYYY");
 }
 else {
+  const newone=Object.assign({},newState.Services[service.index].ClientAppointment)
+  newState.Services[service.index].OldClientAppointment=newone
 newState.Services[service.index].ClientAppointment.Date=moment(e.target.value,"YYYY/MM/DD").format("D/M/YYYY");
 }
 this.setState({services:newState})
@@ -175,10 +184,18 @@ return optionsArray;
           
          else {
           for(let m=0;m<service.TakenAppointments.length;m++){
+            console.log("our m is "+m)
+            console.log(service.TakenAppointments[m].Time)
+            console.log(service.TakenAppointments[m].Date)
+            console.log(service.OldClientAppointment.Time)
+              console.log(service.OldClientAppointment.Date)  
+            
+            console.log(service.TakenAppointments.length-1)
+            
+
         
-            if((service.TakenAppointments[m].Time==service.ClientAppointment.Time && 
-                service.TakenAppointments[m].Date==service.ClientAppointment.Date
-                || !(m==service.TakenAppointments.length-1)))
+            if((service.TakenAppointments[m].Time==service.OldClientAppointment.Time && 
+                service.TakenAppointments[m].Date==service.OldClientAppointment.Date))
                 {
                   if(service.TakenAppointments[m].number<=1)
                   {service.TakenAppointments[m].Time="";service.TakenAppointments[m].Date=""}

@@ -199,7 +199,57 @@ item.Appointments.map(
             
         
         }
-   
+
+        else if(this.props.type=="products" && this.props.show=="detail"){
+
+            if(this.props.subpageflag){
+                var itemNew=this.state.products.SubPages[this.props.subpageindex].Products[this.props.itemindex]}
+            else{var itemNew=this.state.products.Products[this.props.itemindex]}
+
+           return <div class="detailsWrapper">
+             
+        <div class="productImagesInDetails">
+        <img src={itemNew.image} style={{maxWidth:"7cm"}} alt="fashion" id="productimage"/>
+        {itemNew.images.map((imageseq,Index)=>
+            <img src={imageseq} style={{maxWidth:"7cm",left:(Index+1)*7+"cm"}} alt="fashion" id="productimage"/>
+            )}
+
+           </div>
+           { (itemNew.images.length>0) ? <div><small>Scroll Image to the right to see more...</small><br/><br/></div>:null }
+
+           <div class="productNameInDetails">{itemNew.ProductName}</div>
+
+        <div class="productDescriptionInDetails">{itemNew.description}</div>
+
+           
+            </div>
+
+        }
+        else if(this.props.type=="services" && this.props.show=="detail"){
+
+            if(this.props.subpageflag){
+                var itemNew=this.state.services.SubPages[this.props.subpageindex].Services[this.props.itemindex]}
+            else{var itemNew=this.state.services.Services[this.props.itemindex]}
+
+           return <div class="detailsWrapper">
+             
+        <div class="productImagesInDetails">
+        <img src={itemNew.image} style={{maxWidth:"7cm"}} alt="fashion" id="productimage"/>
+        {itemNew.images.map((imageseq,Index)=>
+            <img src={imageseq} style={{maxWidth:"7cm",left:(Index+1)*7+"cm"}} alt="fashion" id="productimage"/>
+            )}
+
+           </div>
+           { (itemNew.images.length>0) ? <div><small>Scroll Image to the right to see more...</small><br/><br/></div>:null }
+
+           <div class="productNameInDetails">{itemNew.ServiceName}</div>
+
+        <div class="productDescriptionInDetails">{itemNew.description}</div>
+
+           
+            </div>
+
+        }
    
        }
    
