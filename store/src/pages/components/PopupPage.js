@@ -76,6 +76,7 @@ changeit=(id,event)=>{
 
 fillcontents=()=>{
      let item;
+     let eso='&nbsp;'
     if(this.props.type=="products" && this.props.show=="control" ){
         if(this.props.subpageindex==null){
             item=this.state.products.Products[this.props.itemindex]
@@ -93,7 +94,7 @@ fillcontents=()=>{
          <InputLine header="description" placeholder=""
          data={item.description} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"description"},e)} 
-         type="input"/>
+         type="textarea"/>
          <InputLine header="Main Image Link" placeholder=""
          data={item.image} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
@@ -135,7 +136,7 @@ fillcontents=()=>{
        <InputLine header="description" placeholder=""
        data={item.description} 
        changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"description"},e)} 
-       type="input"/>
+       type="textarea"/>
        <InputLine header="Main Image Link" placeholder=""
       data={item.image} 
       changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
@@ -220,6 +221,8 @@ item.Appointments.map(
            <div class="productNameInDetails">{itemNew.ProductName}</div>
 
         <div class="productDescriptionInDetails">{itemNew.description}</div>
+        <div>Price: {itemNew.price}</div>
+        <div>Available Quantities: {itemNew.cart.QuantityAvailable}</div>
 
            
             </div>
@@ -235,6 +238,7 @@ item.Appointments.map(
              
         <div class="productImagesInDetails">
         <img src={itemNew.image} style={{maxWidth:"7cm"}} alt="fashion" id="productimage"/>
+        
         {itemNew.images.map((imageseq,Index)=>
             <img src={imageseq} style={{maxWidth:"7cm",left:(Index+1)*7+"cm"}} alt="fashion" id="productimage"/>
             )}
@@ -245,7 +249,8 @@ item.Appointments.map(
            <div class="productNameInDetails">{itemNew.ServiceName}</div>
 
         <div class="productDescriptionInDetails">{itemNew.description}</div>
-
+        <div>Price: {itemNew.price}</div>
+    
            
             </div>
 

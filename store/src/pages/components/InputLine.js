@@ -3,9 +3,11 @@ import * as constants from '../constants';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./InputLine.css";
+import {connect} from 'react-redux';
 
 
-export default class InputLine extends Component {
+
+export class InputLine extends Component {
     
     constructor(props){
         super(props)
@@ -19,7 +21,9 @@ export default class InputLine extends Component {
       }
     
       changeit =(e) => {
-        
+      //   if(e.target.value.charAt(e.target.value.length-1)=="\n"){alert("enter is pressed")
+      //   const ali=e.target.value+"&#13;&#10;"
+      // }
         this.props.changevalue(e.target.value);
       }
     render() {
@@ -28,12 +32,13 @@ export default class InputLine extends Component {
         const placeholder = this.props.placeholder;
         const type = this.props.type;
         const data = this.props.data;
-        
+        // alert((this.props.Header.direction=="right")?'row-reverse wrap':'row wrap')
 
       const linestyle = {
         display: 'flex',
-        flexFlow: 'row wrap',
+        flexFlow: (this.props.Header.direction=="right")?'row-reverse wrap':'row wrap',
         justifyContent: 'flex-start',
+        textAlign: (this.props.Header.direction=="right")?'right':'left',
        
    
       }
@@ -53,7 +58,7 @@ export default class InputLine extends Component {
         marginBottom:'2px',
         fontSize:constants.inputlinestyle.fontsize,
         minWidth:constants.inputlinestyle.minwidth,
-        color:'blue',
+        // color:'blue',
         
    
       }
@@ -67,6 +72,7 @@ export default class InputLine extends Component {
         flexFlow: 'row wrap',
         justifyContent: 'flex-start',
         marginLeft:'0.5cm',
+        textAlign: (this.props.Header.direction=="right")?'right':'left',
    
       }
 
@@ -115,3 +121,17 @@ return <div style={linestyle}>
 
 
 }
+
+
+const mapStateToProps = state => ({
+   
+  
+  Header: state.submit.Header.style,
+ 
+  
+});
+
+
+
+
+export default connect(mapStateToProps,{})(InputLine);

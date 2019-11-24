@@ -59,7 +59,8 @@ overflow: auto;
 }
 
 .productDescriptionInDetails{
-    
+    white-space: pre;
+   
 }
 .detailsWrapper{
     overflow:auto;
