@@ -39,10 +39,10 @@ class Footer extends Component {
 <div id="footer" style={{}}> 
 
 <div class="social">
-<a href={this.props.contact.FacebookAccount} class="socialitems"><img src={facebook} alt="facebook"/></a>
-<a href={this.props.contact.TwitterAccount} class="socialitems"><img src={Twitter} alt="twitter"/></a>
-<a href={this.props.contact.InstagramAccount} class="socialitems"><img src={Instagram} alt="instagram"/></a>
-<a href={this.props.contact.YoutubeAccount} class="socialitems"><img src={YouTube} alt="youtube"/></a>
+<a href={this.props.contact.FacebookAccount} class="socialitems"><img class="imageClass" src={facebook} alt="facebook"/></a>
+<a href={this.props.contact.TwitterAccount} class="socialitems"><img  class="imageClass" src={Twitter} alt="twitter"/></a>
+<a href={this.props.contact.InstagramAccount} class="socialitems"><img  class="imageClass" src={Instagram} alt="instagram"/></a>
+<a href={this.props.contact.YoutubeAccount} class="socialitems"><img  class="imageClass" src={YouTube} alt="youtube"/></a>
 {/* <img src={twitter} alt="fashion" id="headerimage"/> */}
 </div>
 

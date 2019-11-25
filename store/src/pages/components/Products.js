@@ -135,26 +135,30 @@ AddToCart(index,page,subpageindex){
           var subpageflag=false}
 
         return (
-          <div> <h2 style={{textAlign:"right"}}>{pageName}</h2>    
+          <div> <h2 style={{textAlign: this.props.Header.direction}}>{pageName}</h2>    
  <div class="productswrapper">
  
  {commonprops.map((product,index)=>
    
-   <div key={index} class="product">
+   <div key={index} class="product" style={{flexDirection: (this.props.Header.direction=="right")?'row-reverse':'row'}}>
  
      <div class="ProductImageArea">
        <img src={product.image} alt="fashion" id="productimage"/>
      </div>
  
-     <div id="descriptiondata">
+     <div id="descriptiondata"  style={{textAlign: this.props.Header.direction}}>
        <div class="ProductName">{product.ProductName}</div>
        <div class="ProductDetails">{product.description}</div>
-       <div class="ProductPrice">Price: {product.price}</div>
+       <div class="ProductPrice"> {(this.props.Header.direction=="right")?  product.price+" :السعر" : "Price:"+product.price }</div>
        
        {/* <div class="QuantityAvailable">Quantity available: {product.cart.QuantityAvailable}</div> */}
        <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number"  min="0" value={product.cart.QuantityToAdd}></input>
        <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">Add to cart</button>
-       <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">Subtotal:{product.cart.QuantityToAdd}*{product.price}={product.cart.SubTotal}</div>
+       <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">
+       {(this.props.Header.direction=="right")?  
+           product.cart.SubTotal +"="+product.price +"*"+product.cart.QuantityToAdd+" :السعر" 
+         : "Subtotal:"+product.cart.QuantityToAdd+"*"+product.price+"="+product.cart.SubTotal
+          }</div>
  <div class="MoreInfos" onClick={()=>this.openDetails(Stateproperty,index)}><a href="#">More...</a></div>
        
      </div> 
@@ -176,7 +180,8 @@ AddToCart(index,page,subpageindex){
 
 const mapStateToProps = state => ({
     product: state.submit.pages.products,
-    cart: state.submit.pages.cart
+    cart: state.submit.pages.cart,
+    Header: state.submit.Header.style
     
 });
 

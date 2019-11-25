@@ -236,11 +236,11 @@ item.Appointments.map(
 
            return <div class="detailsWrapper">
              
-        <div class="productImagesInDetails">
-        <img src={itemNew.image} style={{maxWidth:"7cm"}} alt="fashion" id="productimage"/>
+        <div class="productImagesInDetails" style={{flexDirection: (this.props.Header.direction=="right")?'row-reverse':'row'}}>
+        <img src={itemNew.image} style={{maxWidth:"7cm"}} alt="fashion"/>
         
         {itemNew.images.map((imageseq,Index)=>
-            <img src={imageseq} style={{maxWidth:"7cm",left:(Index+1)*7+"cm"}} alt="fashion" id="productimage"/>
+            <img src={imageseq} style={{maxWidth:"7cm",[this.props.direction]:(Index+1)*7+"cm"}} alt="fashion"/>
             )}
 
            </div>
@@ -249,7 +249,8 @@ item.Appointments.map(
            <div class="productNameInDetails">{itemNew.ServiceName}</div>
 
         <div class="productDescriptionInDetails">{itemNew.description}</div>
-        <div>Price: {itemNew.price}</div>
+        <div> {(this.props.Header.direction=="right")?  itemNew.price+" :السعر" : "Price:"+itemNew.price }</div>
+
     
            
             </div>
@@ -289,7 +290,7 @@ this.props.exitsignal(false);
     <div  class="PopupPageexit" onClick={this.exit}> X </div>
 </div>
 
-<div class="PopupPageContentWrapper">
+<div class="PopupPageContentWrapper" style={{textAlign:"right"}}>
 {this.fillcontents()}
 </div>
 
@@ -312,6 +313,7 @@ const mapStateToProps = state => ({
     control: state.submit.pages.control,
     products: state.submit.pages.products,
     services: state.submit.pages.services,
+    Header: state.submit.Header.style,
    
     
 });

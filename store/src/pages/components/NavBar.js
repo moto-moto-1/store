@@ -12,7 +12,6 @@ class NavBar extends Component {
         super(props);
         
 
-
         this.state = {isToggleOn: true, dropdownclick:"\u02C5",
          dropdowndata:
          [{page_arrow:"\u02C5",page_display:"false"},
@@ -21,7 +20,8 @@ class NavBar extends Component {
          {page_arrow:"\u02C5",page_display:"false"},
          {page_arrow:"\u02C5",page_display:"false"},
          {page_arrow:"\u02C5",page_display:"false"},
-         {page_arrow:"\u02C5",page_display:"false"}]
+         {page_arrow:"\u02C5",page_display:"false"}],
+         navItemDisplay:"block"
         };
 
     
@@ -31,7 +31,9 @@ class NavBar extends Component {
 
 componentWillMount(){
 
-
+    
+    
+    // (mq)? this.setState({display:"block"}):this.setState({display:"none"})
 
     //this.props.fetchcontacts();
     // this.props.fetchalldata('none','none');
@@ -70,23 +72,30 @@ dropdownhandler = (ind) => {
 
 handleButtonClick = (e) =>{
     e.preventDefault();
-
     if(this.state.dropdownclick=="\u02C5"){this.setState({dropdownclick:'\u02C4'})}
     else if(this.state.dropdownclick=="\u02C4"){this.setState({dropdownclick:'\u02C5'})}
     
+    
     if(this.state.isToggleOn=='none'){this.setState({isToggleOn:'block'})}
-    if(this.state.isToggleOn=='block'){this.setState({isToggleOn:'none'})}
-    if(this.state.isToggleOn==true){this.setState({isToggleOn:'block'})}
-   
+    else if(this.state.isToggleOn=='block'){this.setState({isToggleOn:'none'})}
+    else if(this.state.isToggleOn==true){this.setState({isToggleOn:'block'})}
+    
+    
 }
 
-
+ 
 
     render() {
+        
+        
+
 
         return (
 
-<div className="navigationbar">
+            
+
+<div className="navigationbar" style={{flexDirection: (this.props.header.style.direction=="right")?'row-reverse':'row'}}>
+
 
 <div className="navmainitem">
    <a href="#"> {this.props.header.name}  </a>       

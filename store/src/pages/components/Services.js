@@ -8,7 +8,7 @@ import PopupPage from "./PopupPage"
 
 
 
-import "./Services.css"
+// import "./Services.css"
 
 class Services extends Component {
 
@@ -197,29 +197,34 @@ componentWillMount(){
         var subpageIndex=this.props.subpageurl.substr(this.props.subpageurl.length -1)-1;
             }
 
-      if(!this.props.subpage) {var servicesPage=this.props.service;}
-      else {var servicesPage=this.props.service.SubPages[subpageIndex];}
+      if(!this.props.subpage) {var servicesPage=this.props.service;
+        var pageName=this.props.service.PageName;
+      }
+      else {var servicesPage=this.props.service.SubPages[subpageIndex];
+        var pageName=this.props.service.SubPages[subpageIndex].PageName;
+      }
 
         return (
-            
+          <div> <h2 style={{textAlign: this.props.Header.direction}}>{pageName}</h2>    
+
 <div class="productswrapper">
 
 {servicesPage.Services.map((product,index)=>
   
-  <div key={product.ServiceId} class="product">
+  <div key={product.ServiceId} class="product"  style={{flexDirection: (this.props.Header.direction=="right")?'row-reverse':'row'}}>
 
     <div class="ProductImageArea">
       <img src={product.image} alt="fashion" id="productimage"/>
     </div>
 
-    <div id="descriptiondata">
+    <div id="descriptiondata" style={{textAlign: this.props.Header.direction}}>
       <div class="ProductName">{product.ServiceName}</div>
       <div class="ProductDetails">{product.description}</div>
-      <div class="ProductPrice">Price: {product.price}</div>
+      <div class="ProductPrice"> {(this.props.Header.direction=="right")?  product.price+" :السعر" : "Price:"+product.price }</div>
       <br/>
       <button onClick={()=>this.toReservePage(this.props.subpage,subpageIndex,index)}>Reserve appointment</button>
 
-      <div class="MoreInfos" onClick={()=>this.openDetails(index)}><a href="#">More...</a></div>
+      <div class="MoreInfos" onClick={()=>this.openDetails(index)}><a href="#">...المزيد</a></div>
     </div> 
     
   </div>
@@ -228,7 +233,7 @@ componentWillMount(){
 
 </div>
 
-
+</div>
         
 );
 }
@@ -237,6 +242,7 @@ componentWillMount(){
 
 const mapStateToProps = state => ({
     service: state.submit.pages.services,
+    Header: state.submit.Header.style,
     
     
 });

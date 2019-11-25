@@ -55,6 +55,8 @@ height:100%;
 /* max-width:7cm; */
 max-height:10cm;
 overflow: auto;
+display:flex;
+/* flex-direction: row-reverse; */
 
 }
 

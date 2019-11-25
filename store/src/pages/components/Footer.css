@@ -35,7 +35,7 @@ position:relative;
 
   }
 
-  img{
+  .imageClass{
       position:absolute;
       top:0;
       left:0;
