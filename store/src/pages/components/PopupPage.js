@@ -31,7 +31,6 @@ checkboxchanged=(e,index,forWholeDay) =>{
     console.log(e.target.checked)
     console.log(index)
    
-
     let localstate=this.state.services;
     if(this.props.subpageindex==null){
         if(forWholeDay) localstate.Services[this.props.itemindex].Appointments[index].WholeDay=e.target.checked
@@ -45,6 +44,26 @@ else{
 this.setState({services:localstate})
 
 }
+
+AddOption = (e,option) =>{
+    e.preventDefault();
+    if(option.type=="products"){
+    
+      (!option.subpage)? this.state.products.Products[option.index].options.push({OptionName:"" , status:"",selected:""})
+      :this.state.products.SubPages[option.SubPageIndex].Services[option.index].options.push({OptionName:"" , status:"",selected:""})
+    
+        this.setState({products: {...this.state.products}}) 
+    }
+    else if(option.type=="services"){
+
+        (!option.subpage)?this.state.services.Services[option.index].options.push({OptionName:"" , status:"",selected:""})
+        :this.state.products.SubPages[option.SubPageIndex].Services[option.index].options.push({OptionName:"" , status:"",selected:""})
+
+        this.setState({services: {...this.state.services}}) 
+
+    }
+}
+
 
 changeit=(id,event)=>{
     console.log(id.index)
