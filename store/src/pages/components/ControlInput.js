@@ -74,13 +74,14 @@ this.setState({cart:cartpayment})
 
 
 changeit(id,event){
-  console.log("entered inside")
+//   console.log("entered inside")
     switch (id.page) {
         case "contact":
             if(id.branchs){
+                
                 const newBranchsArray=this.state.contact.branchs;
                 (id.value=="BranchName") ?newBranchsArray[id.key].BranchName=event : newBranchsArray[id.key].BranchLocation=event
-                    this.setState({contact: {...this.state.contact,branchs:{...this.state.contact.branchs,newBranchsArray}}}) 
+                    this.setState({contact: {...this.state.contact,branchs:newBranchsArray}}) 
                 }
                 else this.setState({contact: {...this.state.contact,[id.value]:event}})
                 
