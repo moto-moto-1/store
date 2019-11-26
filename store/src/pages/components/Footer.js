@@ -49,6 +49,7 @@ class Footer extends Component {
 <div class="pages">
 
 <div class="pagesitems">
+<a href="/products">منتجات</a>
    {this.props.pages.products.SubPages.map( subproduct => 
             <a href={subproduct.productUrl}>{subproduct.PageName}</a>
             )}
@@ -56,6 +57,8 @@ class Footer extends Component {
 </div>
 
 <div class="pagesitems">
+<a href="/services">خدمات</a>
+
    {this.props.pages.services.SubPages.map( subservicet => 
             <a href={subservicet.serviceUrl}>{subservicet.PageName}</a>
             )}
@@ -63,14 +66,14 @@ class Footer extends Component {
 </div>
 
 <div class="pagesitems">
-    <a href="">من نحن</a>
-    <a href="">للحجز</a>
-    <a href="">سلة المشتريات</a>
+    <a href="/aboutus">من نحن</a>
+    <a href="/reserve">للحجز</a>
+    <a href="/cart">سلة المشتريات</a>
 </div>
 <div class="pagesitems">
-    <a href="">الأتصال بنا</a>
-    <a href="">الفروع</a>
-    <a href="">الخريطة</a>
+    <a href="/contact">الأتصال بنا</a>
+    <a href="/reserve">أحجز</a>
+    <a href="/AdminPanel">لوحة التحكم</a>
     <a href="">تسجيل دخول</a>
 </div>
 

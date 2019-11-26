@@ -135,7 +135,7 @@ AddToCart(index,page,subpageindex){
           var subpageflag=false}
 
         return (
-          <div> <h2 style={{textAlign: this.props.Header.direction}}>{pageName}</h2>    
+          <div> <h2 style={{padding:"10px",textAlign: this.props.Header.direction}}>{pageName}</h2>    
  <div class="productswrapper">
  
  {commonprops.map((product,index)=>

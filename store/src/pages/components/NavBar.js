@@ -10,7 +10,7 @@ class NavBar extends Component {
 
     constructor(props) {
         super(props);
-        
+       
 
         this.state = {isToggleOn: true, dropdownclick:"\u02C5",
          dropdowndata:
@@ -28,10 +28,14 @@ class NavBar extends Component {
             
       }
      
+      componentWillUpdate(){
+        
 
-componentWillMount(){
+      }
 
+componentDidMount(){
     
+
     
     // (mq)? this.setState({display:"block"}):this.setState({display:"none"})
 
@@ -83,11 +87,13 @@ handleButtonClick = (e) =>{
     
 }
 
+
+
  
 
     render() {
         
-        
+      
 
 
         return (
@@ -107,7 +113,7 @@ handleButtonClick = (e) =>{
 
 {Object.keys(this.props.pages).map( (key,index)=>
 
-<div className="navitems" onClick={()=>this.dropdownhandler(index)}  style={{display:this.state.isToggleOn}}>
+<div className="navitems" onClick={()=>this.dropdownhandler(index)} style={{display:this.state.isToggleOn}}>
        
         <div class="main_page" >
         <Link to={"/"+this.props.pages[key].url}>  { this.havesubpage(index,this.props.pages[key].SubPages)}{this.props.pages[key].PageName}</Link>

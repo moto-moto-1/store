@@ -45,19 +45,19 @@ this.setState({services:localstate})
 
 }
 
-AddOption = (e,option) =>{
+AddOption = (option,e) =>{
     e.preventDefault();
     if(option.type=="products"){
     
-      (!option.subpage)? this.state.products.Products[option.index].options.push({OptionName:"" , status:"",selected:""})
-      :this.state.products.SubPages[option.SubPageIndex].Services[option.index].options.push({OptionName:"" , status:"",selected:""})
+      (!option.subpage)? this.state.products.Products[option.index].options.push({OptionName:"" , selected:""})
+      :this.state.products.SubPages[option.SubPageIndex].Products[option.index].options.push({OptionName:"" ,selected:""})
     
         this.setState({products: {...this.state.products}}) 
     }
     else if(option.type=="services"){
 
-        (!option.subpage)?this.state.services.Services[option.index].options.push({OptionName:"" , status:"",selected:""})
-        :this.state.products.SubPages[option.SubPageIndex].Services[option.index].options.push({OptionName:"" , status:"",selected:""})
+        (!option.subpage)?this.state.services.Services[option.index].options.push({OptionName:"" , selected:""})
+        :this.state.products.SubPages[option.SubPageIndex].Services[option.index].options.push({OptionName:"" ,selected:""})
 
         this.setState({services: {...this.state.services}}) 
 
@@ -127,7 +127,15 @@ fillcontents=()=>{
          data={item.cart.QuantityAvailable} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"QuantityAvailable",changeQuantity:true},e)} 
          type="input"/>
-         
+
+         <div>Options Available:</div>
+
+         {item.options.map( (option,index) =>
+        <InputLine header={"Option "+(1+index)} placeholder="" 
+         data={option.OptionName} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"QuantityAvailable",changeQuantity:true},e)} 
+         type="input"/>)}
+         <button onClick={(e)=>this.AddOption({type:"products",subpage:subpageindexvalue=="off"?false:true,SubPageIndex:this.props.subpageindex,index:this.props.itemindex},e)}>Add Option</button>
          
          
          <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}>Save</button>
@@ -309,7 +317,7 @@ this.props.exitsignal(false);
     <div  class="PopupPageexit" onClick={this.exit}> X </div>
 </div>
 
-<div class="PopupPageContentWrapper" style={{textAlign:"right"}}>
+<div class="PopupPageContentWrapper" style={{textAlign:this.props.Header.direction}}>
 {this.fillcontents()}
 </div>
 
