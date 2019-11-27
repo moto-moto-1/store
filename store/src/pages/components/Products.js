@@ -13,12 +13,16 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.openDetails=this.openDetails.bind(this);
+    this.Optionchosen=this.Optionchosen.bind(this);
+    this.OptionSelector=React.createRef();
     
 
     this.state={
       popupshow:false,
+      optionDisplay:"none",
       Itemindex:null,
       SubPageIndex:null,
+      products:this.props.product,
       main:this.props.product.Products,
       sub:this.props.product.SubPages,
       cart:this.props.cart,
@@ -28,6 +32,25 @@ class Products extends Component {
    
 
     
+  }
+
+  Optionchosen=(issubpage,SubIndex,ProductIndex,e)=>{
+    let newLocalState=this.state.products
+    // // let newLocalState=this.state.products
+    // (issubpage=="main")? newLocalState=this.state.main[ProductIndex]
+    // :newLocalState=this.state.sub[SubIndex].Products[ProductIndex]
+
+    if(issubpage=="main"){
+    newLocalState.Products[ProductIndex].options.map( (Option,index)=>
+    (index==e.target.value)?newLocalState.Products[ProductIndex].options[index].selected=true:newLocalState.Products[ProductIndex].options[index].selected=false
+    )
+    }else if(issubpage=="sub") {
+      newLocalState.SubPages[SubIndex].Products[ProductIndex].options.map( (Option,index)=>
+    (index==e.target.value)?newLocalState.SubPages[SubIndex].Products[ProductIndex].options[index].selected=true:newLocalState.SubPages[SubIndex].Products[ProductIndex].options[index].selected=false
+    )
+    }
+
+ this.setState({products:newLocalState})
   }
 
   exitsignal=(e)=>{
@@ -97,13 +120,17 @@ UpdateCartPage(){
 }
 
 AddToCart(index,page,subpageindex){
-  
 
-  if(page=="sub"){
+  
+ (this.state.optionDisplay=="none")?this.setState({optionDisplay:"block"}):this.setState({optionDisplay:"none"})
+ 
+if(page=="sub"){
     const cartArray=this.state.sub;
     cartArray[subpageindex].Products[index].cart.QuantityToAddDisplay="block";
     cartArray[subpageindex].Products[index].cart.SubTotalDisplay="block";
     cartArray[subpageindex].Products[index].cart.SubTotal=cartArray[subpageindex].Products[index].price*cartArray[subpageindex].Products[index].cart.QuantityToAdd
+    if(cartArray[subpageindex].Products[index].options.length==1&&cartArray[subpageindex].Products[index].options[0].OptionName==""){}
+    else cartArray[subpageindex].Products[index].options[this.OptionSelector.current.value].selected=true
     this.setState({sub:[...cartArray]})
     
   }
@@ -112,9 +139,12 @@ AddToCart(index,page,subpageindex){
     cartArray[index].cart.QuantityToAddDisplay="block";
     cartArray[index].cart.SubTotalDisplay="block";
     cartArray[index].cart.SubTotal=cartArray[index].price*cartArray[index].cart.QuantityToAdd
+    cartArray[index].options[this.OptionSelector.current.value].selected=true
+
   this.setState({main:[...cartArray]})
   
   }
+
   this.UpdateCartPage();
 
 }
@@ -149,11 +179,21 @@ AddToCart(index,page,subpageindex){
      <div id="descriptiondata"  style={{textAlign: this.props.Header.direction}}>
        <div class="ProductName">{product.ProductName}</div>
        <div class="ProductDetails">{product.description}</div>
+       {
+         (product.options.length==1&&product.options[0].OptionName=="")?"":
+       <select onChange={(e)=>this.Optionchosen(Stateproperty,subpageIndex,index,e)} ref={this.OptionSelector} style={{display:this.state.optionDisplay}} >
+        {product.options.map((option,optionIndex) =>  <option value={optionIndex}> {option.OptionName}</option>)}
+         </select>
+
+       }
        <div class="ProductPrice"> {(this.props.Header.direction=="right")?  product.price+" :السعر" : "Price:"+product.price }</div>
        
        {/* <div class="QuantityAvailable">Quantity available: {product.cart.QuantityAvailable}</div> */}
        <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number"  min="0" value={product.cart.QuantityToAdd}></input>
        <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">Add to cart</button>
+       
+       
+
        <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">
        {(this.props.Header.direction=="right")?  
            product.cart.SubTotal +"="+product.price +"*"+product.cart.QuantityToAdd+" :السعر" 

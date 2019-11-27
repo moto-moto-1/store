@@ -10,7 +10,7 @@ class NavBar extends Component {
 
     constructor(props) {
         super(props);
-       
+       this.navref=React.createRef();
 
         this.state = {isToggleOn: true, dropdownclick:"\u02C5",
          dropdowndata:
@@ -30,6 +30,7 @@ class NavBar extends Component {
      
       componentWillUpdate(){
         
+
 
       }
 
@@ -52,6 +53,10 @@ havesubpage = (ind,length) => {
 
 dropdownhandler = (ind) => {
     // e.preventDefault();
+ 
+
+
+
     let go=this.state.dropdowndata;
  
 
@@ -92,8 +97,12 @@ handleButtonClick = (e) =>{
  
 
     render() {
-        
       
+        
+        window.addEventListener('resize', ()=> (this.navref.current)? //allow nav bar to be responsive on window resize
+        (window.getComputedStyle(this.navref.current, null).display=="none"&&this.state.isToggleOn=="none")?this.setState({isToggleOn:"block"}):
+        (window.getComputedStyle(this.navref.current, null).display=="block"&&this.state.isToggleOn=="block")?this.setState({isToggleOn:"none"}):null
+         :null)
 
 
         return (
@@ -103,17 +112,17 @@ handleButtonClick = (e) =>{
 <div className="navigationbar" style={{flexDirection: (this.props.header.style.direction=="right")?'row-reverse':'row'}}>
 
 
-<div className="navmainitem">
+<div className="navmainitem" >
    <a href="#"> {this.props.header.name}  </a>       
 
     
-    <div className="navbutton"  onClick={this.handleButtonClick}>{this.state.dropdownclick}</div>
+    <div className="navbutton" ref={this.navref} onClick={this.handleButtonClick}>{this.state.dropdownclick}</div>
 
 </div>
 
 {Object.keys(this.props.pages).map( (key,index)=>
 
-<div className="navitems" onClick={()=>this.dropdownhandler(index)} style={{display:this.state.isToggleOn}}>
+<div className="navitems"  onClick={()=>this.dropdownhandler(index)} style={{display:this.state.isToggleOn}}>
        
         <div class="main_page" >
         <Link to={"/"+this.props.pages[key].url}>  { this.havesubpage(index,this.props.pages[key].SubPages)}{this.props.pages[key].PageName}</Link>
@@ -147,6 +156,7 @@ handleButtonClick = (e) =>{
 </div>
         
 );
+
 
 }
 

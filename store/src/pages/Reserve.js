@@ -18,7 +18,7 @@ class Reserve extends Component {
     super(props);
 
     this.allAppointmentOptions=this.allAppointmentOptions.bind(this);
-    
+    this.ConfirmAppointment=this.ConfirmAppointment.bind(this)
 
     this.state={
       products:this.props.product,
@@ -31,6 +31,8 @@ class Reserve extends Component {
 
     
   }
+
+  ConfirmAppointment=()=>{}
 
   DropDownchange=(e,service)=>{
     this.setState({ButtonDisplay:"block"})
@@ -279,6 +281,7 @@ componentWillMount(){
 <button style={{display:this.state.ButtonDisplay}} onClick={()=>this.changeAppointmentButton(appointment)}>Change Appointment</button>
 
   </div>
+  <button onClick={this.ConfirmAppointment}>Confirm</button>
 
     </div>
 
@@ -286,6 +289,8 @@ componentWillMount(){
 }
 
               </div>
+
+
  
  <Footer/>
  </div>

@@ -89,70 +89,54 @@
       "url": "products",
       "Title": "منتجات",
       "LanguageDirection": "right",
-      "emptySubPage": {
-        "PageName": "حريمي",
-        "url": "products/productsCat2",
-        "exists": true,
-        "LanguageDirection": "right",
-        "Title": "منتجات حريمي",
-        "Products": [
-          {
-            "ProductId": 434351,
-            "ProductName": "Short pants",
-            "price": 344,
-            "options": [
-              {
-                "OptionName": "أزرق فاتح XL",
-                "selected": false
-              },
-              {
-                "OptionName": "أزرق فاتح XL",
-                "selected": false
-              },
-              {
-                "OptionName": "أزرق فاتح XL",
-                "selected": false
-              }
-            ],
-            "cart": {
-              "QuantityAvailable": 15,
-              "SubTotal": 0,
-              "QuantityToAddDisplay": "none",
-              "SubTotalDisplay": "none",
-              "QuantityToAdd": 1
-            },
-            "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-            "description": "very good quality pants"
-          }
-        ]
-      },
       "emptyProduct": {
         "ProductId": 434351,
-        "ProductName": "منتج جديد",
-        "price": 0,
+        "ProductName": "New product",
+        "price": 99,
         "options": [
           {
-            "OptionName": "أزرق فاتح XL",
-            "selected": false
-          },
-          {
-            "OptionName": "أزرق فاتح XL",
-            "selected": false
-          },
-          {
-            "OptionName": "أزرق فاتح XL",
+            "OptionName": "",
             "selected": false
           }
         ],
         "cart": {
-          "QuantityAvailable": 0,
+          "QuantityAvailable": 1,
           "SubTotal": 0,
           "QuantityToAddDisplay": "none",
           "SubTotalDisplay": "none",
           "QuantityToAdd": 1
         },
         "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-        "description": "لم يتم تحديد الوصف"
+        "description": "no description is specified"
+      },
+      "emptySubPage": {
+        "PageName": "New Page",
+        "url": "products/productsCat2",
+        "exists": true,
+        "LanguageDirection": "right",
+        "Title": "New Title",
+        "Products": [
+          {
+            "ProductId": 434351,
+            "ProductName": "New product",
+            "price": 99,
+            "options": [
+              {
+                "OptionName": "",
+                "selected": false
+              }
+            ],
+            "cart": {
+              "QuantityAvailable": 1,
+              "SubTotal": 0,
+              "QuantityToAddDisplay": "none",
+              "SubTotalDisplay": "none",
+              "QuantityToAdd": 1
+            },
+            "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
+            "description": "no description is specified"
+          }
+        ]
       },
       "HaveSubpages": true,
       "Products": [
@@ -297,27 +281,6 @@
               },
               "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
               "description": "very good quality pants"
-            },
-            {
-              "ProductId": 434351,
-              "ProductName": "Short pants",
-              "price": 344,
-              "images": [
-                "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-                "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-                "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-                "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-                "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg"
-              ],
-              "cart": {
-                "QuantityAvailable": 15,
-                "SubTotal": 0,
-                "QuantityToAddDisplay": "none",
-                "SubTotalDisplay": "none",
-                "QuantityToAdd": 1
-              },
-              "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
-              "description": "very good quality pants"
             }
           ]
         },
@@ -339,6 +302,20 @@
                 "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
                 "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg"
               ],
+              "options": [
+                {
+                  "OptionName": "أزرق فاتح XL",
+                  "selected": false
+                },
+                {
+                  "OptionName": "أزرق فاتح XL",
+                  "selected": false
+                },
+                {
+                  "OptionName": "أزرق فاتح XL",
+                  "selected": false
+                }
+              ],
               "cart": {
                 "QuantityAvailable": 15,
                 "SubTotal": 0,
@@ -352,6 +329,12 @@
             {
               "ProductId": 434351,
               "ProductName": "Short pants",
+              "options": [
+                {
+                  "OptionName": "",
+                  "selected": false
+                }
+              ],
               "price": 344,
               "images": [
                 "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
@@ -373,6 +356,12 @@
             {
               "ProductId": 434351,
               "ProductName": "Short pants",
+              "options": [
+                {
+                  "OptionName": "",
+                  "selected": false
+                }
+              ],
               "price": 344,
               "images": [
                 "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
@@ -394,6 +383,12 @@
             {
               "ProductId": 434351,
               "ProductName": "Short pants",
+              "options": [
+                {
+                  "OptionName": "",
+                  "selected": false
+                }
+              ],
               "price": 344,
               "images": [
                 "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
@@ -415,6 +410,12 @@
             {
               "ProductId": 434351,
               "ProductName": "Short pants",
+              "options": [
+                {
+                  "OptionName": "",
+                  "selected": false
+                }
+              ],
               "price": 344,
               "images": [
                 "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",

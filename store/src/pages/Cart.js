@@ -120,7 +120,8 @@ componentWillMount(){
  {this.props.product.Products.map((product,productIndex)=>
  { if(product.cart.SubTotal>0 || product.cart.QuantityToAdd=="" )
     
-  return <div>{product.ProductName} Quantity:<input onChange={(e)=>this.quantity(e,productIndex,null)} value={product.cart.QuantityToAdd}></input> Sub total: {product.cart.SubTotal}</div> 
+  return <div style={{margin:"7px"}}>{product.ProductName+" | "} Option: {product.options.map(option=>(option.selected)?option.OptionName:null)} | 
+   Quantity:<input onChange={(e)=>this.quantity(e,productIndex,null)} value={product.cart.QuantityToAdd}></input> | Sub total: {product.cart.SubTotal}</div> 
 
  }
  )}
@@ -130,8 +131,8 @@ componentWillMount(){
 product.Products.map( (product,productIndex) =>{
     { if(product.cart.SubTotal!=0)
     
-        return <div>{product.ProductName}
-         Quantity:<input onChange={(e)=>this.quantity(e,productIndex,pageIndex)}  value={product.cart.QuantityToAdd}></input> Sub total: {product.cart.SubTotal}</div> 
+        return <div style={{margin:"7px"}}>{product.ProductName+" | "} Option: {product.options.map(option=>(option.selected)?option.OptionName:null)} | 
+         Quantity:<input onChange={(e)=>this.quantity(e,productIndex,pageIndex)}  value={product.cart.QuantityToAdd}></input> | Sub total: {product.cart.SubTotal}</div> 
       
        }
 
@@ -144,14 +145,14 @@ product.Products.map( (product,productIndex) =>{
   (this.state.cart.PriceTotal==0) ? <h3  style={{textAlign:"right"}}>لا توجد مشتريات</h3>
 :  <div>
   
-  <div>Total Price: {this.state.cart.PriceTotal} Total Items:{this.state.cart.TotalItems} </div>
-Payment Option : <select onChange={this.paymentchanged} ref={this.selectorRef} >
+  <div style={{margin:"7px"}}>Total Price: {this.state.cart.PriceTotal} Total Items:{this.state.cart.TotalItems} </div>
+Payment Option : <select style={{margin:"7px"}} onChange={this.paymentchanged} ref={this.selectorRef} >
 {this.props.cart.PaymentMethodOptions.map(option => 
 (option.exists)? <option value={option.Type}> {option.Name}</option>:null
  )}
  </select>
  <br></br>
- <button onClick={this.order}>Order</button>
+ <button style={{margin:"7px"}} onClick={this.order}>Order</button>
  <br></br>
 </div>
 
