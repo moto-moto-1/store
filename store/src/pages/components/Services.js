@@ -17,7 +17,8 @@ class Services extends Component {
     this.toReservePage=this.toReservePage.bind(this);
     this.getAvailbleTimeInDate=this.getAvailbleTimeInDate.bind(this);
     this.openDetails=this.openDetails.bind(this);
-
+    this.Optionchosen=this.Optionchosen.bind(this);
+    this.OptionSelector=React.createRef();
 
     this.state={
     redirect:false,
@@ -27,6 +28,25 @@ class Services extends Component {
     SubPageIndex:null,
     }
     
+  }
+
+  Optionchosen=(issubpage,SubIndex,ProductIndex,e)=>{
+    let newLocalState=this.state.services
+    // // let newLocalState=this.state.products
+    // (issubpage=="main")? newLocalState=this.state.main[ProductIndex]
+    // :newLocalState=this.state.sub[SubIndex].Products[ProductIndex]
+
+    if(issubpage=="main"){
+    newLocalState.Services[ProductIndex].options.map( (Option,index)=>
+    (index==e.target.value)?newLocalState.Services[ProductIndex].options[index].selected=true:newLocalState.Services[ProductIndex].options[index].selected=false
+    )
+    }else if(issubpage=="sub") {
+      newLocalState.SubPages[SubIndex].Services[ProductIndex].options.map( (Option,index)=>
+    (index==e.target.value)?newLocalState.SubPages[SubIndex].Services[ProductIndex].options[index].selected=true:newLocalState.SubPages[SubIndex].Services[ProductIndex].options[index].selected=false
+    )
+    }
+
+ this.setState({products:newLocalState})
   }
 
   exitsignal=(e)=>{
@@ -199,9 +219,11 @@ componentWillMount(){
 
       if(!this.props.subpage) {var servicesPage=this.props.service;
         var pageName=this.props.service.PageName;
+        var Stateproperty="main"
       }
       else {var servicesPage=this.props.service.SubPages[subpageIndex];
         var pageName=this.props.service.SubPages[subpageIndex].PageName;
+        var Stateproperty="sub"
       }
 
         return (
@@ -220,6 +242,15 @@ componentWillMount(){
     <div id="descriptiondata" style={{textAlign: this.props.Header.direction}}>
       <div class="ProductName">{product.ServiceName}</div>
       <div class="ProductDetails">{product.description}</div>
+
+      {
+         (product.options.length==1&&product.options[0].OptionName=="")?"":
+       <select   onChange={(e)=>this.Optionchosen(Stateproperty,subpageIndex,index,e)} ref={this.OptionSelector} style={{display:"block"}} >
+        {product.options.map((option,optionIndex) =>  <option value={optionIndex}> {option.OptionName}</option>)}
+         </select>
+
+       }
+
       <div class="ProductPrice"> {(this.props.Header.direction=="right")?  product.price+" :السعر" : "Price:"+product.price }</div>
       <br/>
       <button onClick={()=>this.toReservePage(this.props.subpage,subpageIndex,index)}>Reserve appointment</button>

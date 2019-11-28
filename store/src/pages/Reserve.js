@@ -271,6 +271,7 @@ componentWillMount(){
 
     <div class="servicesAppointments">
 <div>{appointment.service.ServiceName}</div>
+<div>{appointment.service.options.map(option=>(option.selected)?option.OptionName:null)}</div>
 <div>Price:  {appointment.service.price}</div>
 <div>Date:  <input onChange={(e)=>this.DateChange(e,appointment)} type="date" min={moment().format("YYYY-MM-DD")} value={moment(appointment.service.ClientAppointment.Date,"D/M/YYYY").format("YYYY-MM-DD")}  /></div>
 {/* <div>Time:  <input size="2" value={appointment.service.ClientAppointment.Time.split(":")[0]}/>h:<input size="2" value={appointment.service.ClientAppointment.Time.split(":")[1]}/>min</div> */}

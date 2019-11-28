@@ -122,7 +122,7 @@ UpdateCartPage(){
 AddToCart(index,page,subpageindex){
 
   
- (this.state.optionDisplay=="none")?this.setState({optionDisplay:"block"}):this.setState({optionDisplay:"none"})
+ //(this.state.optionDisplay=="none")?this.setState({optionDisplay:"block"}):this.setState({optionDisplay:"none"})
  
 if(page=="sub"){
     const cartArray=this.state.sub;
@@ -181,7 +181,7 @@ if(page=="sub"){
        <div class="ProductDetails">{product.description}</div>
        {
          (product.options.length==1&&product.options[0].OptionName=="")?"":
-       <select onChange={(e)=>this.Optionchosen(Stateproperty,subpageIndex,index,e)} ref={this.OptionSelector} style={{display:this.state.optionDisplay}} >
+       <select   onChange={(e)=>this.Optionchosen(Stateproperty,subpageIndex,index,e)} ref={this.OptionSelector} style={{display:product.cart.SubTotalDisplay}} >
         {product.options.map((option,optionIndex) =>  <option value={optionIndex}> {option.OptionName}</option>)}
          </select>
 

@@ -57,7 +57,7 @@ AddOption = (option,e) =>{
     else if(option.type=="services"){
 
         (!option.subpage)?this.state.services.Services[option.index].options.push({OptionName:"" , selected:""})
-        :this.state.products.SubPages[option.SubPageIndex].Services[option.index].options.push({OptionName:"" ,selected:""})
+        :this.state.services.SubPages[option.SubPageIndex].Services[option.index].options.push({OptionName:"" ,selected:""})
 
         this.setState({services: {...this.state.services}}) 
 
@@ -70,22 +70,35 @@ changeit=(id,event)=>{
 
     let localcopy=this.state[id.page]
     if(id.subpageindex=="off" && id.page=="products"){
+
         if(id.changeQuantity){localcopy.Products[id.index].cart[id.value]=event}
+        if(id.value=="OptionName"){localcopy.Products[id.index].options[id.OptionIndex][id.value]=event}
+        
         else localcopy.Products[id.index][id.value]=event
     }
     else if(id.subpageindex!="off" && id.page=="products"){
-        if(id.changeQuantity){}
+
+        if(id.changeQuantity){localcopy.SubPages[id.subpageindex].Products[id.index].cart[id.value]=event}
+        if(id.value=="OptionName"){localcopy.SubPages[id.subpageindex].Products[id.index].options[id.OptionIndex][id.value]=event}
+        
         else localcopy.SubPages[id.subpageindex].Products[id.index][id.value]=event
     }
     else if(id.subpageindex=="off" && id.page=="services"){
         if(id.Appointments){
             localcopy.Services[id.index].Appointments[id.AppointmentIndex][id.value]=event
         }else if(id.UnavailableDates){
-
         }
+        if(id.value=="OptionName"){localcopy.Services[id.index].options[id.OptionIndex][id.value]=event}
+
         else localcopy.Services[id.index][id.value]=event
     }
     else if(id.subpageindex!="off" && id.page=="services"){
+        if(id.Appointments){
+            localcopy.SubPages[id.subpageindex].Services[id.index].Appointments[id.AppointmentIndex][id.value]=event
+        }else if(id.UnavailableDates){
+        }
+        if(id.value=="OptionName"){localcopy.SubPages[id.subpageindex].Services[id.index].options[id.OptionIndex][id.value]=event}
+
         localcopy.SubPages[id.subpageindex].Services[id.index][id.value]=event
     }
     this.setState({[id.page]:localcopy})
@@ -133,7 +146,7 @@ fillcontents=()=>{
          {item.options.map( (option,index) =>
         <InputLine header={"Option "+(1+index)} placeholder="" 
          data={option.OptionName} 
-         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"QuantityAvailable",changeQuantity:true},e)} 
+         changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"OptionName",OptionIndex:index},e)} 
          type="input"/>)}
          <button onClick={(e)=>this.AddOption({type:"products",subpage:subpageindexvalue=="off"?false:true,SubPageIndex:this.props.subpageindex,index:this.props.itemindex},e)}>Add Option</button>
          
@@ -168,6 +181,16 @@ fillcontents=()=>{
       data={item.image} 
       changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
       type="input"/>
+
+<div>Options Available:</div>
+
+{item.options.map( (option,index) =>
+<InputLine header={"Option "+(1+index)} placeholder="" 
+data={option.OptionName} 
+changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"OptionName",OptionIndex:index},e)} 
+type="input"/>)}
+<button onClick={(e)=>this.AddOption({type:"services",subpage:subpageindexvalue=="off"?false:true,SubPageIndex:this.props.subpageindex,index:this.props.itemindex},e)}>Add Option</button>
+
 
 
       {
@@ -248,6 +271,7 @@ item.Appointments.map(
            <div class="productNameInDetails">{itemNew.ProductName}</div>
 
         <div class="productDescriptionInDetails">{itemNew.description}</div>
+        {(itemNew.options[0].OptionName!="")?<div>Options Available: {" "+itemNew.options.map(option=>option.OptionName+" ")}</div>:null}
         <div>Price: {itemNew.price}</div>
         <div>Available Quantities: {itemNew.cart.QuantityAvailable}</div>
 
@@ -276,6 +300,9 @@ item.Appointments.map(
            <div class="productNameInDetails">{itemNew.ServiceName}</div>
 
         <div class="productDescriptionInDetails">{itemNew.description}</div>
+        {(itemNew.options[0].OptionName!="")?<div>Options Available: {" "+itemNew.options.map(option=>option.OptionName+" ")}</div>:null}
+
+
         <div> {(this.props.Header.direction=="right")?  itemNew.price+" :السعر" : "Price:"+itemNew.price }</div>
 
     
