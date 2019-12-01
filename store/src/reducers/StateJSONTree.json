@@ -6,6 +6,7 @@
       "color": "white",
       "height": "65%",
       "width": "100%",
+      "flxdir": "row",
       "direction": "left",
       "language": "en",
       "font_size": "400%"
@@ -106,6 +107,7 @@
           "SubTotalDisplay": "none",
           "QuantityToAdd": 1
         },
+        "images": [],
         "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
         "description": "no description is specified"
       },
@@ -133,6 +135,7 @@
               "SubTotalDisplay": "none",
               "QuantityToAdd": 1
             },
+            "images": [],
             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
             "description": "no description is specified"
           }
@@ -592,6 +595,7 @@
               }
             ],
             "price": 344,
+            "images": [],
             "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
             "description": "very good quality proceedure"
           }
@@ -740,6 +744,7 @@
           }
         ],
         "price": 344,
+        "images": [],
         "image": "https://cdn.shopify.com/s/files/1/0925/0118/products/Navy1_900x.progressive.jpg",
         "description": "very good quality proceedure"
       },
@@ -2811,5 +2816,203 @@
     "Address": "38 saw st, Pensivania,USA",
     "Map": "30.004111, 31.426389",
     "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  },
+  "languages": {
+    "en": {
+      "rv": {
+        "cnfmBt": "Confirm",
+        "prc": "Price",
+        "dt": "Date",
+        "tm": "Time"
+      },
+      "crt": {
+        "pymthd": "Payment method",
+        "qty": "Quantity",
+        "sbtl": "Sub-total",
+        "tlpr": "Total price",
+        "tlitm": "Total items",
+        "ordbtn": "Order"
+      },
+      "cnct": {
+        "tl": "Telephone: ",
+        "ml": "E-mail: ",
+        "brnAdd": "branch address: ",
+        "brn": "Branchs"
+      },
+      "pr": {
+        "prc": "Price",
+        "crtBtn": "Add to cart",
+        "sbtl": "Sub-total",
+        "mr": "More...",
+        "opAv": "Options available",
+        "qtAv": "Quantity available",
+        "scrimg": "Scroll Image to the right to see more..."
+      },
+      "sv": {
+        "prc": "Price",
+        "rvApp": "Reserve Appointment",
+        "mr": "More...",
+        "scrimg": "Scroll Image to the right to see more...",
+        "opAv": "Options available"
+      },
+      "ctrl": {
+        "cnpnl": "Control Panel",
+        "mnPg": "Main pages",
+        "sbPg": "Sub pages",
+        "pgNm": "Page name",
+        "svBtn": "Save",
+        "edBtn": "Edit",
+        "delBtn": "Delete",
+        "addItmBtn": "Add item",
+        "addPgBtn": "new sub-page",
+        "pr": {
+          "prNm": "Product name",
+          "dscrp": "Description",
+          "mnImg": "Main Image Link",
+          "prc": "Price",
+          "avQty": "Available Quantity",
+          "opAv": "Options available",
+          "opNum": "option",
+          "addOpBtn": "Add option"
+        },
+        "sv": {
+          "svNm": "Service name",
+          "dscrp": "description",
+          "mnImg": "Main Image Link",
+          "prc": "Price",
+          "opAv": "Options available",
+          "opNum": "option",
+          "addOpBtn": "Add option",
+          "wlDayCk": "Whole day",
+          "sft1": "First shift",
+          "sft2": "Second shift",
+          "svTm": "Serving time(min)",
+          "svLns": "Serving Lines",
+          "frHr1": "From hour",
+          "frMn1": "From min",
+          "toHr1": "To hour",
+          "toMn1": "To min",
+          "frHr2": "From hour",
+          "frMn2": "From min",
+          "toHr2": "To hour",
+          "toMn2": "To min"
+        },
+        "abt": {
+          "btStm": "About statment"
+        },
+        "crt": {
+          "pymthd": "Payment methods"
+        },
+        "cnct": {
+          "fbAcc": "Facebook Account",
+          "twAcc": "Twitter Account",
+          "insAcc": "Instagram Account",
+          "ytAcc": "Youtube Account",
+          "em": "E-mail address",
+          "tl": "Telephone number",
+          "addBrnBtn": "Add branch",
+          "BrnNm": "Branch name",
+          "BrnAdd": "Branch Address"
+        }
+      }
+    },
+    "ar": {
+      "rv": {
+        "cnfmBt": "تأكيد الحجز",
+        "prc": "السعر",
+        "dt": "التاريخ",
+        "tm": "الوقت"
+      },
+      "crt": {
+        "pymthd": "طريقة الدفع",
+        "qty": "الكمية",
+        "sbtl": "المجموع",
+        "tlpr": "الإجمالى",
+        "tlitm": "الكمية الكلية",
+        "ordbtn": "أطلب"
+      },
+      "cnct": {
+        "tl": " :الهاتف",
+        "ml": " :البريد الألكترونى",
+        "brnAdd": " :عنوان الفرع",
+        "brn": "الفروع"
+      },
+      "pr": {
+        "prc": "السعر",
+        "crtBtn": "أضف للشراء",
+        "sbtl": "المجموع",
+        "mr": "...المزيد",
+        "opAv": "الخيارات",
+        "qtAv": "الكمية المتاحة",
+        "scrimg": "...قم بسحب الصورة لليمين لرؤية المزيد"
+      },
+      "sv": {
+        "prc": "السعر",
+        "rvApp": "أحجز موعد",
+        "mr": "...المزيد",
+        "scrimg": "...قم بسحب الصورة لليمين لرؤية المزيد",
+        "opAv": "الخيارات"
+      },
+      "ctrl": {
+        "cnpnl": "لوحة التحكم",
+        "mnPg": "الصفحات الرئيسية",
+        "sbPg": "الصفحات الفرعية",
+        "pgNm": "أسم الصفحة",
+        "svBtn": "حفظ",
+        "edBtn": "تعديل",
+        "delBtn": "مسح",
+        "addItmBtn": "إضافة جديدة",
+        "addPgBtn": "أضف صفحة فرعية",
+        "pr": {
+          "prNm": "أسم المنتج",
+          "dscrp": "التفاصيل",
+          "mnImg": "رابط الصورة الرئيسية",
+          "prc": "السعر",
+          "avQty": "الكمية المتاحة",
+          "opAv": "الخيارات المتاحة",
+          "opNum": "أختيار",
+          "addOpBtn": "أضف أختيار"
+        },
+        "sv": {
+          "svNm": "أسم الخدمة",
+          "dscrp": "التفاصيل",
+          "mnImg": "رابط الصورة الرئيسية",
+          "prc": "السعر",
+          "opAv": "الخيارات المتاحة",
+          "opNum": "أختيار",
+          "addOpBtn": "أضف أختيار",
+          "wlDayCk": "يوم كامل",
+          "sft1": "الدوام الأول",
+          "sft2": "الدوام الأخير",
+          "svTm": "مدة الخدمة(دقيقة)ـ",
+          "svLns": "عدد خطوط الخدمة",
+          "frHr1": "من الساعة",
+          "frMn1": "من الدقيقة",
+          "toHr1": "إلى الساعة",
+          "toMn1": "إلى الدقيقة",
+          "frHr2": "من الساعة",
+          "frMn2": "من الدقيقة",
+          "toHr2": "إلى الساعة",
+          "toMn2": "إلى الدقيقة"
+        },
+        "abt": {
+          "btStm": "من نحن"
+        },
+        "crt": {
+          "pymthd": "طرق الدفع"
+        },
+        "cnct": {
+          "fbAcc": "رابط حساب فيسبوك",
+          "twAcc": "رابط حساب تويتر",
+          "insAcc": "رابط حساب أنستجرام",
+          "ytAcc": "رابط صفحة يوتيوب",
+          "em": "البريد الألكترونى",
+          "tl": "الهاتف",
+          "addBrnBtn": "أضف فرع جديد",
+          "BrnNm": "أسم الفرع",
+          "BrnAdd": "عنوان الفرع"
+        }
+      }
+    }
   }
 }

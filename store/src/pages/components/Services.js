@@ -26,6 +26,8 @@ class Services extends Component {
     popupshow:false,
     Itemindex:null,
     SubPageIndex:null,
+    lg:this.props.lg[this.props.Header.language]
+
     }
     
   }
@@ -244,18 +246,18 @@ componentWillMount(){
       <div class="ProductDetails">{product.description}</div>
 
       {
-         (product.options.length==1&&product.options[0].OptionName=="")?"":
+         (product.options.length==1&&product.options[0].OptionName=="")?"":<div style={{display: "flex",flexDirection: this.props.Header.flxdir}}>
        <select   onChange={(e)=>this.Optionchosen(Stateproperty,subpageIndex,index,e)} ref={this.OptionSelector} style={{display:"block"}} >
         {product.options.map((option,optionIndex) =>  <option value={optionIndex}> {option.OptionName}</option>)}
-         </select>
+         </select></div>
 
        }
 
-      <div class="ProductPrice"> {(this.props.Header.direction=="right")?  product.price+" :السعر" : "Price:"+product.price }</div>
+      <div class="ProductPrice"> {(this.props.Header.direction=="right")?  product.price+" :"+this.state.lg.sv.prc : this.state.lg.sv.prc+":"+product.price }</div>
       <br/>
-      <button onClick={()=>this.toReservePage(this.props.subpage,subpageIndex,index)}>Reserve appointment</button>
+      <button onClick={()=>this.toReservePage(this.props.subpage,subpageIndex,index)}>{this.state.lg.sv.rvApp}</button>
 
-      <div class="MoreInfos" onClick={()=>this.openDetails(index)}><a href="#">...المزيد</a></div>
+      <div class="MoreInfos" onClick={()=>this.openDetails(index)}><a href="#">{this.state.lg.sv.mr}</a></div>
     </div> 
     
   </div>
@@ -274,6 +276,7 @@ componentWillMount(){
 const mapStateToProps = state => ({
     service: state.submit.pages.services,
     Header: state.submit.Header.style,
+    lg:state.submit.languages
     
     
 });

@@ -23,6 +23,7 @@ import "./PopupPage.css"
             
             products:this.props.products,
             services:this.props.services,
+            lg:this.props.lg[this.props.Header.language]
             
         }
 }
@@ -212,6 +213,7 @@ item.Appointments.map(
       type="inputnumber"/>
 
       <center>shift 1</center>
+      
       <InputLine header="From hour" placeholder="" data={appointment.FromHour1} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromHour1"},e)} 
       type="inputnumber"/>
@@ -266,14 +268,22 @@ item.Appointments.map(
             )}
 
            </div>
-           { (itemNew.images.length>0) ? <div><small>Scroll Image to the right to see more...</small><br/><br/></div>:null }
+           { (itemNew.images.length>0) ? <div><small>{this.state.lg.pr.scrimg}</small><br/><br/></div>:null }
 
            <div class="productNameInDetails">{itemNew.ProductName}</div>
 
         <div class="productDescriptionInDetails">{itemNew.description}</div>
-        {(itemNew.options[0].OptionName!="")?<div>Options Available: {" "+itemNew.options.map(option=>option.OptionName+" ")}</div>:null}
-        <div>Price: {itemNew.price}</div>
-        <div>Available Quantities: {itemNew.cart.QuantityAvailable}</div>
+        {(itemNew.options[0].OptionName!="")?
+        (this.props.Header.direction=="left")?
+        <div>{this.state.lg.pr.opAv+": "+itemNew.options.map(option=>option.OptionName+" ")}</div>
+        :<div style={{display:"flex",flexDirection:this.props.Header.flxdir}}><div>{" :"+this.state.lg.pr.opAv}</div><div style={{display:"flex",flexFlow:"wrap "+this.props.Header.flxdir}}>{itemNew.options.map(option=><div>{option.OptionName+" , "}</div>)}</div></div>
+        :null}
+        
+        
+        {(this.props.Header.direction=="left")?<div>{this.state.lg.pr.prc+": "+itemNew.price}</div>:<div>{itemNew.price+" :"+this.state.lg.pr.prc}</div>}
+        {(this.props.Header.direction=="left")?<div>{this.state.lg.pr.qtAv+": "+itemNew.cart.QuantityAvailable}</div>:<div>{itemNew.cart.QuantityAvailable+" :"+this.state.lg.pr.qtAv}</div>}
+
+        
 
            
             </div>
@@ -295,16 +305,19 @@ item.Appointments.map(
             )}
 
            </div>
-           { (itemNew.images.length>0) ? <div><small>Scroll Image to the right to see more...</small><br/><br/></div>:null }
+           { (itemNew.images.length>0) ? <div><small>{this.state.lg.sv.scrimg}</small><br/><br/></div>:null }
 
            <div class="productNameInDetails">{itemNew.ServiceName}</div>
 
         <div class="productDescriptionInDetails">{itemNew.description}</div>
-        {(itemNew.options[0].OptionName!="")?<div>Options Available: {" "+itemNew.options.map(option=>option.OptionName+" ")}</div>:null}
 
+        {(itemNew.options[0].OptionName!="")?
+        (this.props.Header.direction=="left")?
+        <div>{this.state.lg.sv.opAv+": "+itemNew.options.map(option=>option.OptionName+" ")}</div>
+        :<div style={{display:"flex",flexDirection:this.props.Header.flxdir}}><div>{" :"+this.state.lg.sv.opAv}</div><div style={{display:"flex",flexFlow:"wrap "+this.props.Header.flxdir}}>{itemNew.options.map(option=><div>{option.OptionName+" , "}</div>)}</div></div>
+        :null}
 
-        <div> {(this.props.Header.direction=="right")?  itemNew.price+" :السعر" : "Price:"+itemNew.price }</div>
-
+        {(this.props.Header.direction=="left")?<div>{this.state.lg.sv.prc+": "+itemNew.price}</div>:<div>{itemNew.price+" :"+this.state.lg.sv.prc}</div>}
     
            
             </div>
@@ -368,8 +381,7 @@ const mapStateToProps = state => ({
     products: state.submit.pages.products,
     services: state.submit.pages.services,
     Header: state.submit.Header.style,
-   
-    
+    lg:state.submit.languages
 });
 
 

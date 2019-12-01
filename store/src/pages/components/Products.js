@@ -26,6 +26,7 @@ class Products extends Component {
       main:this.props.product.Products,
       sub:this.props.product.SubPages,
       cart:this.props.cart,
+      lg:this.props.lg[this.props.Header.language]
 
     }
 
@@ -180,26 +181,26 @@ if(page=="sub"){
        <div class="ProductName">{product.ProductName}</div>
        <div class="ProductDetails">{product.description}</div>
        {
-         (product.options.length==1&&product.options[0].OptionName=="")?"":
+         (product.options.length==1&&product.options[0].OptionName=="")?"":<div style={{display: "flex",flexDirection: this.props.Header.flxdir}}>
        <select   onChange={(e)=>this.Optionchosen(Stateproperty,subpageIndex,index,e)} ref={this.OptionSelector} style={{display:product.cart.SubTotalDisplay}} >
         {product.options.map((option,optionIndex) =>  <option value={optionIndex}> {option.OptionName}</option>)}
-         </select>
+         </select></div>
 
        }
-       <div class="ProductPrice"> {(this.props.Header.direction=="right")?  product.price+" :السعر" : "Price:"+product.price }</div>
+       <div class="ProductPrice"> {(  this.props.Header.direction=="right")?  product.price+" :"+this.state.lg.pr.prc : this.state.lg.pr.prc+":"+product.price }</div>
        
        {/* <div class="QuantityAvailable">Quantity available: {product.cart.QuantityAvailable}</div> */}
-       <input style={{display:product.cart.QuantityToAddDisplay}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number"  min="0" value={product.cart.QuantityToAdd}></input>
-       <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">Add to cart</button>
+       <input style={{display:product.cart.QuantityToAddDisplay,textAlign:this.props.Header.direction}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number"  min="0" value={product.cart.QuantityToAdd}></input>
+       <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">{this.state.lg.pr.crtBtn}</button>
        
        
 
        <div style={{display:product.cart.SubTotalDisplay}} class="subtotal" type="number">
        {(this.props.Header.direction=="right")?  
-           product.cart.SubTotal +"="+product.price +"*"+product.cart.QuantityToAdd+" :السعر" 
-         : "Subtotal:"+product.cart.QuantityToAdd+"*"+product.price+"="+product.cart.SubTotal
+           product.cart.SubTotal +"="+product.price +"*"+product.cart.QuantityToAdd+" :" +this.state.lg.pr.sbtl
+         : this.state.lg.pr.sbtl+":"+product.cart.QuantityToAdd+"*"+product.price+"="+product.cart.SubTotal
           }</div>
- <div class="MoreInfos" onClick={()=>this.openDetails(Stateproperty,index)}><a href="#">More...</a></div>
+ <div class="MoreInfos" onClick={()=>this.openDetails(Stateproperty,index)}><a href="#">{this.state.lg.pr.mr}</a></div>
        
      </div> 
      
@@ -221,7 +222,8 @@ if(page=="sub"){
 const mapStateToProps = state => ({
     product: state.submit.pages.products,
     cart: state.submit.pages.cart,
-    Header: state.submit.Header.style
+    Header: state.submit.Header.style,
+    lg:state.submit.languages
     
 });
 

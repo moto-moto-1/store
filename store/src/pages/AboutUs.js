@@ -14,6 +14,17 @@ import "./AboutUs.css"
 
 class AboutUs extends Component {
 
+
+    constructor(props) {
+        super(props);
+
+    this.state={
+            lg:this.props.lg[this.props.Header.language],
+            LinesStyle:{display:"flex",flexFlow:"wrap "+this.props.Header.flxdir}
+        }
+
+    }
+
 componentWillMount(){
 
     //this.props.fetchcontacts();
@@ -29,10 +40,10 @@ componentWillMount(){
 <Header/>
             <NavBar/>
 
-            <div class="aboutcontainer">
-            <h1>{this.props.about.HeaderTitle}</h1>
+            <div  class="aboutcontainer">
+            <h1  style={this.state.LinesStyle}>{this.props.about.HeaderTitle}</h1>
            
-            <h3>{this.props.about.Details}</h3>
+            <h3  style={this.state.LinesStyle}>{this.props.about.Details}</h3>
 
             <br></br>
             </div>
@@ -46,7 +57,8 @@ const mapStateToProps = state => ({
     
     about: state.submit.pages.about,
     branchs: state.submit.pages.contact.branchs,
-    
+    lg:state.submit.languages,
+    Header:state.submit.Header.style
 }); 
 
 
