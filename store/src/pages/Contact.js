@@ -38,7 +38,7 @@ componentWillMount(){
 
 <Header/>
             <NavBar/>
-           <h1  style={this.state.LinesStyle}>{this.props.contact.HeaderTitle}</h1>
+           <h1  style={this.state.LinesStyle}>{this.props.contact.PageName}</h1>
 
 
 <div>

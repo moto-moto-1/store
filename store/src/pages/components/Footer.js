@@ -49,7 +49,7 @@ class Footer extends Component {
 <div class="pages">
 
 <div class="pagesitems">
-<a href="/products">منتجات</a>
+        <a href="/products">{this.props.pages.products.PageName}</a>
    {this.props.pages.products.SubPages.map( subproduct => 
             <a href={subproduct.productUrl}>{subproduct.PageName}</a>
             )}
@@ -57,7 +57,7 @@ class Footer extends Component {
 </div>
 
 <div class="pagesitems">
-<a href="/services">خدمات</a>
+<a href="/services">{this.props.pages.services.PageName}</a>
 
    {this.props.pages.services.SubPages.map( subservicet => 
             <a href={subservicet.serviceUrl}>{subservicet.PageName}</a>

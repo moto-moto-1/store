@@ -24,7 +24,9 @@ class ControlInput extends Component {
        
     
         this.state = {
-            contact: { FacebookAccount: this.props.contact.FacebookAccount,
+            contact: { 
+                       PageName:this.props.contact.PageName,
+                       FacebookAccount: this.props.contact.FacebookAccount,
                        InstagramAccount:  this.props.contact.InstagramAccount,
                        TwitterAccount:  this.props.contact.TwitterAccount,
                        email:  this.props.contact.email,
@@ -35,6 +37,7 @@ class ControlInput extends Component {
                     },
                       
             about:{
+                       PageName:this.props.about.PageName,
                        Details : this.props.about.Details,
 
             },
@@ -45,10 +48,14 @@ class ControlInput extends Component {
 
             },
 
+            
+
             products:this.props.products,
             services:this.props.services,
             cart:this.props.cart,     
-            reserve:this.props.reserve
+            reserve:this.props.reserve,
+            txtalgn:{textAlign:this.props.Header.direction},
+            lg:this.props.lg[this.props.Header.language]
                     
                     
                     
@@ -87,7 +94,7 @@ changeit(id,event){
                 
             break;
             case "about":
-                    this.setState({about: {...this.state.about,Details:event}})
+                    this.setState({about: {...this.state.about,[id.value]:event}})
             break;
             case "reserve":
                 this.setState({reserve: {...this.state.reserve,[id.value]:event}})
@@ -137,22 +144,22 @@ listInputs(controlPage){
 switch (controlPage) {
         case "products":
             if(this.props.control.activeSubpageToControl=="")
-        {return <div><InputLine header="Page Name" placeholder=""
+        {return <div><InputLine header={this.state.lg.ctrl.pgNm} placeholder=""
          data={this.state.products.PageName} 
          changevalue={(e)=>this.changeit({page:"products",pageindex:"off",value:"PageName"},e)} 
          type="input"/>
-         <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}> Save </button>
+          <div style={this.state.txtalgn} ><button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}> {this.state.lg.ctrl.svBtn} </button></div>
          <Item/>
          </div>
          }
           else{
           const subpagenumber=this.props.control.activeSubpageToControl.substr(this.props.control.activeSubpageToControl.length -1)-1
          
-          return <div><InputLine header="SubPage Name" placeholder=""
+          return <div><InputLine header={this.state.lg.ctrl.sbPgNm} placeholder=""
           data={this.state.products.SubPages[subpagenumber].PageName} 
           changevalue={(e)=>this.changeit({page:"products",pageindex:subpagenumber,value:"PageName"},e)} 
           type="input"/>
-          <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}> Save </button>
+           <div style={this.state.txtalgn} ><button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}> {this.state.lg.ctrl.svBtn} </button></div>
           <Item/>
 
           </div>
@@ -163,11 +170,11 @@ switch (controlPage) {
         
         case "services":
                 if(this.props.control.activeSubpageToControl=="")
-                {return <div><InputLine header="Page Name" placeholder=""
+                {return <div><InputLine header={this.state.lg.ctrl.pgNm} placeholder=""
                  data={this.state.services.PageName} 
                  changevalue={(e)=>this.changeit({page:"services",pageindex:"off",value:"PageName"},e)} 
                  type="input"/>
-                 <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}> Save </button>
+                  <div style={this.state.txtalgn} ><button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}> {this.state.lg.ctrl.svBtn} </button></div>
                  <Item/>
 
                  </div>
@@ -175,11 +182,11 @@ switch (controlPage) {
                   else{
                   const subpagenumber=this.props.control.activeSubpageToControl.substr(this.props.control.activeSubpageToControl.length -1)-1
                  
-                  return <div><InputLine header="SubPage Name" placeholder=""
+                  return <div><InputLine header={this.state.lg.ctrl.sbPgNm} placeholder=""
                   data={this.state.services.SubPages[subpagenumber].PageName} 
                   changevalue={(e)=>this.changeit({page:"services",pageindex:subpagenumber,value:"PageName"},e)} 
                   type="input"/>
-                  <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}> Save </button>
+                  <div style={this.state.txtalgn} > <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}> {this.state.lg.ctrl.svBtn} </button></div>
                   <Item/>
 
                   </div>
@@ -192,72 +199,84 @@ switch (controlPage) {
         case "contact":
             return <div>
                 <br></br>
+                <InputLine header={this.state.lg.ctrl.pgNm} placeholder=""
+                data={this.state.contact.PageName} 
+                changevalue={(e)=>this.changeit({page:"contact",value:"PageName"},e)} 
+                type="input"/>
+                
 
-             <InputLine header="Facebook Account" placeholder=""
+             <InputLine header={this.state.lg.ctrl.cnct.fbAcc} placeholder=""
              data={this.state.contact.FacebookAccount} 
              changevalue={(e)=>this.changeit({page:"contact",value:"FacebookAccount"},e)} type="input"/>
 
-             <InputLine header="Twitter Account" placeholder="" 
+             <InputLine header={this.state.lg.ctrl.cnct.twAcc} placeholder="" 
              data={this.state.contact.TwitterAccount} 
              changevalue={(e)=>this.changeit({page:"contact",value:"TwitterAccount"},e)}  type="input"/>
 
-             <InputLine header="YouTube Account" placeholder="" 
+             <InputLine header={this.state.lg.ctrl.cnct.ytAcc} placeholder="" 
              data={this.state.contact.YoutubeAccount} 
              changevalue={(e)=>this.changeit({page:"contact",value:"YoutubeAccount"},e)}   type="input"/>
 
-             <InputLine header="Instagram Account" placeholder="" 
+             <InputLine header={this.state.lg.ctrl.cnct.insAcc} placeholder="" 
              data={this.state.contact.InstagramAccount} 
              changevalue={(e)=>this.changeit({page:"contact",value:"InstagramAccount"},e)}   type="input"/>
 
-             <InputLine header="E-Mail address" placeholder="" 
+             <InputLine header={this.state.lg.ctrl.cnct.em} placeholder="" 
              data={this.state.contact.email} 
              changevalue={(e)=>this.changeit({page:"contact",value:"email"},e)}   type="input"/>
 
-             <InputLine header="Telephone Number" placeholder="" 
+             <InputLine header={this.state.lg.ctrl.cnct.tl} placeholder="" 
              data={this.state.contact.Telephone} 
              changevalue={(e)=>this.changeit({page:"contact",value:"Telephone"},e)}   type="input"/>
             
             {this.state.contact.branchs.map((branch,key)=>
             <div>
             <br></br>
-             <InputLine header="Branch name" placeholder="" data={branch.BranchName} 
+             <InputLine header={this.state.lg.ctrl.cnct.BrnNm} placeholder="" data={branch.BranchName} 
              changevalue={(e)=>this.changeit({branchs:true,page:"contact",value:"BranchName",key:key},e)}   type="input"/>
 
-             <InputLine header="Branch Location" placeholder="" data={branch.BranchLocation} 
+             <InputLine header={this.state.lg.ctrl.cnct.BrnAdd} placeholder="" data={branch.BranchLocation} 
              changevalue={(e)=>this.changeit({branchs:true,page:"contact",value:"BranchLocation",key:key},e)}   type="input"/>
 
            </div>
             )}
-            <button onClick={this.AddBranch}> Add New Branch </button><br></br>
-            <button onClick={()=>this.props.changePageConfiguration("contact",this.state.contact)}> Save </button>
+           <div style={this.state.txtalgn} >  
+            <button onClick={this.AddBranch}> {this.state.lg.ctrl.cnct.addBrnBtn} </button><br></br>
+            <button onClick={()=>this.props.changePageConfiguration("contact",this.state.contact)}> {this.state.lg.ctrl.svBtn} </button></div>
             </div>
             break;
 
             case "aboutus":
         return <div>
         <br></br>
-        <InputLine header="Name" placeholder="write your company name here" 
+
+        <InputLine header={this.state.lg.ctrl.pgNm} placeholder=""
+                data={this.state.about.PageName} 
+                changevalue={(e)=>this.changeit({page:"about",value:"PageName"},e)} 
+                type="input"/>
+
+        <InputLine header={this.state.lg.ctrl.cmpNm} placeholder="write your company name here" 
         data={this.state.header.name} 
         changevalue={(e)=>this.changeit({page:"header",value:"name"},e)} type="input"/>
-        <button onClick={()=>this.props.changePageConfiguration("header",this.state.header)}> Save </button>
+        <div style={this.state.txtalgn} > <button onClick={()=>this.props.changePageConfiguration("header",this.state.header)}> {this.state.lg.ctrl.svBtn} </button></div>
 
 
-        <InputLine header="About statment" placeholder="Write your about statment here" data={this.state.about.Details} changevalue={(e)=>this.changeit({page:"about",value:"Details"},e)} type="textarea"/>
-        <button onClick={()=>this.props.changePageConfiguration("about",this.state.about)}> Save </button>
+        <InputLine header={this.state.lg.ctrl.abt.btStm} placeholder={this.state.lg.ctrl.abt.btStmPlHldr} data={this.state.about.Details} changevalue={(e)=>this.changeit({page:"about",value:"Details"},e)} type="textarea"/>
+       <div style={this.state.txtalgn} > <button onClick={()=>this.props.changePageConfiguration("about",this.state.about)}> {this.state.lg.ctrl.svBtn} </button></div>
 
         </div>
         break; 
         case "cart":
         return <div>
-            <InputLine header="Page Name" placeholder=""
+            <InputLine header={this.state.lg.ctrl.pgNm} placeholder=""
                 data={this.state.cart.PageName} 
                 changevalue={(e)=>this.changeit({page:"cart",value:"PageName"},e)} 
                 type="input"/>
-                <button onClick={()=>this.props.changePageConfiguration("cart",this.state.cart)}> Save </button>
+                 <div style={this.state.txtalgn} ><button onClick={()=>this.props.changePageConfiguration("cart",this.state.cart)}> {this.state.lg.ctrl.svBtn} </button></div>
                 
 
-            <h2>طرق الدفع</h2>
-            {this.state.cart.PaymentMethodOptions.map( (option,index) =><div>
+            <h2 style={{textAlign:this.props.Header.direction}}>{this.state.lg.ctrl.crt.pymthd}</h2>
+            {this.state.cart.PaymentMethodOptions.map( (option,index) =><div style={{textAlign:this.props.Header.direction,display:"flex",flexDirection:this.props.Header.flxdir}}>
                <input type="checkbox" defaultChecked={option.exists} onChange={(e)=>this.paymentMethod(e,index)}></input>{option.Name}<br></br>
                    </div>
 
@@ -272,7 +291,7 @@ switch (controlPage) {
                 data={this.state.reserve.PageName} 
                 changevalue={(e)=>this.changeit({page:"reserve",value:"PageName"},e)} 
                 type="input"/>
-                <button onClick={()=>this.props.changePageConfiguration("reserve",this.state.reserve)}> Save </button>
+                <div style={this.state.txtalgn} > <button onClick={()=>this.props.changePageConfiguration("reserve",this.state.reserve)}> {this.state.lg.ctrl.svBtn} </button></div>
                 
                 </div>
         break;
@@ -311,6 +330,8 @@ const mapStateToProps = state => ({
     products: state.submit.pages.products,
     services: state.submit.pages.services,
     header: state.submit.Header,
+    Header: state.submit.Header.style,
+    lg:state.submit.languages
 
 
 

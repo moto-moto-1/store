@@ -25,6 +25,8 @@ this.addsubpage=this.addsubpage.bind(this);
             Itemindex:null,
             products:this.props.products,
             services:this.props.services,
+            txtalgn:{textAlign:this.props.Header.direction},
+            lg:this.props.lg[this.props.Header.language]
         }
 }
 
@@ -199,10 +201,10 @@ let name;
             
 
             <div class="itembox">
-            <div>{item[name]}</div>
-            <div>{item.description}</div>
-            <button onClick={()=>this.edititem(index)}>Edit</button>
-            <button onClick={()=>this.deleteitem(type,subpageindex,index)}>Delete</button>
+            <div style={this.state.txtalgn}>{item[name]}</div>
+            <div style={this.state.txtalgn}>{item.description}</div>
+            <button onClick={()=>this.edititem(index)}>{this.state.lg.ctrl.edBtn}</button>
+            <button onClick={()=>this.deleteitem(type,subpageindex,index)}>{this.state.lg.ctrl.delBtn}</button>
             {(this.state.popupshow)?<PopupPage subpageindex={subpageindex} itemindex={this.state.Itemindex} type={type} show="control" exitsignal={this.exitsignal}/>:""}
             </div>
             
@@ -210,8 +212,9 @@ let name;
            
         )}
          </div>
-        <button onClick={()=>this.additem(type,subpageindex)}>Add Item</button>
-        <button onClick={()=>this.addsubpage(type,subpageindex)}>Add Sub Page</button>
+         <div style={this.state.txtalgn}>
+        <button onClick={()=>this.additem(type,subpageindex)}>{this.state.lg.ctrl.addItmBtn}</button>
+        <button onClick={()=>this.addsubpage(type,subpageindex)}>{this.state.lg.ctrl.addPgBtn}</button></div>
             </div>
            
         
@@ -226,6 +229,8 @@ const mapStateToProps = state => ({
     control: state.submit.pages.control,
     products: state.submit.pages.products,
     services: state.submit.pages.services,
+    Header: state.submit.Header.style,
+    lg:state.submit.languages
    
     
 });

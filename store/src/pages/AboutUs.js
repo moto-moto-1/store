@@ -41,7 +41,7 @@ componentWillMount(){
             <NavBar/>
 
             <div  class="aboutcontainer">
-            <h1  style={this.state.LinesStyle}>{this.props.about.HeaderTitle}</h1>
+            <h1  style={this.state.LinesStyle}>{this.props.about.PageName}</h1>
            
             <h3  style={this.state.LinesStyle}>{this.props.about.Details}</h3>
 

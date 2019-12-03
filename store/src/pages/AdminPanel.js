@@ -19,6 +19,10 @@ class AdminPanel extends Component {
     constructor(props) {
         super(props);
 
+        this.state={
+            lg:this.props.lg[this.props.Header.language]
+        }
+
         //this.state = {activeMainPage:"products"}
 }
 
@@ -41,7 +45,7 @@ loopsubpages = (type) => {
   
 
     if(mainpage=="products" || mainpage=="services"){
-       return <div><h1 style={{textAlign:"right"}}>الصفحات الفرعية</h1>
+       return <div><h1 style={{textAlign:this.props.Header.direction}}>{this.state.lg.ctrl.sbPg}</h1>
         <div class="mainPagesContainer">
 {this.loopsubpages(mainpage)}
       </div></div>
@@ -58,8 +62,8 @@ loopsubpages = (type) => {
         return (
 <div>
            <NavBar/>
-           <center><h1>{this.props.control.HeaderTitle}</h1></center>
-           <h1 style={{textAlign:"right"}}>الصفحات الرئيسية</h1>
+           <center><h1>{this.state.lg.ctrl.cnpnl}</h1></center>
+           <h1 style={{textAlign:this.props.Header.direction}}>{this.state.lg.ctrl.mnPg}</h1>
 
  <div class="mainPagesContainer">
            
@@ -89,6 +93,8 @@ const mapStateToProps = state => ({
     control: state.submit.pages.control,
 
      pages: state.submit.pages,
+     Header: state.submit.Header.style,
+     lg:state.submit.languages
 
 });
 

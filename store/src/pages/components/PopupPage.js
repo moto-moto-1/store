@@ -23,7 +23,8 @@ import "./PopupPage.css"
             
             products:this.props.products,
             services:this.props.services,
-            lg:this.props.lg[this.props.Header.language]
+            lg:this.props.lg[this.props.Header.language],
+            txtalgn:{textAlign:this.props.Header.direction}
             
         }
 }
@@ -245,7 +246,7 @@ item.Appointments.map(
       </div>
 )
        }
-         <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}>Save</button>
+        <div class={this.state.txtalgn}> <button onClick={()=>this.props.changePageConfiguration("services",this.state.services)}>{this.state.lg.ctrl.svBtn}</button></div>
       </div> 
 
        

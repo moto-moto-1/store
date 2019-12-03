@@ -6,9 +6,9 @@
       "color": "white",
       "height": "65%",
       "width": "100%",
-      "flxdir": "row",
-      "direction": "left",
-      "language": "en",
+      "flxdir": "row-reverse",
+      "direction": "right",
+      "language": "ar",
       "font_size": "400%"
     }
   },
@@ -2860,6 +2860,8 @@
         "mnPg": "Main pages",
         "sbPg": "Sub pages",
         "pgNm": "Page name",
+        "sbPgNm": "Sub-page name",
+        "cmpNm": "Company's name",
         "svBtn": "Save",
         "edBtn": "Edit",
         "delBtn": "Delete",
@@ -2898,7 +2900,8 @@
           "toMn2": "To min"
         },
         "abt": {
-          "btStm": "About statment"
+          "btStm": "About statment",
+          "btStmPlHldr": "Write your about statment here"
         },
         "crt": {
           "pymthd": "Payment methods"
@@ -2958,6 +2961,8 @@
         "mnPg": "الصفحات الرئيسية",
         "sbPg": "الصفحات الفرعية",
         "pgNm": "أسم الصفحة",
+        "cmpNm": "أسم الشركة",
+        "sbPgNm": "أسم الصفحة الفرعية",
         "svBtn": "حفظ",
         "edBtn": "تعديل",
         "delBtn": "مسح",
@@ -2996,7 +3001,8 @@
           "toMn2": "إلى الدقيقة"
         },
         "abt": {
-          "btStm": "من نحن"
+          "btStm": "من نحن",
+          "btStmPlHldr": "أكتب ما تصبوا إليه الشركة"
         },
         "crt": {
           "pymthd": "طرق الدفع"
