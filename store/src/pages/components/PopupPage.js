@@ -16,7 +16,7 @@ import "./PopupPage.css"
         // this.props.show;
         // this.props.subpageindex;
         // this.props.itemindex
-
+        this.MainImageUploadChange=this.MainImageUploadChange.bind(this);
         this.exit = this.exit.bind(this);
         
         this.state = {
@@ -27,6 +27,10 @@ import "./PopupPage.css"
             txtalgn:{textAlign:this.props.Header.direction}
             
         }
+}
+
+MainImageUploadChange = (e)=>{
+    console.log(e.target.files[0])
 }
 
 checkboxchanged=(e,index,forWholeDay) =>{
@@ -121,39 +125,40 @@ fillcontents=()=>{
         var subpageindexvalue=this.props.subpageindex
     }
            return <div>
-           <InputLine header="Product Name" placeholder=""
+           <InputLine header={this.state.lg.ctrl.pr.prNm} placeholder=""
          data={item.ProductName} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"ProductName"},e)} 
          type="input"/>
-         <InputLine header="description" placeholder=""
+         <InputLine header={this.state.lg.ctrl.pr.dscrp} placeholder=""
          data={item.description} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"description"},e)} 
          type="textarea"/>
-         <InputLine header="Main Image Link" placeholder=""
+         <InputLine header={this.state.lg.ctrl.pr.mnImg} placeholder=""
          data={item.image} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
          type="input"/>
-         <InputLine header="Price" placeholder=""
+         <input type="file" name="file" onChange={this.MainImageUploadChange}/>
+         <InputLine header={this.state.lg.ctrl.pr.prc} placeholder=""
          data={item.price} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"price"},e)} 
          type="input"/>
 
-         <InputLine header="Available Quantity" placeholder="" 
+         <InputLine header={this.state.lg.ctrl.pr.avQty} placeholder="" 
          data={item.cart.QuantityAvailable} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"QuantityAvailable",changeQuantity:true},e)} 
          type="input"/>
 
-         <div>Options Available:</div>
+         <div>{this.state.lg.ctrl.pr.opAv}</div>
 
          {item.options.map( (option,index) =>
-        <InputLine header={"Option "+(1+index)} placeholder="" 
-         data={option.OptionName} 
+        <InputLine header={(this.props.Header.direction=="left")?this.state.lg.ctrl.pr.opNum+" "+(1+index):(1+index)+" "+this.state.lg.ctrl.pr.opNum}
+         placeholder="" data={option.OptionName} 
          changevalue={(e)=>this.changeit({page:"products",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"OptionName",OptionIndex:index},e)} 
          type="input"/>)}
-         <button onClick={(e)=>this.AddOption({type:"products",subpage:subpageindexvalue=="off"?false:true,SubPageIndex:this.props.subpageindex,index:this.props.itemindex},e)}>Add Option</button>
+         <div style={this.state.txtalgn}><button onClick={(e)=>this.AddOption({type:"products",subpage:subpageindexvalue=="off"?false:true,SubPageIndex:this.props.subpageindex,index:this.props.itemindex},e)}> {this.state.lg.ctrl.pr.addOpBtn} </button></div>
          
          
-         <button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}>Save</button>
+         <div style={this.state.txtalgn}><button onClick={()=>this.props.changePageConfiguration("products",this.state.products)}> {this.state.lg.ctrl.svBtn} </button></div>
           
            </div>
       
@@ -172,26 +177,30 @@ fillcontents=()=>{
          var subpageindexvalue=this.props.subpageindex
      }
          return <div>
-         <InputLine header="Service Name" placeholder=""  data={item.ServiceName} 
+         <InputLine header={this.state.lg.ctrl.sv.svNm} placeholder=""  data={item.ServiceName} 
        changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"ServiceName"},e)} 
        type="input"/>
-       <InputLine header="description" placeholder=""
+       <InputLine header={this.state.lg.ctrl.sv.dscrp} placeholder=""
        data={item.description} 
        changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"description"},e)} 
        type="textarea"/>
-       <InputLine header="Main Image Link" placeholder=""
+       <InputLine header={this.state.lg.ctrl.sv.mnImg} placeholder=""
       data={item.image} 
       changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"image"},e)} 
       type="input"/>
+      <InputLine header={this.state.lg.ctrl.sv.prc} placeholder=""
+         data={item.price} 
+         changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"price"},e)} 
+         type="input"/>
 
-<div>Options Available:</div>
+<div>{this.state.lg.ctrl.sv.opAv}</div>
 
 {item.options.map( (option,index) =>
-<InputLine header={"Option "+(1+index)} placeholder="" 
-data={option.OptionName} 
+<InputLine header={(this.props.Header.direction=="left")?this.state.lg.ctrl.sv.opNum+" "+(1+index):(1+index)+" "+this.state.lg.ctrl.sv.opNum}
+placeholder="" data={option.OptionName} 
 changevalue={(e)=>this.changeit({page:"services",subpageindex:subpageindexvalue,index:this.props.itemindex,value:"OptionName",OptionIndex:index},e)} 
 type="input"/>)}
-<button onClick={(e)=>this.AddOption({type:"services",subpage:subpageindexvalue=="off"?false:true,SubPageIndex:this.props.subpageindex,index:this.props.itemindex},e)}>Add Option</button>
+<div style={this.state.txtalgn}><button onClick={(e)=>this.AddOption({type:"services",subpage:subpageindexvalue=="off"?false:true,SubPageIndex:this.props.subpageindex,index:this.props.itemindex},e)}> {this.state.lg.ctrl.sv.addOpBtn} </button></div>
 
 
 
@@ -200,45 +209,46 @@ item.Appointments.map(
     (appointment,AppointmentIndex)=>
     <div>
         <hr/>
-   <input type="checkbox" onChange={(e)=>this.checkboxchanged(e,AppointmentIndex)} checked={appointment.exists}/>{appointment.Day}
-   <input type="checkbox" onChange={(e)=>this.checkboxchanged(e,AppointmentIndex,true)} checked={appointment.WholeDay}/>Whole day
-
+        <div style={{display:"flex",flexDirection:this.props.Header.flxdir}}>
+   <div style={{display:"flex",flexDirection:this.props.Header.flxdir}}><div><input type="checkbox" onChange={(e)=>this.checkboxchanged(e,AppointmentIndex)} checked={appointment.exists}/></div><div>{appointment.Day}</div></div>
+   <div style={{display:"flex",flexDirection:this.props.Header.flxdir}}><div><input type="checkbox" onChange={(e)=>this.checkboxchanged(e,AppointmentIndex,true)} checked={appointment.WholeDay}/></div><div>{this.state.lg.ctrl.sv.wlDayCk}</div></div>
+</div>
    <div style={{display: (appointment.exists && !appointment.WholeDay) ? "block":"none"  }}>
 
-<InputLine header="Serving time (min)" placeholder="" data={appointment.ServingTime} 
+<InputLine header={this.state.lg.ctrl.sv.svTm} placeholder="" data={appointment.ServingTime} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ServingTime"},e)} 
       type="inputnumber"/>
 
-<InputLine header="Serving Lines" placeholder="" data={appointment.ServingLines} 
+<InputLine header={this.state.lg.ctrl.sv.svLns} placeholder="" data={appointment.ServingLines} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ServingLines"},e)} 
       type="inputnumber"/>
 
-      <center>shift 1</center>
+      <center>{this.state.lg.ctrl.sv.sft1}</center>
       
-      <InputLine header="From hour" placeholder="" data={appointment.FromHour1} 
+      <InputLine header={this.state.lg.ctrl.sv.frHr1} placeholder="" data={appointment.FromHour1} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromHour1"},e)} 
       type="inputnumber"/>
-      <InputLine header="From min" placeholder="" data={appointment.FromMin1} 
+      <InputLine header={this.state.lg.ctrl.sv.frMn1} placeholder="" data={appointment.FromMin1} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromMin1"},e)} 
       type="inputnumber"/>
-      <InputLine header="To hour" placeholder="" data={appointment.ToHour1} 
+      <InputLine header={this.state.lg.ctrl.sv.toHr1} placeholder="" data={appointment.ToHour1} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToHour1"},e)} 
       type="inputnumber"/>
-      <InputLine header="To min" placeholder="" data={appointment.ToMin1} 
+      <InputLine header={this.state.lg.ctrl.sv.toMn1} placeholder="" data={appointment.ToMin1} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToMin1"},e)} 
       type="inputnumber"/>
 
-      <center>shift 2</center>
-      <InputLine header="From hour" placeholder="" data={appointment.FromHour2} 
+      <center>{this.state.lg.ctrl.sv.sft2}</center>
+      <InputLine header={this.state.lg.ctrl.sv.frHr2} placeholder="" data={appointment.FromHour2} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromHour2"},e)} 
       type="inputnumber"/>
-      <InputLine header="From min" placeholder="" data={appointment.FromMin2} 
+      <InputLine header={this.state.lg.ctrl.sv.frMn2} placeholder="" data={appointment.FromMin2} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"FromMin2"},e)} 
       type="inputnumber"/>
-      <InputLine header="To hour" placeholder="" data={appointment.ToHour2} 
+      <InputLine header={this.state.lg.ctrl.sv.toHr2} placeholder="" data={appointment.ToHour2} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToHour2"},e)} 
       type="inputnumber"/>
-      <InputLine header="To min" placeholder="" data={appointment.ToMin2} 
+      <InputLine header={this.state.lg.ctrl.sv.toMn2} placeholder="" data={appointment.ToMin2} 
      changevalue={(e)=>this.changeit({page:"services",subpageindex:"off",AppointmentIndex:AppointmentIndex,Appointments:true,index:this.props.itemindex,value:"ToMin2"},e)} 
       type="inputnumber"/>
 
