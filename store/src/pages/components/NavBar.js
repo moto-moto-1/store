@@ -11,6 +11,7 @@ class NavBar extends Component {
     constructor(props) {
         super(props);
        this.navref=React.createRef();
+    //    this.getNumberOfItems=this.getNumberOfItems.bind(this)
 
         this.state = {isToggleOn: true, dropdownclick:"\u02C5",
          dropdowndata:
@@ -20,8 +21,10 @@ class NavBar extends Component {
          {page_arrow:"\u02C5",page_display:"false"},
          {page_arrow:"\u02C5",page_display:"false"},
          {page_arrow:"\u02C5",page_display:"false"},
+         {page_arrow:"\u02C5",page_display:"false"},
          {page_arrow:"\u02C5",page_display:"false"}],
-         navItemDisplay:"block"
+         
+         navItemDisplay:"block",
         };
 
     
@@ -44,6 +47,8 @@ componentDidMount(){
     // this.props.fetchalldata('none','none');
     
 }
+
+
 
 havesubpage = (ind,length) => {
     // console.log(ind);
@@ -126,6 +131,7 @@ handleButtonClick = (e) =>{
        
         <div class="main_page" >
         <Link to={"/"+this.props.pages[key].url}>  { this.havesubpage(index,this.props.pages[key].SubPages)}{this.props.pages[key].PageName}</Link>
+{(key=="cart")?(this.props.pages.cart.TotalItems>0)?<span style={{color:"red"}}>({this.props.pages.cart.TotalItems})</span>:null:null}
         </div>
 
         <div style={{display:this.state.dropdowndata[index].page_display}} class="dropdown_content">

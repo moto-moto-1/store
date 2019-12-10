@@ -190,7 +190,8 @@ if(page=="sub"){
        <div class="ProductPrice"> {(  this.props.Header.direction=="right")?  product.price+" :"+this.state.lg.pr.prc : this.state.lg.pr.prc+":"+product.price }</div>
        
        {/* <div class="QuantityAvailable">Quantity available: {product.cart.QuantityAvailable}</div> */}
-       <input style={{display:product.cart.QuantityToAddDisplay,textAlign:this.props.Header.direction}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits" type="number"  min="0" value={product.cart.QuantityToAdd}></input>
+       <input style={{display:product.cart.QuantityToAddDisplay,textAlign:this.props.Header.direction}} onChange={(e)=>this.numberofunitsChange(e,index,Stateproperty,subpageIndex)} class="numberofunits"  type="number"  min="0" value={product.cart.QuantityToAdd}></input>
+       
        <button onClick={()=>this.AddToCart(index,Stateproperty,subpageIndex)} class="AddToCart">{this.state.lg.pr.crtBtn}</button>
        
        

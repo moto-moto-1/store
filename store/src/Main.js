@@ -10,6 +10,8 @@ import Products from "./pages/ProductPage"
 import Services from "./pages/ServicePage"
 import Cart from "./pages/Cart"
 import Reserve from "./pages/Reserve"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
 
 
 
@@ -31,6 +33,8 @@ import Reserve from "./pages/Reserve"
       <Route path="/Welcome" component={Welcome} />
       <Route path="/AdminPanel" component={AdminPanel} />
       <Route path="/cart" component={Cart} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
       <Route path="/reserve" component={Reserve} />
       <Route path="/contact" component={Contact} />
        <Route exact path="/products" component={Products} />

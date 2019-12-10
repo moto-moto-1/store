@@ -121,7 +121,7 @@ componentWillMount(){
  { if(product.cart.SubTotal>0 || product.cart.QuantityToAdd=="" )
     
   return <div style={{margin:"7px"}}>{product.ProductName+" | "}  {product.options.map(option=>(option.selected)?option.OptionName:null)} | 
-   Quantity: <input onChange={(e)=>this.quantity(e,productIndex,null)} value={product.cart.QuantityToAdd}></input> | Sub total: {product.cart.SubTotal}</div> 
+   Quantity: <input style={{width:"5em"}} type="number"  onChange={(e)=>this.quantity(e,productIndex,null)} value={product.cart.QuantityToAdd}></input> | Sub total: {product.cart.SubTotal}</div> 
 
  }
  )}

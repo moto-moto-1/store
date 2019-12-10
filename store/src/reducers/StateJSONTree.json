@@ -2805,12 +2805,25 @@
         "color": "black",
         "background": "white"
       }
+    },
+    "login": {
+      "PageName": "تسجيل دخول",
+      "Type": "login",
+      "url": "login",
+      "SubPages": [],
+      "exists": true,
+      "LanguageDirection": "right",
+      "style": {
+        "color": "black",
+        "background": "white"
+      }
     }
   },
   "UserData": {
     "userType": "admin",
     "signedin": true,
-    "UserName": "أبو على",
+    "UserName": "",
+    "password": "",
     "email": "abuali@gmail.com",
     "Telephone": "239284845",
     "Address": "38 saw st, Pensivania,USA",
@@ -2917,6 +2930,18 @@
           "BrnNm": "Branch name",
           "BrnAdd": "Branch Address"
         }
+      },
+      "usr": {
+        "usrNm": "User name",
+        "pass": "Passowrd",
+        "Verpass": "Verify Passowrd",
+        "plcHUsrNm": "e-mail or phone number",
+        "PlcHPass": "type password here",
+        "mail": "e-mail",
+        "phone": "Phone",
+        "Address": "Address",
+        "Rgstr": "Register",
+        "Lgn": "Login"
       }
     },
     "ar": {
@@ -3018,6 +3043,18 @@
           "BrnNm": "أسم الفرع",
           "BrnAdd": "عنوان الفرع"
         }
+      },
+      "usr": {
+        "usrNm": "المستخدم",
+        "pass": "كلمة المرور",
+        "Verpass": "أكد كلمة المرور",
+        "plcHUsrNm": "أكتب بريدك الألكترونى أو الهاتف",
+        "PlcHPass": " أكتب كلمة المرور هنا",
+        "mail": "البريد الألكترونى",
+        "phone": "الهاتف",
+        "Address": "العنوان",
+        "Rgstr": "تسجيل جديد",
+        "Lgn": "دخول"
       }
     }
   }
